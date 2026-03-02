@@ -6,6 +6,12 @@ on:
       - main
       - develop
 
+# Permissões no nível do workflow para garantir que GITHUB_TOKEN
+# tenha acesso de escrita aos packages (GHCR) e ao repositório
+permissions:
+  contents: write
+  packages: write
+
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: apsferreira/iit-website
