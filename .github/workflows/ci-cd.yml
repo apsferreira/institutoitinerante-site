@@ -9,6 +9,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: apsferreira/iit-website
+  ASTRO_TELEMETRY_DISABLED: "1"
 
 jobs:
   # ────────────────────────────────────────────
