@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { pt as t } from '../../i18n/pt';
+
+const pains = [
+  { icon: '🌙', title: 'Leads chegando à meia-noite sem resposta', desc: 'Compradores pesquisam imóveis à noite. Sem resposta imediata, vão direto para o concorrente.' },
+  { icon: '🔍', title: 'Corretores gastando tempo com leads frios', desc: 'Sem qualificação prévia, corretores atendem leads que não têm perfil de compra, desperdiçando tempo.' },
+  { icon: '📋', title: 'Processo de coleta de dados manual', desc: 'Coletar localização desejada, metragem, faixa de preço e urgência manualmente é ineficiente.' },
+  { icon: '📉', title: 'Baixa taxa de conversão de anúncios', desc: 'Investe em anúncios mas perde leads por demora no primeiro contato — a janela de ouro é de minutos.' },
+];
+
+const solutions = [
+  { icon: '⚡', title: 'Primeiro contato em segundos', desc: 'Responde imediatamente qualquer lead de anúncio — Facebook, Instagram, portal de imóveis.' },
+  { icon: '🎯', title: 'Qualifica automaticamente', desc: 'Descobre perfil, localização, orçamento, urgência e se é compra ou aluguel — antes do corretor.' },
+  { icon: '🏘️', title: 'Apresenta imóveis do portfólio', desc: 'Sugere imóveis que combinam com o perfil do lead e envia fotos e links automaticamente.' },
+  { icon: '📅', title: 'Agenda visitas sem esforço', desc: 'O lead escolhe horário e o agente agenda com o corretor correto — sem filas de mensagem.' },
+];
+---
+
+<BaseLayout
+  title="Attend-Agent para Imobiliárias | IIT"
+  description="Qualifique leads imobiliários automaticamente no WhatsApp. O Attend-Agent responde 24/7, filtra perfis e agenda visitas — enquanto seus corretores focam em fechar negócios."
+  lang="pt-BR"
+  canonical="https://institutoitinerante.com.br/para/imobiliarias"
+>
+  <Nav t={t} />
+  <main class="pt-16">
+    <section class="py-24" style="background: linear-gradient(135deg, #0A0F14 0%, #0D1B26 100%);">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <span class="inline-block text-sm font-semibold uppercase tracking-widest mb-4 text-[#0097D6]">Imobiliárias</span>
+        <h1 class="text-5xl font-black text-white mb-6">Attend-Agent para Imobiliárias</h1>
+        <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-10">Qualifique leads, apresente imóveis e agende visitas automaticamente — 24/7 no WhatsApp, enquanto seus corretores fecham negócios.</p>
+        <a
+          href="https://wa.me/5571992732430?text=Quero%20o%20Attend-Agent%20para%20minha%20imobili%C3%A1ria"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 bg-[#0097D6] text-white font-bold px-10 py-4 rounded-xl shadow-lg shadow-[#0097D6]/30 hover:scale-105 transition-all"
+        >
+          💬 Quero o Attend-Agent para minha imobiliária
+        </a>
+      </div>
+    </section>
+
+    <section class="py-24 bg-white">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-black text-[#0D1B26] mb-4">Problemas que toda imobiliária conhece</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {pains.map((p) => (
+            <div class="flex items-start gap-4 border border-[#D0DDE6] shadow-sm rounded-2xl p-6">
+              <span class="text-3xl shrink-0">{p.icon}</span>
+              <div>
+                <h3 class="font-bold text-[#0D1B26] mb-2">{p.title}</h3>
+                <p class="text-gray-600 text-sm">{p.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24" style="background: #F5F8FA;">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-black text-[#0D1B26] mb-4">Como o Attend-Agent resolve</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {solutions.map((s) => (
+            <div class="flex items-start gap-4 bg-white border border-[#D0DDE6] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all rounded-2xl p-6">
+              <span class="text-3xl shrink-0">{s.icon}</span>
+              <div>
+                <h3 class="font-bold text-[#0D1B26] mb-2">{s.title}</h3>
+                <p class="text-gray-600 text-sm">{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 text-center bg-white">
+      <div class="max-w-xl mx-auto px-4">
+        <h2 class="text-4xl font-black text-[#0D1B26] mb-4">Seus corretores focando em fechar</h2>
+        <p class="text-gray-500 mb-8">Deixe o Attend-Agent qualificar e agendar. Sua equipe só recebe leads prontos para visita.</p>
+        <a
+          href="https://wa.me/5571992732430?text=Quero%20o%20Attend-Agent%20para%20minha%20imobili%C3%A1ria"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 bg-[#0097D6] text-white font-bold px-10 py-4 rounded-xl shadow-lg shadow-[#0097D6]/30 hover:scale-105 transition-all"
+        >
+          💬 Quero o Attend-Agent para minha imobiliária →
+        </a>
+        <p class="text-xs text-gray-400 mt-4">Planos a partir de R$397/mês · Setup em até 48h · Sem fidelidade</p>
+      </div>
+    </section>
+  </main>
+  <Footer t={t} />
+</BaseLayout>

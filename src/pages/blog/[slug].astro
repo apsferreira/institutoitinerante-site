@@ -1,0 +1,110 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { pt as t } from '../../i18n/pt';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+}
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.data.title,
+  "description": post.data.description,
+  "datePublished": post.data.pubDate.toISOString(),
+  "author": {
+    "@type": "Organization",
+    "name": post.data.author,
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Instituto Itinerante de Tecnologia",
+    "url": "https://institutoitinerante.com.br",
+  },
+};
+---
+
+<BaseLayout
+  title={`${post.data.title} | Blog IIT`}
+  description={post.data.description}
+  lang="pt-BR"
+  canonical={`https://institutoitinerante.com.br/blog/${post.slug}`}
+  schemaExtra={articleSchema}
+>
+  <Nav t={t} />
+  <main class="pt-16">
+    <!-- Hero -->
+    <section class="py-16" style="background: linear-gradient(135deg, #0A0F14 0%, #0D1B26 100%);">
+      <div class="max-w-3xl mx-auto px-4 text-center">
+        <div class="flex flex-wrap gap-2 justify-center mb-6">
+          {post.data.tags.slice(0, 4).map((tag) => (
+            <span class="text-xs bg-[#0097D6]/20 text-[#0097D6] font-semibold px-3 py-1 rounded-full">{tag}</span>
+          ))}
+        </div>
+        <h1 class="text-4xl font-black text-white mb-4 leading-tight">{post.data.title}</h1>
+        <p class="text-gray-400 text-sm">{formatDate(post.data.pubDate)} · {post.data.author}</p>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="py-16 bg-white">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <article class="prose prose-lg max-w-none prose-headings:text-[#0D1B26] prose-headings:font-black prose-a:text-[#0097D6] prose-strong:text-[#0D1B26]">
+          <Content />
+        </article>
+
+        <!-- CTA -->
+        <div class="mt-16 bg-gradient-to-br from-[#0097D6] to-[#007ab8] rounded-2xl p-8 text-white text-center">
+          <h3 class="text-2xl font-black mb-2">Pronto para automatizar seu atendimento?</h3>
+          <p class="text-white/80 mb-6">Fale com nossa equipe e veja o Attend-Agent em ação para o seu negócio.</p>
+          <a
+            href="https://wa.me/5571992732430?text=Li%20o%20blog%20e%20quero%20saber%20mais%20sobre%20o%20Attend-Agent"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-white text-[#0097D6] font-bold px-8 py-3 rounded-xl hover:scale-105 transition-transform"
+          >
+            💬 Falar com especialista →
+          </a>
+        </div>
+
+        <!-- Back to blog -->
+        <div class="mt-8 text-center">
+          <a href="/blog" class="text-sm text-gray-500 hover:text-[#0097D6] transition-colors">← Voltar ao Blog</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer t={t} />
+</BaseLayout>
+
+<style is:global>
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+  }
+  .prose th, .prose td {
+    border: 1px solid #D0DDE6;
+    padding: 0.5rem 1rem;
+    text-align: left;
+  }
+  .prose th {
+    background: #F5F8FA;
+    font-weight: 700;
+    color: #0D1B26;
+  }
+</style>

@@ -7,6 +7,9 @@ export interface Props {
   lang?: string;
   canonical?: string;
   ogImage?: string;
+  alternatePt?: string;
+  alternateEn?: string;
+  schemaExtra?: object | object[];
 }
 
 const {
@@ -14,7 +17,10 @@ const {
   description,
   lang = 'pt-BR',
   canonical = Astro.url.href,
-  ogImage = '/og-image.png',
+  ogImage = '/og-image.svg',
+  alternatePt,
+  alternateEn,
+  schemaExtra,
 } = Astro.props;
 
 const siteUrl = 'https://institutoitinerante.com.br';
@@ -58,6 +64,9 @@ const whatsappLabel = lang === 'en' ? 'Talk to us' : 'Fale conosco';
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/svg+xml" />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="Instituto Itinerante de Tecnologia" />
     <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'pt_BR'} />
@@ -71,19 +80,48 @@ const whatsappLabel = lang === 'en' ? 'Talk to us' : 'Fale conosco';
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/logo-iit-symbol.png" />
 
-    <!-- Schema.org JSON-LD -->
+    <!-- Schema.org JSON-LD: Organization -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
+    <!-- Schema.org JSON-LD: Extra (per-page) -->
+    {schemaExtra && <script type="application/ld+json" set:html={JSON.stringify(schemaExtra)} />}
+
     <!-- Hreflang -->
-    <link rel="alternate" hreflang="pt-BR" href={siteUrl + '/'} />
-    <link rel="alternate" hreflang="en" href={siteUrl + '/en/'} />
+    {alternatePt && <link rel="alternate" hreflang="pt-BR" href={alternatePt} />}
+    {alternateEn && <link rel="alternate" hreflang="en" href={alternateEn} />}
+    <link rel="alternate" hreflang="x-default" href={alternatePt ?? Astro.url.href} />
+
+    <!-- =====================================================
+         TODO: Google Analytics 4
+         Substituir G-XXXXXXXXXX pelo ID real do GA4
+         Criar propriedade em: https://analytics.google.com/
+         ===================================================== -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script> -->
+
+    <!-- =====================================================
+         TODO: Microsoft Clarity
+         Substituir CLARITY_ID pelo ID real do projeto Clarity
+         Criar em: https://clarity.microsoft.com/
+         ===================================================== -->
+    <!-- <script>
+      (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "CLARITY_ID");
+    </script> -->
   </head>
   <body class="min-h-screen bg-white text-gray-900 antialiased">
     <slot />
 
     <!-- WhatsApp floating button -->
     <a
-      href="https://wa.me/5571999999999"
+      href="https://wa.me/5571992732430"
       target="_blank"
       rel="noopener noreferrer"
       aria-label={whatsappLabel}

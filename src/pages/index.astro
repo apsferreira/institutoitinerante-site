@@ -4,8 +4,14 @@ import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
 import About from '../components/About.astro';
 import AttendAgent from '../components/AttendAgent.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import Cases from '../components/Cases.astro';
+import Integrations from '../components/Integrations.astro';
+import SchemaProduct from '../components/SchemaProduct.astro';
 import ContactSection from '../components/ContactSection.astro';
 import Footer from '../components/Footer.astro';
+import AttendAgentDemo from '../components/demos/AttendAgentDemo';
+import ROICalculator from '../components/demos/ROICalculator';
 import { pt as t } from '../i18n/pt';
 ---
 
@@ -14,13 +20,65 @@ import { pt as t } from '../i18n/pt';
   description={t.pages.home.description}
   lang="pt-BR"
   canonical="https://institutoitinerante.com.br/"
+  alternatePt="https://institutoitinerante.com.br/"
+  alternateEn="https://institutoitinerante.com.br/en/"
 >
+  <SchemaProduct />
   <Nav t={t} />
   <main>
     <Hero t={t} />
     <About t={t} />
+    <div id="como-funciona">
+      <HowItWorks />
+    </div>
     <AttendAgent t={t} />
+
+    <!-- Demo interativo -->
+    <section class="py-24 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <span class="inline-block text-sm font-semibold uppercase tracking-widest mb-3 text-[#0097D6]">Demo ao vivo</span>
+          <h2 class="text-4xl font-black text-[#0D1B26] mb-4 section-title-accent">Experimente agora mesmo</h2>
+          <p class="text-gray-500 max-w-xl mx-auto">Converse com uma simulação real do Attend-Agent. Igual ao que seu cliente vai usar.</p>
+        </div>
+        <AttendAgentDemo client:visible />
+      </div>
+    </section>
+
+    <!-- ROI Calculator -->
+    <section class="py-24" style="background: linear-gradient(135deg, #F5F8FA 0%, #EFF6FB 100%);">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <span class="inline-block text-sm font-semibold uppercase tracking-widest mb-3 text-[#0097D6]">ROI</span>
+          <h2 class="text-4xl font-black text-[#0D1B26] mb-4 section-title-accent">Quanto você está perdendo?</h2>
+          <p class="text-gray-500 max-w-xl mx-auto">Calcule o impacto financeiro de não ter atendimento automático no seu negócio.</p>
+        </div>
+        <ROICalculator client:visible />
+      </div>
+    </section>
+
+    <Cases />
+    <Integrations />
     <ContactSection t={t} />
   </main>
   <Footer t={t} />
 </BaseLayout>
+
+<style>
+  .section-title-accent {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 12px;
+  }
+  .section-title-accent::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: #0097D6;
+    border-radius: 2px;
+  }
+</style>

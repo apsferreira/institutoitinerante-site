@@ -28,21 +28,31 @@ const { t } = Astro.props;
     <!-- Badge pill -->
     <div class="flex justify-center mb-6 fade-in-up" style="animation-delay: 0.1s">
       <span class="inline-flex items-center gap-2 border border-[#0097D6] text-[#0097D6] bg-[#0097D6]/10 px-4 py-2 rounded-full text-sm font-semibold tracking-wide">
-        {t.hero.badge}
+        🤖 Powered by IA · WhatsApp Business
       </span>
     </div>
 
     <h1 class="text-5xl sm:text-6xl md:text-7xl font-black text-white leading-tight tracking-tight fade-in-up" style="animation-delay: 0.2s">
-      {t.hero.headline}
+      Seu WhatsApp atendendo<br class="hidden sm:block" />
+      <span style="color: #0097D6;">24h</span> sem contratar<br class="hidden sm:block" /> mais ninguém
     </h1>
 
     <p class="mt-6 text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed fade-in-up" style="color: #8A9FAF; animation-delay: 0.3s">
-      {t.hero.subheadline}
+      O Attend-Agent qualifica leads, responde dúvidas e agenda reuniões automaticamente — enquanto você foca no que importa.
     </p>
+
+    <!-- Credibility bar -->
+    <div class="mt-8 flex items-center justify-center gap-6 flex-wrap fade-in-up" style="animation-delay: 0.35s">
+      <span class="text-sm text-gray-400 flex items-center gap-2"><span class="text-[#00D6A0]">⚡</span> Resposta em &lt; 30 segundos</span>
+      <span class="text-gray-600">·</span>
+      <span class="text-sm text-gray-400 flex items-center gap-2"><span class="text-[#00D6A0]">🕐</span> 24/7</span>
+      <span class="text-gray-600">·</span>
+      <span class="text-sm text-gray-400 flex items-center gap-2"><span class="text-[#00D6A0]">🛠️</span> Sem técnico para configurar</span>
+    </div>
 
     <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 fade-in-up" style="animation-delay: 0.4s">
       <a
-        href="https://wa.me/5571999999999"
+        href="https://wa.me/5571992732430"
         target="_blank"
         rel="noopener noreferrer"
         class="inline-flex items-center gap-2 bg-[#0097D6] hover:bg-[#007ab8] text-white font-bold px-8 py-4 rounded-xl text-base shadow-lg shadow-[#0097D6]/30 transition-all duration-200 hover:scale-105"
@@ -79,14 +89,8 @@ const { t } = Astro.props;
   }
 
   @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(24px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   .fade-in-up {

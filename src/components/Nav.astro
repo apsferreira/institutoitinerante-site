@@ -3,11 +3,13 @@ interface Props {
   t: any;
 }
 const { t } = Astro.props;
+const isEn = t.lang === 'en';
+const base = isEn ? '/en' : '';
 ---
 
 <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-    <a href={t.nav.langLink === '/' ? '/' : '/en/'} class="flex items-center gap-2 shrink-0">
+    <a href={isEn ? '/en/' : '/'} class="flex items-center gap-2 shrink-0">
       <img
         src="/logo-iit.png"
         alt="Instituto Itinerante de Tecnologia"
@@ -19,15 +21,17 @@ const { t } = Astro.props;
     </a>
 
     <!-- Desktop nav -->
-    <div class="hidden md:flex items-center gap-8">
-      <a href="#sobre" class="text-sm font-medium text-gray-600 hover:text-iit-blue transition-colors">{t.nav.about}</a>
-      <a href="#attend-agent" class="text-sm font-medium text-gray-600 hover:text-iit-blue transition-colors">{t.nav.attendAgent}</a>
-      <a href={t.nav.langLink} class="text-sm font-medium text-gray-500 hover:text-iit-blue transition-colors">{t.nav.langSwitcher}</a>
+    <div class="hidden md:flex items-center gap-6">
+      <a href={`${base}/#sobre`} class="text-sm font-medium text-gray-600 hover:text-[#0097D6] transition-colors">{t.nav.about}</a>
+      <a href={`${base}/#attend-agent`} class="text-sm font-medium text-gray-600 hover:text-[#0097D6] transition-colors">{t.nav.attendAgent}</a>
+      <a href={isEn ? '/en/pricing' : '/precos'} class="text-sm font-medium text-gray-600 hover:text-[#0097D6] transition-colors">{isEn ? 'Pricing' : 'Preços'}</a>
+      <a href={isEn ? '/en/blog' : '/blog'} class="text-sm font-medium text-gray-600 hover:text-[#0097D6] transition-colors">Blog</a>
+      <a href={t.nav.langLink} class="text-sm font-medium text-gray-500 hover:text-[#0097D6] transition-colors">{t.nav.langSwitcher}</a>
       <a href={t.nav.contactPage} class="btn-primary text-sm py-2 px-4">{t.nav.contact}</a>
     </div>
 
     <!-- Mobile menu button -->
-    <button id="menu-btn" class="md:hidden p-2 rounded-md text-gray-600 hover:text-iit-blue" aria-label="Menu">
+    <button id="menu-btn" class="md:hidden p-2 rounded-md text-gray-600 hover:text-[#0097D6]" aria-label="Menu">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
@@ -36,9 +40,11 @@ const { t } = Astro.props;
 
   <!-- Mobile menu -->
   <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white px-4 py-4 space-y-3">
-    <a href="#sobre" class="block text-sm font-medium text-gray-600 hover:text-iit-blue">{t.nav.about}</a>
-    <a href="#attend-agent" class="block text-sm font-medium text-gray-600 hover:text-iit-blue">{t.nav.attendAgent}</a>
-    <a href={t.nav.langLink} class="block text-sm font-medium text-gray-500 hover:text-iit-blue">{t.nav.langSwitcher}</a>
+    <a href={`${base}/#sobre`} class="block text-sm font-medium text-gray-600 hover:text-[#0097D6]">{t.nav.about}</a>
+    <a href={`${base}/#attend-agent`} class="block text-sm font-medium text-gray-600 hover:text-[#0097D6]">{t.nav.attendAgent}</a>
+    <a href={isEn ? '/en/pricing' : '/precos'} class="block text-sm font-medium text-gray-600 hover:text-[#0097D6]">{isEn ? 'Pricing' : 'Preços'}</a>
+    <a href={isEn ? '/en/blog' : '/blog'} class="block text-sm font-medium text-gray-600 hover:text-[#0097D6]">Blog</a>
+    <a href={t.nav.langLink} class="block text-sm font-medium text-gray-500 hover:text-[#0097D6]">{t.nav.langSwitcher}</a>
     <a href={t.nav.contactPage} class="btn-primary text-sm inline-block">{t.nav.contact}</a>
   </div>
 </header>

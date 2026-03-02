@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { pt as t } from '../../i18n/pt';
+
+const pains = [
+  { icon: '📵', title: 'Agendamentos perdidos fora do horário', desc: 'Clientes tentam agendar à noite ou domingo e não recebem resposta — vão para outro salão.' },
+  { icon: '😤', title: 'Profissional interrompido durante atendimento', desc: 'Precisar parar de atender um cliente para responder mensagem prejudica a qualidade do serviço.' },
+  { icon: '📅', title: 'Agenda desorganizada e faltas frequentes', desc: 'Sem confirmação automática, os clientes esquecem o horário e aparecem no horário errado.' },
+  { icon: '🔁', title: 'Mesmas perguntas respondidas manualmente', desc: '"Qual o preço de escova?", "Atende domingo?", "Tem estacionamento?" — repetido dezenas de vezes por dia.' },
+];
+
+const solutions = [
+  { icon: '🕐', title: 'Atende e agenda 24/7', desc: 'Clientes agendados mesmo à meia-noite do sábado, sem interromper seu atendimento.' },
+  { icon: '✂️', title: 'Informa serviços e preços automaticamente', desc: 'Catálogo completo de serviços e valores disponível instantaneamente para qualquer cliente.' },
+  { icon: '📲', title: 'Confirma e lembra horários', desc: 'Reduz faltas em até 60% com lembretes automáticos no dia anterior ao agendamento.' },
+  { icon: '⭐', title: 'Pede avaliação pós-atendimento', desc: 'Solicita review automaticamente após o serviço, aumentando sua presença no Google e Instagram.' },
+];
+---
+
+<BaseLayout
+  title="Attend-Agent para Salões de Beleza | IIT"
+  description="Automatize agendamentos do seu salão de beleza no WhatsApp com IA 24/7. Reduza faltas, organize a agenda e atenda mais clientes sem esforço extra."
+  lang="pt-BR"
+  canonical="https://institutoitinerante.com.br/para/saloes"
+>
+  <Nav t={t} />
+  <main class="pt-16">
+    <section class="py-24" style="background: linear-gradient(135deg, #0A0F14 0%, #0D1B26 100%);">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <span class="inline-block text-sm font-semibold uppercase tracking-widest mb-4 text-[#0097D6]">Salões de Beleza</span>
+        <h1 class="text-5xl font-black text-white mb-6">Attend-Agent para Salões de Beleza</h1>
+        <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-10">Agenda preenchida, menos faltas e zero interrupção durante os atendimentos — com IA 24/7 no seu WhatsApp.</p>
+        <a
+          href="https://wa.me/5571992732430?text=Quero%20o%20Attend-Agent%20para%20meu%20sal%C3%A3o"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 bg-[#0097D6] text-white font-bold px-10 py-4 rounded-xl shadow-lg shadow-[#0097D6]/30 hover:scale-105 transition-all"
+        >
+          💬 Quero o Attend-Agent para meu salão
+        </a>
+      </div>
+    </section>
+
+    <section class="py-24 bg-white">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-black text-[#0D1B26] mb-4">Problemas que todo salão conhece</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {pains.map((p) => (
+            <div class="flex items-start gap-4 border border-[#D0DDE6] shadow-sm rounded-2xl p-6">
+              <span class="text-3xl shrink-0">{p.icon}</span>
+              <div>
+                <h3 class="font-bold text-[#0D1B26] mb-2">{p.title}</h3>
+                <p class="text-gray-600 text-sm">{p.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24" style="background: #F5F8FA;">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-black text-[#0D1B26] mb-4">Como o Attend-Agent resolve</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {solutions.map((s) => (
+            <div class="flex items-start gap-4 bg-white border border-[#D0DDE6] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all rounded-2xl p-6">
+              <span class="text-3xl shrink-0">{s.icon}</span>
+              <div>
+                <h3 class="font-bold text-[#0D1B26] mb-2">{s.title}</h3>
+                <p class="text-gray-600 text-sm">{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 text-center bg-white">
+      <div class="max-w-xl mx-auto px-4">
+        <h2 class="text-4xl font-black text-[#0D1B26] mb-4">Foque no que você faz de melhor</h2>
+        <p class="text-gray-500 mb-8">Deixe o Attend-Agent cuidar do WhatsApp enquanto você transforma seus clientes.</p>
+        <a
+          href="https://wa.me/5571992732430?text=Quero%20o%20Attend-Agent%20para%20meu%20sal%C3%A3o"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 bg-[#0097D6] text-white font-bold px-10 py-4 rounded-xl shadow-lg shadow-[#0097D6]/30 hover:scale-105 transition-all"
+        >
+          💬 Quero o Attend-Agent para meu salão →
+        </a>
+        <p class="text-xs text-gray-400 mt-4">Planos a partir de R$397/mês · Setup em até 48h · Sem fidelidade</p>
+      </div>
+    </section>
+  </main>
+  <Footer t={t} />
+</BaseLayout>

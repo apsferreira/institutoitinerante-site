@@ -1,0 +1,91 @@
+---
+interface Props {
+  lang?: string;
+}
+const { lang = 'pt-BR' } = Astro.props;
+
+const testimonials = [
+  {
+    name: 'Dra. Ana Souza',
+    role: 'Diretora',
+    company: 'Clínica OdontoVida',
+    avatar: '👩‍⚕️',
+    stars: 5,
+    text: 'Paramos de perder pacientes que enviavam mensagens fora do horário. O Attend-Agent responde instantaneamente, agenda consultas e ainda filtra casos urgentes. Nossa taxa de conversão de leads subiu 48% no primeiro mês.',
+  },
+  {
+    name: 'Carlos Mendes',
+    role: 'Sócio',
+    company: 'Imobiliária Horizonte',
+    avatar: '👨‍💼',
+    stars: 5,
+    text: 'Nossos leads agora são respondidos em segundos, mesmo à meia-noite ou nos finais de semana. Antes perdíamos negócios para concorrentes mais rápidos. Hoje somos os primeiros a responder — sempre.',
+  },
+  {
+    name: 'Maria Santos',
+    role: 'Proprietária',
+    company: 'Academia FitLife',
+    avatar: '👩‍🏫',
+    stars: 5,
+    text: 'A taxa de conversão de interessados em alunos matriculados subiu 40%. O agente qualifica cada lead, responde sobre planos e modalidades, e já agenda a visita — tudo automático. Economizamos 3h por dia.',
+  },
+];
+---
+
+<section class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <span class="inline-block text-sm font-semibold uppercase tracking-widest mb-3 text-[#0097D6]">Resultados reais</span>
+      <h2 class="text-4xl font-black text-[#0D1B26] mb-4 section-accent">O que nossos clientes dizem</h2>
+      <p class="text-gray-500 max-w-xl mx-auto">Empresas que automatizaram o atendimento e viram resultados concretos.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {testimonials.map((t) => (
+        <div class="border border-[#D0DDE6] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all rounded-2xl p-8 bg-white flex flex-col">
+          <!-- Stars -->
+          <div class="flex gap-1 mb-4">
+            {Array.from({length: t.stars}).map(() => (
+              <span class="text-yellow-400">⭐</span>
+            ))}
+          </div>
+          <!-- Quote -->
+          <p class="text-gray-700 leading-relaxed flex-1 text-sm italic">"{t.text}"</p>
+          <!-- Author -->
+          <div class="flex items-center gap-3 mt-6 pt-6 border-t border-gray-100">
+            <div class="w-12 h-12 rounded-full bg-[#0097D6]/10 flex items-center justify-center text-2xl shrink-0">
+              {t.avatar}
+            </div>
+            <div>
+              <p class="font-bold text-[#0D1B26] text-sm">{t.name}</p>
+              <p class="text-xs text-gray-500">{t.role} · {t.company}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <p class="text-center text-xs text-gray-400 mt-8">
+      * Depoimentos ilustrativos baseados em resultados típicos de empresas que adotaram automação de atendimento via WhatsApp.
+    </p>
+  </div>
+</section>
+
+<style>
+  .section-accent {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 12px;
+  }
+  .section-accent::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: #0097D6;
+    border-radius: 2px;
+  }
+</style>

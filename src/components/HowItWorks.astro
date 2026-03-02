@@ -1,0 +1,80 @@
+---
+interface Props {
+  lang?: string;
+}
+const { lang = 'pt-BR' } = Astro.props;
+
+const isEn = lang === 'en';
+
+const steps = isEn ? [
+  { num: '01', icon: '🧠', title: 'We configure', desc: 'In 48h our team trains the agent with your business info: services, prices, FAQs and tone of voice.' },
+  { num: '02', icon: '🔗', title: 'We activate', desc: 'We connect to your WhatsApp Business number. No app to install, no technical team needed.' },
+  { num: '03', icon: '🚀', title: 'Results', desc: 'Leads answered 24/7, full schedule, no more lost customers. Real metrics from day one.' },
+] : [
+  { num: '01', icon: '🧠', title: 'Configuramos', desc: 'Em 48h nossa equipe treina o agente com as informações do seu negócio: serviços, preços, FAQs e tom de voz.' },
+  { num: '02', icon: '🔗', title: 'Ativamos', desc: 'Conectamos ao seu número WhatsApp Business. Sem app para instalar, sem equipe técnica necessária.' },
+  { num: '03', icon: '🚀', title: 'Resultados', desc: 'Leads respondidos 24/7, agenda cheia, zero clientes perdidos. Métricas reais desde o primeiro dia.' },
+];
+
+const title = isEn ? 'How it works' : 'Como funciona';
+const subtitle = isEn ? '3 steps to transform your customer service' : '3 passos para transformar seu atendimento';
+---
+
+<section class="py-24" style="background: linear-gradient(135deg, #F5F8FA 0%, #EFF6FB 100%);">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <span class="inline-block text-sm font-semibold uppercase tracking-widest mb-3 text-[#0097D6]">{isEn ? 'Simple process' : 'Processo simples'}</span>
+      <h2 class="text-4xl font-black text-[#0D1B26] mb-4 section-accent">{title}</h2>
+      <p class="text-gray-500 max-w-xl mx-auto">{subtitle}</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+      <!-- Connector line (desktop) -->
+      <div class="hidden md:block absolute top-16 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-[#0097D6] to-[#00D6A0] opacity-30" style="top: 56px; left: calc(16.666% + 48px); right: calc(16.666% + 48px);"></div>
+
+      {steps.map((step, i) => (
+        <div class="relative flex flex-col items-center text-center group">
+          <!-- Step number badge -->
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-8 h-8 bg-[#0097D6] text-white text-xs font-black rounded-full flex items-center justify-center z-10">
+            {step.num}
+          </div>
+          <div class="w-24 h-24 rounded-3xl bg-white shadow-md flex items-center justify-center text-5xl mb-6 group-hover:shadow-lg group-hover:-translate-y-1 transition-all border border-[#D0DDE6]">
+            {step.icon}
+          </div>
+          <h3 class="text-xl font-black text-[#0D1B26] mb-3">{step.title}</h3>
+          <p class="text-gray-500 text-sm leading-relaxed max-w-xs">{step.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center mt-12">
+      <a
+        href="https://wa.me/5571992732430"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 bg-[#0097D6] hover:bg-[#007ab8] text-white font-bold px-10 py-4 rounded-xl shadow-lg shadow-[#0097D6]/30 transition-all hover:scale-105"
+      >
+        {isEn ? 'Start now →' : 'Começar agora →'}
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-accent {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 12px;
+  }
+  .section-accent::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: #0097D6;
+    border-radius: 2px;
+  }
+</style>

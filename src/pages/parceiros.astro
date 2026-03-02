@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { pt as t } from '../i18n/pt';
+
+const benefits = [
+  { icon: '💰', title: '20-30% de comissão', desc: 'Receba 20% a 30% do valor do primeiro pagamento de cada cliente indicado que fechar contrato.' },
+  { icon: '📦', title: 'Material de vendas pronto', desc: 'Apresentações, onesheet, scripts de venda e estudo de caso — tudo pronto para você usar com seus clientes.' },
+  { icon: '🎯', title: 'Suporte dedicado', desc: 'Acesso direto a um especialista IIT para tirar dúvidas, participar de reuniões de venda e fechar negócios juntos.' },
+  { icon: '📊', title: 'Dashboard de indicações', desc: 'Acompanhe em tempo real suas indicações, status de cada negociação e comissões acumuladas.' },
+  { icon: '🚀', title: 'Produto que se vende', desc: 'O Attend-Agent tem ROI imediato e claro — muito mais fácil de vender do que serviços genéricos.' },
+  { icon: '🤝', title: 'Parceria de longo prazo', desc: 'Clientes satisfeitos geram indicações recorrentes — você constrói uma renda passiva crescente.' },
+];
+---
+
+<BaseLayout
+  title="Programa de Parceiros — Instituto Itinerante de Tecnologia"
+  description="Seja um parceiro IIT. Agências digitais, contadores e consultores ganham 20-30% do primeiro pagamento de cada cliente indicado."
+  lang="pt-BR"
+  canonical="https://institutoitinerante.com.br/parceiros"
+>
+  <Nav t={t} />
+  <main class="pt-16">
+    <!-- Hero -->
+    <section class="py-24" style="background: linear-gradient(135deg, #0A0F14 0%, #0D1B26 100%);">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <span class="inline-block text-sm font-semibold uppercase tracking-widest mb-4 text-[#0097D6]">Parceiros</span>
+        <h1 class="text-5xl font-black text-white mb-6">Seja um parceiro IIT</h1>
+        <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-4">
+          Você é agência digital, contador, consultor ou trabalha com PMEs?<br/>
+          Indique o Attend-Agent e ganhe <strong class="text-[#00D6A0]">20-30% do primeiro pagamento</strong> de cada cliente fechado.
+        </p>
+        <a href="#formulario" class="inline-flex items-center gap-2 bg-[#0097D6] text-white font-bold px-10 py-4 rounded-xl shadow-lg shadow-[#0097D6]/30 hover:scale-105 transition-all mt-4">
+          Quero ser parceiro →
+        </a>
+      </div>
+    </section>
+
+    <!-- Como funciona -->
+    <section class="py-24 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-black text-[#0D1B26] mb-4">Como funciona</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            { num: '1', title: 'Cadastre-se', desc: 'Preencha o formulário abaixo. Entramos em contato em até 24h.' },
+            { num: '2', title: 'Indique clientes', desc: 'Use seu link exclusivo ou nos apresente diretamente para seus clientes.' },
+            { num: '3', title: 'Receba sua comissão', desc: 'A cada cliente que fechar, você recebe 20-30% do primeiro pagamento.' },
+          ].map((step) => (
+            <div class="text-center border border-[#D0DDE6] shadow-sm rounded-2xl p-6">
+              <div class="w-12 h-12 bg-[#0097D6] text-white font-black text-xl rounded-full flex items-center justify-center mx-auto mb-4">{step.num}</div>
+              <h3 class="font-black text-[#0D1B26] mb-2">{step.title}</h3>
+              <p class="text-gray-500 text-sm">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="py-24" style="background: #F5F8FA;">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-black text-[#0D1B26] mb-4">O que você ganha sendo parceiro IIT</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {benefits.map((b) => (
+            <div class="bg-white border border-[#D0DDE6] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all rounded-2xl p-6">
+              <span class="text-3xl">{b.icon}</span>
+              <h3 class="font-black text-[#0D1B26] mt-3 mb-2">{b.title}</h3>
+              <p class="text-gray-600 text-sm">{b.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Form -->
+    <section id="formulario" class="py-24 bg-white">
+      <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-black text-[#0D1B26] mb-4">Cadastre-se como parceiro</h2>
+          <p class="text-gray-500">Preencha o formulário e nossa equipe entrará em contato em até 24h.</p>
+        </div>
+
+        <form
+          action="https://formspree.io/f/FORM_ID_PARCEIROS"
+          method="POST"
+          class="space-y-4"
+        >
+          <!-- TODO: Substituir FORM_ID_PARCEIROS pelo ID real do Formspree -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-1">Nome *</label>
+              <input type="text" name="name" required class="w-full border border-[#D0DDE6] rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-[#0097D6]" placeholder="Seu nome completo" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-1">Email *</label>
+              <input type="email" name="email" required class="w-full border border-[#D0DDE6] rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-[#0097D6]" placeholder="seu@email.com" />
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">WhatsApp *</label>
+            <input type="tel" name="whatsapp" required class="w-full border border-[#D0DDE6] rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-[#0097D6]" placeholder="+55 71 99999-9999" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Empresa / Área de atuação *</label>
+            <input type="text" name="company" required class="w-full border border-[#D0DDE6] rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-[#0097D6]" placeholder="Agência digital, contabilidade, consultoria..." />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Quantos clientes PME você atende?</label>
+            <select name="clients_count" class="w-full border border-[#D0DDE6] rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-[#0097D6]">
+              <option value="">Selecione...</option>
+              <option>1-5 clientes</option>
+              <option>6-20 clientes</option>
+              <option>21-50 clientes</option>
+              <option>Mais de 50 clientes</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Mensagem (opcional)</label>
+            <textarea name="message" rows={3} class="w-full border border-[#D0DDE6] rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-[#0097D6]" placeholder="Conte um pouco sobre como você pretende indicar clientes..."></textarea>
+          </div>
+          <button
+            type="submit"
+            class="w-full bg-[#0097D6] text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-[#0097D6]/30 hover:bg-[#007ab8] hover:scale-[1.02] transition-all"
+          >
+            Quero ser parceiro IIT →
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+  <Footer t={t} />
+</BaseLayout>
