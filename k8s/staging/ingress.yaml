@@ -1,21 +1,40 @@
-# IngressRoute Traefik para stg.institutoitinerante.com.br
-# TLS via Cloudflare Tunnel — sem cert-manager necessário
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
+# Ingress para stg.institutoitinerante.com.br
+# Usa letsencrypt-staging para evitar rate limit durante testes
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
-  name: iit-website-staging
+  name: iit-website
   namespace: iit-website-staging
   labels:
     app: iit-website
     app.kubernetes.io/managed-by: argocd
     environment: staging
+  annotations:
+    # letsencrypt-staging: não tem rate limit mas o cert não é trusted pelo browser
+    # Trocar para letsencrypt-prod só quando o staging estiver estável
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+
+    # Traefik ingress controller annotations
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+    traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
+
+    # Staging: apenas security headers (sem redirect www)
+    traefik.ingress.kubernetes.io/router.middlewares: iit-website-staging-security-headers-staging@kubernetescrd
 spec:
-  entryPoints:
-    - web
-    - websecure
-  routes:
-    - match: Host(`stg.institutoitinerante.com.br`)
-      kind: Rule
-      services:
-        - name: iit-website
-          port: 80
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - stg.institutoitinerante.com.br
+      secretName: iit-website-staging-tls
+  rules:
+    - host: stg.institutoitinerante.com.br
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: iit-website
+                port:
+                  name: http

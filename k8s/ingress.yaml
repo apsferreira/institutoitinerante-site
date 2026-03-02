@@ -1,23 +1,48 @@
-# IngressRoute Traefik para institutoitinerante.com.br (+ www)
-# TLS via Cloudflare Tunnel — sem cert-manager nem secretName necessários
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
+# Ingress para institutoitinerante.com.br
+# Requer: cert-manager com ClusterIssuer "letsencrypt-prod" e Traefik (padrão K3s)
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
   name: iit-website
   namespace: iit-website
   labels:
     app: iit-website
     app.kubernetes.io/managed-by: argocd
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+
+    # Traefik ingress controller annotations
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+    traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
+
+    # Middlewares: security headers + redirect www → non-www
+    traefik.ingress.kubernetes.io/router.middlewares: iit-website-security-headers@kubernetescrd,iit-website-redirect-www@kubernetescrd
 spec:
-  entryPoints:
-    - web
-    - websecure
-  routes:
-    - match: Host(`institutoitinerante.com.br`) || Host(`www.institutoitinerante.com.br`)
-      kind: Rule
-      middlewares:
-        - name: redirect-www
-        - name: security-headers
-      services:
-        - name: iit-website
-          port: 80
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - institutoitinerante.com.br
+        - www.institutoitinerante.com.br
+      secretName: iit-website-tls
+  rules:
+    - host: institutoitinerante.com.br
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: iit-website
+                port:
+                  name: http
+    - host: www.institutoitinerante.com.br
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: iit-website
+                port:
+                  name: http
