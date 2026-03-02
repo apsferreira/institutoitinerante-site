@@ -1,0 +1,52 @@
+---
+// FAQSection.astro — 5 perguntas frequentes
+const faqs = [
+  {
+    q: 'Preciso conhecer o método GTD para usar o Focus Hub?',
+    a: 'Não. O Focus Hub incorpora os princípios do GTD de forma invisível. Você não vai precisar aprender terminologia nem ler nenhum livro. O próprio sistema te guia pelo fluxo — capturar, organizar, revisar, fazer — de forma natural.',
+  },
+  {
+    q: 'Funciona no celular? Como é a experiência mobile?',
+    a: 'Sim. O Focus Hub foi desenhado mobile-first. O app iOS e Android tem captura rápida (inclusive por voz) na tela de bloqueio, sincronização em tempo real com a versão web, e interface otimizada para uso rápido entre compromissos.',
+  },
+  {
+    q: 'Posso importar minhas tarefas de outros apps?',
+    a: 'Sim. O Focus Hub importa de Todoist, Notion (via CSV), Microsoft To-Do e qualquer arquivo CSV padrão. A importação leva menos de 2 minutos e as tarefas chegam organizadas no seu inbox para você processar.',
+  },
+  {
+    q: 'Meus dados ficam seguros? Posso exportar tudo?',
+    a: 'Seus dados são seus. Armazenamos tudo com criptografia em repouso e em trânsito. Você pode exportar todas as suas tarefas, projetos e hábitos em JSON ou CSV a qualquer momento — sem lock-in.',
+  },
+  {
+    q: 'Qual a diferença entre o plano gratuito e o Pro?',
+    a: 'O plano gratuito é completo para quem está começando: inbox ilimitado, 3 projetos, 3 hábitos, web e mobile. O Pro desbloqueia projetos e hábitos ilimitados, revisão semanal guiada com IA, integração com calendários e relatórios de produtividade. A maioria dos usuários fica no gratuito por meses antes de precisar do Pro.',
+  },
+];
+---
+
+<section class="bg-[#F7F9FB] py-24">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-14 fh-reveal">
+      <h2 class="text-3xl sm:text-4xl font-black text-[#0D1B26]">Perguntas frequentes</h2>
+      <p class="mt-3 text-[#4B6070] text-lg">Tudo que você quer saber antes de começar.</p>
+    </div>
+
+    <div class="space-y-4">
+      {faqs.map((faq, i) => (
+        <details class="group bg-white border border-gray-100 rounded-2xl overflow-hidden fh-reveal" style={`animation-delay: ${i * 0.07}s`}>
+          <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer font-bold text-[#0D1B26] text-base list-none">
+            {faq.q}
+            <span class="shrink-0 w-6 h-6 rounded-full border-2 border-gray-200 flex items-center justify-center text-gray-400 group-open:border-[#0097D6] group-open:text-[#0097D6] transition-colors">
+              <svg class="w-3 h-3 group-open:rotate-45 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 6v12M6 12h12"/>
+              </svg>
+            </span>
+          </summary>
+          <p class="px-6 pb-6 text-[#4B6070] leading-relaxed text-base">{faq.a}</p>
+        </details>
+      ))}
+    </div>
+
+  </div>
+</section>
