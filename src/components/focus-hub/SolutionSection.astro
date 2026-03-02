@@ -1,0 +1,86 @@
+---
+// SolutionSection.astro — Apresentação do produto + fluxo GTD visual
+---
+
+<section class="bg-white py-24">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-16 fh-reveal">
+      <span class="inline-block bg-[#0097D6]/10 text-[#0097D6] text-sm font-semibold px-4 py-1 rounded-full mb-4">A solução</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-[#0D1B26] leading-tight">
+        GTD que funciona quando você está ocupado.
+      </h2>
+      <p class="mt-4 text-[#4B6070] text-lg max-w-2xl mx-auto">
+        Focus Hub pega o melhor do GTD e tira tudo que trava: nada de configurações infinitas, nada de terminologia confusa. Só o ciclo que funciona.
+      </p>
+    </div>
+
+    <!-- Fluxo GTD visual -->
+    <div class="fh-reveal">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0 relative">
+
+        <!-- Linha conectora (desktop) -->
+        <div class="hidden md:block absolute top-10 left-[12.5%] right-[12.5%] h-0.5 bg-gradient-to-r from-[#0097D6] via-[#00D6A0] to-[#00D6A0] z-0"></div>
+
+        <!-- Passo 1: Capturar -->
+        <div class="relative z-10 flex flex-col items-center text-center px-4">
+          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#0097D6] to-[#0078AB] flex items-center justify-center shadow-lg shadow-[#0097D6]/20 mb-4">
+            <svg class="w-9 h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+            </svg>
+          </div>
+          <span class="text-xs font-bold text-[#0097D6] uppercase tracking-widest mb-1">01</span>
+          <h3 class="font-black text-[#0D1B26] text-lg">Capturar</h3>
+          <p class="text-sm text-[#4B6070] mt-1 leading-relaxed">Tudo num único inbox. Sem decidir agora.</p>
+        </div>
+
+        <!-- Passo 2: Organizar -->
+        <div class="relative z-10 flex flex-col items-center text-center px-4">
+          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#0097D6] to-[#00D6A0] flex items-center justify-center shadow-lg shadow-[#00D6A0]/20 mb-4">
+            <svg class="w-9 h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
+            </svg>
+          </div>
+          <span class="text-xs font-bold text-[#0097D6] uppercase tracking-widest mb-1">02</span>
+          <h3 class="font-black text-[#0D1B26] text-lg">Organizar</h3>
+          <p class="text-sm text-[#4B6070] mt-1 leading-relaxed">Contexto, projeto, prazo. Rápido e sem fricção.</p>
+        </div>
+
+        <!-- Passo 3: Revisar -->
+        <div class="relative z-10 flex flex-col items-center text-center px-4">
+          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#00D6A0] to-[#00A87E] flex items-center justify-center shadow-lg shadow-[#00D6A0]/20 mb-4">
+            <svg class="w-9 h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+            </svg>
+          </div>
+          <span class="text-xs font-bold text-[#00D6A0] uppercase tracking-widest mb-1">03</span>
+          <h3 class="font-black text-[#0D1B26] text-lg">Revisar</h3>
+          <p class="text-sm text-[#4B6070] mt-1 leading-relaxed">Revisão semanal guiada. 10 minutos, sem dor.</p>
+        </div>
+
+        <!-- Passo 4: Fazer -->
+        <div class="relative z-10 flex flex-col items-center text-center px-4">
+          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#00D6A0] to-[#0097D6] flex items-center justify-center shadow-lg shadow-[#00D6A0]/20 mb-4">
+            <svg class="w-9 h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <span class="text-xs font-bold text-[#00D6A0] uppercase tracking-widest mb-1">04</span>
+          <h3 class="font-black text-[#0D1B26] text-lg">Fazer</h3>
+          <p class="text-sm text-[#4B6070] mt-1 leading-relaxed">Execute com foco. Sem culpa, sem esquecer nada.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Destaque de posicionamento -->
+    <div class="mt-16 bg-gradient-to-br from-[#0D1B26] to-[#0A1F2E] rounded-2xl p-8 md:p-12 text-center fh-reveal">
+      <p class="text-2xl md:text-3xl font-black text-white leading-snug max-w-3xl mx-auto">
+        "Não é sobre ser mais produtivo.<br class="hidden sm:block"/>
+        É sobre <span class="text-[#00D6A0]">terminar o dia sabendo que fez o que importava."</span>
+      </p>
+      <p class="mt-4 text-gray-400 text-base">O princípio que guia cada decisão de design do Focus Hub.</p>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,83 @@
+---
+// FeaturesSection.astro — 4 blocos de funcionalidades
+---
+
+<section id="funcionalidades" class="py-20 bg-white ml-section">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14 ml-reveal space-y-3">
+      <span class="inline-block bg-amber-100 text-amber-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Funcionalidades</span>
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">
+        Para leitores que levam<br/>
+        <span class="text-amber-600">sua biblioteca a sério.</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- Feature 1: Catálogo com capas -->
+      <div class="ml-reveal group bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-100 rounded-2xl p-7 space-y-4 hover:shadow-lg transition-all duration-300">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform">🎨</div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900">Catálogo com capas automáticas</h3>
+            <p class="text-gray-600 mt-2 leading-relaxed">Sua estante fica visualmente bonita sem esforço. Busque por título ou ISBN e o My Library preenche capa, sinopse, número de páginas e autor automaticamente.</p>
+          </div>
+        </div>
+        <div class="flex gap-2 flex-wrap">
+          {['Busca por ISBN', 'Capa automática', 'Metadados completos'].map(tag => (
+            <span class="bg-amber-100 text-amber-700 text-xs px-2.5 py-1 rounded-full font-medium">{tag}</span>
+          ))}
+        </div>
+      </div>
+
+      <!-- Feature 2: Progresso -->
+      <div class="ml-reveal group bg-gradient-to-br from-rose-50 to-pink-50 border border-rose-100 rounded-2xl p-7 space-y-4 hover:shadow-lg transition-all duration-300">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 bg-rose-100 rounded-xl flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform">📈</div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900">Progresso de leitura</h3>
+            <p class="text-gray-600 mt-2 leading-relaxed">Marque por página, capítulo ou porcentagem. Veja sua velocidade de leitura, previsão de término e histórico de sessões — tudo para manter o ritmo.</p>
+          </div>
+        </div>
+        <div class="flex gap-2 flex-wrap">
+          {['Por página ou %', 'Velocidade de leitura', 'Previsão de término'].map(tag => (
+            <span class="bg-rose-100 text-rose-700 text-xs px-2.5 py-1 rounded-full font-medium">{tag}</span>
+          ))}
+        </div>
+      </div>
+
+      <!-- Feature 3: Estatísticas anuais -->
+      <div class="ml-reveal group bg-gradient-to-br from-teal-50 to-emerald-50 border border-teal-100 rounded-2xl p-7 space-y-4 hover:shadow-lg transition-all duration-300">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform">🏆</div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900">Estatísticas anuais</h3>
+            <p class="text-gray-600 mt-2 leading-relaxed">Descubra quantos livros você realmente leu, quantas páginas acumulou, seus gêneros favoritos e seu mês mais produtivo. O seu "Wrapped" literário.</p>
+          </div>
+        </div>
+        <div class="flex gap-2 flex-wrap">
+          {['Livros por ano', 'Gêneros favoritos', 'Retrospectiva anual'].map(tag => (
+            <span class="bg-teal-100 text-teal-700 text-xs px-2.5 py-1 rounded-full font-medium">{tag}</span>
+          ))}
+        </div>
+      </div>
+
+      <!-- Feature 4: Web + Mobile -->
+      <div class="ml-reveal group bg-gradient-to-br from-indigo-50 to-purple-50 border border-indigo-100 rounded-2xl p-7 space-y-4 hover:shadow-lg transition-all duration-300">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform">📱</div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900">Web + Mobile sincronizados</h3>
+            <p class="text-gray-600 mt-2 leading-relaxed">Acesse sua biblioteca de qualquer dispositivo. Atualizado em tempo real — marque um progresso no celular enquanto lê e veja na web quando for organizar.</p>
+          </div>
+        </div>
+        <div class="flex gap-2 flex-wrap">
+          {['App iOS & Android', 'Sincronização em nuvem', 'Modo offline'].map(tag => (
+            <span class="bg-indigo-100 text-indigo-700 text-xs px-2.5 py-1 rounded-full font-medium">{tag}</span>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

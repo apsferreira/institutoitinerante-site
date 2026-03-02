@@ -1,0 +1,82 @@
+---
+// SolutionSection.astro — Solução visual first: fluxo adicionar → capa → progresso
+---
+
+<section class="py-20 bg-gradient-to-br from-amber-50 to-orange-50 ml-section">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14 ml-reveal space-y-3">
+      <span class="inline-block bg-amber-100 text-amber-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Como funciona</span>
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">
+        Do ISBN à estante: <span class="text-amber-600">em segundos.</span>
+      </h2>
+      <p class="text-gray-600 text-lg max-w-2xl mx-auto">Adicione qualquer livro e deixe o My Library fazer o resto — capa, metadados, progresso e estatísticas, tudo automático.</p>
+    </div>
+
+    <!-- Flow animation mockup -->
+    <div class="ml-reveal">
+      <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0">
+
+        <!-- Step 1: Buscar livro -->
+        <div class="bg-white rounded-2xl shadow-lg border border-amber-100 p-5 w-full max-w-xs text-center space-y-3">
+          <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mx-auto text-2xl">🔍</div>
+          <h3 class="font-bold text-gray-800">1. Busque o livro</h3>
+          <div class="bg-gray-50 rounded-lg px-3 py-2 text-sm text-gray-500 text-left flex items-center gap-2">
+            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            Cem Anos de Solidão...
+          </div>
+          <p class="text-xs text-gray-500">Busca por título, autor ou ISBN</p>
+        </div>
+
+        <!-- Arrow -->
+        <div class="text-amber-400 text-3xl md:rotate-0 rotate-90 md:mx-2">→</div>
+
+        <!-- Step 2: Capa aparece -->
+        <div class="bg-white rounded-2xl shadow-lg border border-amber-100 p-5 w-full max-w-xs text-center space-y-3">
+          <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mx-auto text-2xl">✨</div>
+          <h3 class="font-bold text-gray-800">2. Capa automática</h3>
+          <div class="flex justify-center">
+            <div class="bg-gradient-to-b from-amber-400 to-amber-600 w-16 h-24 rounded-md shadow-md flex flex-col items-center justify-end p-1.5 animate-pulse">
+              <span class="text-white text-[8px] font-bold text-center leading-tight">Cem Anos de Solidão</span>
+            </div>
+          </div>
+          <p class="text-xs text-gray-500">Capa, sinopse e autor em 1 clique</p>
+        </div>
+
+        <!-- Arrow -->
+        <div class="text-amber-400 text-3xl md:rotate-0 rotate-90 md:mx-2">→</div>
+
+        <!-- Step 3: Marcar progresso -->
+        <div class="bg-white rounded-2xl shadow-lg border border-amber-100 p-5 w-full max-w-xs text-center space-y-3">
+          <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mx-auto text-2xl">📊</div>
+          <h3 class="font-bold text-gray-800">3. Progresso marcado</h3>
+          <div class="space-y-1.5">
+            <div class="flex items-center gap-2 text-xs text-gray-600">
+              <span>Página 184 / 417</span>
+              <span class="text-amber-600 font-medium ml-auto">44%</span>
+            </div>
+            <div class="bg-gray-100 rounded-full h-2 overflow-hidden">
+              <div class="bg-gradient-to-r from-amber-400 to-rose-400 h-full rounded-full" style="width: 44%"></div>
+            </div>
+          </div>
+          <p class="text-xs text-gray-500">Acompanhe a leitura dia a dia</p>
+        </div>
+
+        <!-- Arrow -->
+        <div class="text-amber-400 text-3xl md:rotate-0 rotate-90 md:mx-2">→</div>
+
+        <!-- Step 4: Celebrar -->
+        <div class="bg-white rounded-2xl shadow-lg border border-rose-100 p-5 w-full max-w-xs text-center space-y-3">
+          <div class="w-12 h-12 bg-rose-100 rounded-xl flex items-center justify-center mx-auto text-2xl">🎉</div>
+          <h3 class="font-bold text-gray-800">4. Celebre!</h3>
+          <div class="bg-gradient-to-r from-amber-50 to-rose-50 border border-amber-100 rounded-lg p-2 space-y-1">
+            <p class="text-sm font-bold text-gray-800">Livro concluído!</p>
+            <p class="text-xs text-gray-500">Você leu 31 livros em 2025 🏆</p>
+            <div class="flex justify-center gap-1 text-lg">🥳📖⭐</div>
+          </div>
+          <p class="text-xs text-gray-500">Estatísticas atualizadas na hora</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

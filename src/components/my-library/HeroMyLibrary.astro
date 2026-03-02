@@ -1,0 +1,158 @@
+---
+// HeroMyLibrary.astro — Seção Hero da LP My Library
+---
+
+<section class="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden bg-gradient-to-br from-amber-50 via-orange-50 to-rose-50">
+  <!-- Decorative warm blobs -->
+  <div class="absolute -top-32 -left-32 w-96 h-96 bg-amber-200 rounded-full opacity-20 blur-3xl pointer-events-none"></div>
+  <div class="absolute -bottom-20 -right-20 w-80 h-80 bg-rose-200 rounded-full opacity-20 blur-3xl pointer-events-none"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+      <!-- Left: copy -->
+      <div class="ml-reveal space-y-6 text-center lg:text-left">
+        <span class="inline-block bg-amber-100 text-amber-800 text-xs font-semibold px-3 py-1 rounded-full tracking-wide uppercase">
+          📚 My Library — IIT
+        </span>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+          Todos os livros que você leu, está lendo e vai ler —
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-rose-500"> em um só lugar.</span>
+        </h1>
+
+        <p class="text-lg sm:text-xl text-gray-600 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+          My Library é o catálogo pessoal de livros para quem quer organizar a biblioteca, acompanhar o progresso e ler mais com consistência — sem a bagunça das redes sociais literárias.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+          <a
+            href="#precos"
+            class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-rose-500 text-white font-semibold px-7 py-3.5 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200"
+          >
+            📖 Organizar minha biblioteca
+          </a>
+          <a
+            href="#funcionalidades"
+            class="inline-flex items-center justify-center gap-2 border-2 border-amber-300 text-amber-800 font-semibold px-7 py-3.5 rounded-xl hover:bg-amber-50 transition-all duration-200"
+          >
+            Ver como funciona
+          </a>
+        </div>
+
+        <p class="text-sm text-gray-500">✨ Gratuito para começar. Sem cartão de crédito.</p>
+      </div>
+
+      <!-- Right: Bookshelf mockup -->
+      <div class="ml-reveal-delay flex justify-center lg:justify-end">
+        <div class="relative w-full max-w-md">
+          <!-- Shelf frame -->
+          <div class="bg-white rounded-2xl shadow-2xl border border-amber-100 p-5 space-y-4">
+            <!-- App header bar -->
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2">
+                <span class="text-xl">📚</span>
+                <span class="font-bold text-gray-800 text-sm">Minha Biblioteca</span>
+              </div>
+              <span class="text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded-full">47 livros</span>
+            </div>
+
+            <!-- Tab bar -->
+            <div class="flex gap-1 bg-amber-50 rounded-lg p-1 text-xs font-medium">
+              <span class="bg-white text-amber-700 rounded-md px-3 py-1.5 shadow-sm">Lendo (3)</span>
+              <span class="text-gray-500 px-3 py-1.5">Lidos (38)</span>
+              <span class="text-gray-500 px-3 py-1.5">Quero ler (6)</span>
+            </div>
+
+            <!-- Book shelf row 1 -->
+            <div class="space-y-1">
+              <p class="text-xs text-gray-400 font-medium uppercase tracking-wider">Lendo agora</p>
+              <div class="flex gap-2">
+                {[
+                  { bg: 'bg-rose-400', title: 'A Memória\ndo Mundo', author: 'Umberto Eco', progress: 68 },
+                  { bg: 'bg-amber-400', title: 'Cem Anos\nde Solidão', author: 'G. G. Márquez', progress: 32 },
+                  { bg: 'bg-teal-400', title: 'O Alquimista', author: 'Paulo Coelho', progress: 91 },
+                ].map(book => (
+                  <div class="flex-1 group cursor-pointer">
+                    <div class={`${book.bg} rounded-lg p-2 text-white text-[10px] font-bold leading-tight h-24 flex flex-col justify-between shadow-md group-hover:scale-105 group-hover:shadow-lg transition-all duration-200`}>
+                      <span class="whitespace-pre-line">{book.title}</span>
+                      <span class="font-normal opacity-80 text-[9px]">{book.author}</span>
+                    </div>
+                    <div class="mt-1.5 bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                      <div class={`${book.bg} h-full rounded-full`} style={`width: ${book.progress}%`}></div>
+                    </div>
+                    <p class="text-[9px] text-gray-400 mt-0.5 text-center">{book.progress}%</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- Shelf divider -->
+            <div class="h-2 bg-gradient-to-r from-amber-200 via-amber-300 to-amber-200 rounded-full"></div>
+
+            <!-- Book shelf row 2 (lidos) -->
+            <div class="space-y-1">
+              <p class="text-xs text-gray-400 font-medium uppercase tracking-wider">Lidos recentemente</p>
+              <div class="flex gap-1.5 flex-wrap">
+                {[
+                  { bg: 'bg-purple-400', title: 'Duna' },
+                  { bg: 'bg-blue-400', title: '1984' },
+                  { bg: 'bg-green-400', title: 'Sapiens' },
+                  { bg: 'bg-pink-400', title: 'Verity' },
+                  { bg: 'bg-orange-400', title: 'Atomic\nHabits' },
+                  { bg: 'bg-indigo-400', title: 'Sherlock' },
+                ].map(book => (
+                  <div class={`${book.bg} rounded-md w-10 h-14 flex items-end justify-center p-1 shadow-sm hover:scale-110 hover:shadow-md transition-all duration-200 cursor-pointer`}>
+                    <span class="text-white text-[7px] font-bold text-center leading-tight whitespace-pre-line">{book.title}</span>
+                  </div>
+                ))}
+                <div class="bg-gray-100 rounded-md w-10 h-14 flex items-center justify-center text-gray-400 text-lg cursor-pointer hover:bg-gray-200 transition-colors">+</div>
+              </div>
+            </div>
+
+            <!-- Stats bar -->
+            <div class="bg-gradient-to-r from-amber-50 to-rose-50 rounded-xl p-3 flex justify-around text-center border border-amber-100">
+              <div>
+                <p class="text-lg font-bold text-amber-600">31</p>
+                <p class="text-[10px] text-gray-500">lidos em 2025</p>
+              </div>
+              <div class="border-l border-amber-200"></div>
+              <div>
+                <p class="text-lg font-bold text-rose-500">8.247</p>
+                <p class="text-[10px] text-gray-500">páginas lidas</p>
+              </div>
+              <div class="border-l border-amber-200"></div>
+              <div>
+                <p class="text-lg font-bold text-teal-600">🎯 Meta</p>
+                <p class="text-[10px] text-gray-500">77% da meta</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating badge -->
+          <div class="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-lg border border-amber-100 px-3 py-2 flex items-center gap-2">
+            <span class="text-lg">🎉</span>
+            <div>
+              <p class="text-xs font-bold text-gray-800">Livro terminado!</p>
+              <p class="text-[10px] text-gray-500">O Alquimista · agora</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .ml-reveal {
+    animation: mlFadeUp 0.8s ease both;
+  }
+  .ml-reveal-delay {
+    animation: mlFadeUp 0.8s ease 0.2s both;
+  }
+  @keyframes mlFadeUp {
+    from { opacity: 0; transform: translateY(32px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>

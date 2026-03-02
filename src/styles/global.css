@@ -12,43 +12,80 @@
   body {
     @apply font-sans text-gray-900 bg-white antialiased;
     font-size: 17px;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-@layer components {
-  .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg bg-iit-blue text-white font-semibold hover:bg-iit-blue-dark transition-all duration-200;
-  }
+/* =====================================================
+   PAGE FADE-IN — evitar flash de conteúdo sem estilo
+   ===================================================== */
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
 
-  .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg border-2 border-iit-blue text-iit-blue font-semibold hover:bg-iit-blue hover:text-white transition-all duration-200;
-  }
+body {
+  animation: pageFadeIn 0.4s ease forwards;
+}
 
-  .section-title {
-    @apply text-4xl font-black;
-    color: #0D1B26;
-  }
+/* =====================================================
+   SCROLL REVEAL — sistema global
+   ===================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
+}
 
-  .section-subtitle {
-    @apply text-lg mt-4 max-w-2xl;
-    color: #4B6070;
-  }
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-  .card-hover {
-    @apply transition-transform duration-300;
+/* Stagger helpers */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
   }
-  .card-hover:hover {
-    transform: translateY(-4px);
+  .reveal.revealed {
+    opacity: 1;
+    transform: none;
+  }
+  body {
+    animation: none;
+  }
+  .fade-in-up {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+  .btn-pulse {
+    animation: none !important;
+  }
+  .hero-bg-anim {
+    animation: none !important;
+  }
+  .animate-bounce {
+    animation: none !important;
   }
 }
 
-/* Section spacing */
-section {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
-}
-
-/* Shared fade-in animation */
+/* =====================================================
+   HERO ANIMATIONS
+   ===================================================== */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -62,5 +99,167 @@ section {
 
 .fade-in-up {
   opacity: 0;
-  animation: fadeInUp 0.6s ease forwards;
+  animation: fadeInUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Pulse sutil no CTA principal */
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 8px 32px rgba(0, 151, 214, 0.3); }
+  50%       { box-shadow: 0 8px 48px rgba(0, 151, 214, 0.55); }
+}
+
+.btn-pulse {
+  animation: ctaPulse 2.5s ease-in-out infinite;
+}
+
+/* Gradiente animado do Hero */
+@keyframes heroBgShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hero-bg-anim {
+  background-size: 200% 200%;
+  animation: heroBgShift 12s ease infinite;
+}
+
+/* =====================================================
+   SHIMMER nos botões CTA
+   ===================================================== */
+@keyframes shimmer {
+  0%   { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(200%) skewX(-15deg); }
+}
+
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%) skewX(-15deg);
+  transition: none;
+}
+
+.btn-shimmer:hover::after {
+  animation: shimmer 0.6s ease forwards;
+}
+
+/* =====================================================
+   BUTTON STYLES
+   ===================================================== */
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg bg-iit-blue text-white font-semibold transition-all duration-200;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary:hover {
+    @apply bg-iit-blue-dark;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(0, 151, 214, 0.35);
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg border-2 border-iit-blue text-iit-blue font-semibold transition-all duration-200;
+  }
+  .btn-secondary:hover {
+    @apply bg-iit-blue text-white;
+    transform: translateY(-1px);
+  }
+
+  .section-title {
+    @apply text-4xl font-black;
+    color: #0D1B26;
+  }
+
+  .section-subtitle {
+    @apply text-lg mt-4 max-w-2xl;
+    color: #4B6070;
+  }
+
+  /* Card hover — elevação profissional */
+  .card-hover {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.10);
+  }
+}
+
+/* =====================================================
+   SECTION SPACING — consistência global
+   ===================================================== */
+section {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+/* =====================================================
+   WAVE SEPARATORS — transições entre seções
+   ===================================================== */
+.wave-top {
+  position: relative;
+}
+.wave-top::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath d='M0,30 C360,60 1080,0 1440,30 L1440,0 L0,0 Z' fill='%23ffffff'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* =====================================================
+   IMAGE HOVER — scale sutil
+   ===================================================== */
+.img-hover {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.img-hover:hover {
+  transform: scale(1.02);
+}
+
+/* =====================================================
+   NAVIGATION — underline animado
+   ===================================================== */
+.nav-link {
+  position: relative;
+  padding-bottom: 2px;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #0097D6;
+  border-radius: 1px;
+  transition: width 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+.nav-link.active {
+  color: #0097D6 !important;
 }

@@ -22,13 +22,13 @@ const base = isEn ? '/en' : '';
 
     <!-- Desktop nav -->
     <div class="hidden md:flex items-center gap-6">
-      <a href={`${base}/#sobre`} class="text-sm font-medium text-gray-600 hover:text-[#0097D6] transition-colors">{t.nav.about}</a>
-      <a href={`${base}/#attend-agent`} class="text-sm font-medium text-gray-600 hover:text-[#0097D6] transition-colors">{t.nav.attendAgent}</a>
-      <a href={isEn ? '/en/pricing' : '/precos'} class="text-sm font-medium text-gray-600 hover:text-[#0097D6] transition-colors">{isEn ? 'Pricing' : 'Preços'}</a>
-      <a href={isEn ? '/en/blog' : '/blog'} class="text-sm font-medium text-gray-600 hover:text-[#0097D6] transition-colors">Blog</a>
-      <a href="/solucoes" class="text-sm font-medium text-gray-600 hover:text-[#0097D6] transition-colors">Soluções</a>
+      <a href={`${base}/#sobre`} class="nav-link text-sm font-medium text-gray-600 hover:text-[#0097D6] transition-colors">{t.nav.about}</a>
+      <a href={`${base}/#attend-agent`} class="nav-link text-sm font-medium text-gray-600 hover:text-[#0097D6] transition-colors">{t.nav.attendAgent}</a>
+      <a href={isEn ? '/en/pricing' : '/precos'} class="nav-link text-sm font-medium text-gray-600 hover:text-[#0097D6] transition-colors">{isEn ? 'Pricing' : 'Preços'}</a>
+      <a href={isEn ? '/en/blog' : '/blog'} class="nav-link text-sm font-medium text-gray-600 hover:text-[#0097D6] transition-colors">Blog</a>
+      <a href="/solucoes" class="nav-link text-sm font-medium text-gray-600 hover:text-[#0097D6] transition-colors">Soluções</a>
       <a href={t.nav.langLink} class="text-sm font-medium text-gray-500 hover:text-[#0097D6] transition-colors">{t.nav.langSwitcher}</a>
-      <a href={t.nav.contactPage} class="text-sm font-medium text-gray-600 hover:text-[#0097D6] transition-colors">{t.nav.contact}</a>
+      <a href={t.nav.contactPage} class="nav-link text-sm font-medium text-gray-600 hover:text-[#0097D6] transition-colors">{t.nav.contact}</a>
     </div>
 
     <!-- Mobile menu button -->

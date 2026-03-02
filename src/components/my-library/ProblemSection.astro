@@ -1,0 +1,50 @@
+---
+// ProblemSection.astro — Seção Problema (empático, sem CTA)
+---
+
+<section class="py-20 bg-white ml-section">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="ml-reveal space-y-6">
+      <span class="inline-block text-4xl">📦</span>
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
+        Quantos livros você leu e<br/>
+        <span class="text-amber-600">não lembra mais nada?</span>
+      </h2>
+      <p class="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
+        Não é culpa sua. A vida é corrida, os livros se acumulam na cabeceira, no Kindle, na wishlist mental. Você termina um romance incrível e, seis meses depois, mal lembra o nome do protagonista.
+      </p>
+    </div>
+
+    <div class="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-6">
+      {[
+        {
+          emoji: '🤔',
+          title: '"Esse livro eu já li?"',
+          desc: 'Você fica na dúvida na livraria se já tem aquele título em casa — e às vezes compra de novo.',
+        },
+        {
+          emoji: '😵',
+          title: 'Pilhas sem fim',
+          desc: 'A lista do "quero ler" existe só na sua cabeça ou em notas espalhadas por 5 apps diferentes.',
+        },
+        {
+          emoji: '📉',
+          title: 'Progresso invisível',
+          desc: 'Você lê muito mais do que percebe — mas sem um registro, cada ano parece igual ao anterior.',
+        },
+      ].map(item => (
+        <div class="ml-reveal bg-amber-50 border border-amber-100 rounded-2xl p-6 text-left space-y-3">
+          <span class="text-3xl">{item.emoji}</span>
+          <h3 class="font-bold text-gray-800">{item.title}</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 ml-reveal">
+      <p class="text-xl text-gray-700 font-medium italic">
+        "Você não precisa ler mais. Você precisa ver o quanto já lê."
+      </p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,77 @@
+---
+// FeaturesSection.astro — 3 blocos de funcionalidades
+---
+
+<section id="funcionalidades" class="bg-[#F7F9FB] py-24">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-16 fh-reveal">
+      <span class="inline-block bg-[#0097D6]/10 text-[#0097D6] text-sm font-semibold px-4 py-1 rounded-full mb-4">Funcionalidades</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-[#0D1B26]">Tudo que você precisa. Nada que você não precisa.</h2>
+      <p class="mt-4 text-[#4B6070] text-lg max-w-xl mx-auto">
+        Três pilares que sustentam um sistema que dura — mesmo nos dias mais corridos.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <!-- Feature 1: Inbox Universal -->
+      <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:-translate-y-1 transition-transform duration-300 fh-reveal">
+        <div class="w-14 h-14 rounded-xl bg-[#0097D6]/10 flex items-center justify-center mb-6">
+          <!-- Ícone inbox -->
+          <svg class="w-7 h-7 text-[#0097D6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-black text-[#0D1B26] mb-3">Inbox Universal</h3>
+        <p class="text-[#4B6070] leading-relaxed mb-5">
+          Capture por voz, texto ou foto — de qualquer dispositivo. Um lugar único para tudo que entra na sua cabeça. Decida depois, capture agora.
+        </p>
+        <ul class="space-y-2 text-sm text-[#4B6070]">
+          <li class="flex items-center gap-2"><span class="text-[#0097D6]">→</span> Captura por voz no mobile</li>
+          <li class="flex items-center gap-2"><span class="text-[#0097D6]">→</span> Extensão para navegador</li>
+          <li class="flex items-center gap-2"><span class="text-[#0097D6]">→</span> Encaminhe emails direto pro inbox</li>
+        </ul>
+      </div>
+
+      <!-- Feature 2: Tasks com Contexto -->
+      <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:-translate-y-1 transition-transform duration-300 fh-reveal">
+        <div class="w-14 h-14 rounded-xl bg-[#00D6A0]/10 flex items-center justify-center mb-6">
+          <!-- Ícone checklist -->
+          <svg class="w-7 h-7 text-[#00D6A0]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-black text-[#0D1B26] mb-3">Tasks com Contexto</h3>
+        <p class="text-[#4B6070] leading-relaxed mb-5">
+          Cada tarefa tem projeto, contexto e prazo — sem virar burocracia. Veja só o que é relevante agora, onde você está, com a energia que você tem.
+        </p>
+        <ul class="space-y-2 text-sm text-[#4B6070]">
+          <li class="flex items-center gap-2"><span class="text-[#00D6A0]">→</span> Filtros por contexto (@casa, @email)</li>
+          <li class="flex items-center gap-2"><span class="text-[#00D6A0]">→</span> Próximas ações sempre visíveis</li>
+          <li class="flex items-center gap-2"><span class="text-[#00D6A0]">→</span> Revisão semanal guiada em 10 min</li>
+        </ul>
+      </div>
+
+      <!-- Feature 3: Habit Tracking Integrado -->
+      <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:-translate-y-1 transition-transform duration-300 fh-reveal">
+        <div class="w-14 h-14 rounded-xl bg-purple-100 flex items-center justify-center mb-6">
+          <!-- Ícone hábito -->
+          <svg class="w-7 h-7 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-black text-[#0D1B26] mb-3">Habit Tracking Integrado</h3>
+        <p class="text-[#4B6070] leading-relaxed mb-5">
+          Hábitos e tarefas no mesmo lugar. Checa seu progresso diário sem abrir outro app. A consistência constrói o sistema — e o sistema constrói você.
+        </p>
+        <ul class="space-y-2 text-sm text-[#4B6070]">
+          <li class="flex items-center gap-2"><span class="text-purple-500">→</span> Streak e histórico visual</li>
+          <li class="flex items-center gap-2"><span class="text-purple-500">→</span> Hábitos vinculados a projetos</li>
+          <li class="flex items-center gap-2"><span class="text-purple-500">→</span> Lembretes inteligentes</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>

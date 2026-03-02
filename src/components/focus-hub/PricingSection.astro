@@ -1,0 +1,108 @@
+---
+// PricingSection.astro — Free tier + Plano pago
+---
+
+<section id="precos" class="bg-[#0A0F14] py-24">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-16 fh-reveal">
+      <span class="inline-block bg-[#0097D6]/10 text-[#0097D6] text-sm font-semibold px-4 py-1 rounded-full mb-4">Preços</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-white">
+        Comece grátis. Pague só quando quiser mais.
+      </h2>
+      <p class="mt-4 text-gray-400 text-lg max-w-xl mx-auto">
+        Sem truques, sem trial que expira sem avisar. O plano gratuito é real.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 items-stretch">
+
+      <!-- Plano Free -->
+      <div class="bg-[#0D1B26] border border-white/10 rounded-2xl p-8 flex flex-col fh-reveal">
+        <div class="mb-6">
+          <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Gratuito</span>
+          <div class="flex items-end gap-2 mt-2">
+            <span class="text-5xl font-black text-white">R$ 0</span>
+            <span class="text-gray-400 pb-1">/mês</span>
+          </div>
+          <p class="text-gray-400 text-sm mt-2">Para sempre. Sem cartão de crédito.</p>
+        </div>
+
+        <ul class="space-y-3 mb-8 flex-1">
+          {[
+            'Inbox universal ilimitado',
+            'Até 3 projetos ativos',
+            'Tasks com contexto básico',
+            'Habit tracking (até 3 hábitos)',
+            'Web + mobile',
+            'Sincronização em tempo real',
+          ].map((item) => (
+            <li class="flex items-center gap-3 text-gray-300 text-sm">
+              <svg class="w-4 h-4 text-[#00D6A0] shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+
+        <a
+          href="#"
+          class="w-full inline-flex items-center justify-center border-2 border-[#0097D6] text-[#0097D6] hover:bg-[#0097D6] hover:text-white font-bold px-8 py-4 rounded-xl text-base transition-all duration-200"
+        >
+          Começar grátis
+        </a>
+      </div>
+
+      <!-- Plano Pro -->
+      <div class="bg-gradient-to-br from-[#0D1B26] to-[#0A2030] border-2 border-[#00D6A0] rounded-2xl p-8 flex flex-col relative fh-reveal">
+        <!-- Badge popular -->
+        <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+          <span class="bg-[#00D6A0] text-[#0A0F14] text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-wider">Mais popular</span>
+        </div>
+
+        <div class="mb-6">
+          <span class="text-xs font-bold text-[#00D6A0] uppercase tracking-widest">Focus Hub Pro</span>
+          <div class="flex items-end gap-2 mt-2">
+            <span class="text-5xl font-black text-white">R$ 29</span>
+            <span class="text-gray-400 pb-1">/mês</span>
+          </div>
+          <p class="text-gray-400 text-sm mt-2">ou R$ 290/ano (economize 2 meses)</p>
+        </div>
+
+        <ul class="space-y-3 mb-8 flex-1">
+          {[
+            'Tudo do plano Gratuito',
+            'Projetos e hábitos ilimitados',
+            'Contextos personalizados avançados',
+            'Revisão semanal guiada com IA',
+            'Integração com calendário (Google/Outlook)',
+            'Relatórios de produtividade',
+            'Suporte prioritário',
+            'Acesso antecipado a novas features',
+          ].map((item) => (
+            <li class="flex items-center gap-3 text-gray-200 text-sm">
+              <svg class="w-4 h-4 text-[#00D6A0] shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+
+        <a
+          href="#"
+          class="w-full inline-flex items-center justify-center bg-[#00D6A0] hover:bg-[#00A87E] text-[#0A0F14] font-bold px-8 py-4 rounded-xl text-base shadow-lg shadow-[#00D6A0]/25 transition-all duration-200 hover:scale-105"
+        >
+          Assinar e focar de vez
+        </a>
+      </div>
+
+    </div>
+
+    <p class="text-center text-gray-500 text-sm mt-8 fh-reveal">
+      Todos os planos incluem sincronização web + mobile. Cancele quando quiser.
+    </p>
+
+  </div>
+</section>

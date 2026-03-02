@@ -86,6 +86,16 @@ const whatsappLabel = lang === 'en' ? 'Talk to us' : 'Fale conosco';
     <!-- Schema.org JSON-LD: Extra (per-page) -->
     {schemaExtra && <script type="application/ld+json" set:html={JSON.stringify(schemaExtra)} />}
 
+    <!-- Nav scroll style -->
+    <style>
+      header.nav-scrolled {
+        background: rgba(255, 255, 255, 0.85) !important;
+        backdrop-filter: blur(16px) !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+        box-shadow: 0 2px 20px rgba(0,0,0,0.08) !important;
+      }
+    </style>
+
     <!-- Hreflang -->
     {alternatePt && <link rel="alternate" hreflang="pt-BR" href={alternatePt} />}
     {alternateEn && <link rel="alternate" hreflang="en" href={alternateEn} />}
@@ -118,6 +128,77 @@ const whatsappLabel = lang === 'en' ? 'Talk to us' : 'Fale conosco';
   </head>
   <body class="min-h-screen bg-white text-gray-900 antialiased">
     <slot />
+
+    <!-- =====================================================
+         SCROLL REVEAL — Intersection Observer
+         ===================================================== -->
+    <script>
+      (function () {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+        );
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+        const mutationObs = new MutationObserver(() => {
+          document.querySelectorAll('.reveal:not(.revealed)').forEach((el) => observer.observe(el));
+        });
+        mutationObs.observe(document.body, { childList: true, subtree: true });
+      })();
+    </script>
+
+    <!-- =====================================================
+         NAV SCROLL EFFECTS — blur + active section highlight
+         ===================================================== -->
+    <script>
+      (function () {
+        const header = document.querySelector('header');
+        if (!header) return;
+
+        const onScroll = () => {
+          if (window.scrollY > 20) {
+            header.classList.add('nav-scrolled');
+          } else {
+            header.classList.remove('nav-scrolled');
+          }
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link[href*="#"]');
+
+        if (sections.length && navLinks.length) {
+          const sectionObs = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  const id = entry.target.getAttribute('id');
+                  navLinks.forEach((link) => {
+                    const href = link.getAttribute('href') ?? '';
+                    if (href.includes(`#${id}`)) {
+                      link.classList.add('active');
+                    } else {
+                      link.classList.remove('active');
+                    }
+                  });
+                }
+              });
+            },
+            { threshold: 0.4 }
+          );
+          sections.forEach((s) => sectionObs.observe(s));
+        }
+      })();
+    </script>
 
     <!-- WhatsApp floating button -->
     <a

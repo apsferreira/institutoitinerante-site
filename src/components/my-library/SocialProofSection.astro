@@ -1,0 +1,76 @@
+---
+// SocialProofSection.astro — Depoimentos + contador social
+---
+
+<section class="py-20 bg-gradient-to-br from-amber-50 via-orange-50 to-rose-50 ml-section">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Social count badge -->
+    <div class="text-center mb-12 ml-reveal">
+      <div class="inline-flex items-center gap-3 bg-white border border-amber-200 rounded-full px-6 py-3 shadow-sm">
+        <span class="flex gap-0.5">
+          {['bg-rose-400', 'bg-amber-400', 'bg-teal-400', 'bg-purple-400'].map(c => (
+            <span class={`${c} w-7 h-7 rounded-full border-2 border-white -ml-1 first:ml-0`}></span>
+          ))}
+        </span>
+        <p class="text-sm font-medium text-gray-700">
+          <span class="text-amber-600 font-bold">1.247 livros</span> catalogados esta semana
+        </p>
+      </div>
+    </div>
+
+    <div class="text-center mb-10 ml-reveal space-y-2">
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">O que os leitores estão dizendo</h2>
+      <p class="text-gray-600">De quem já organizou a biblioteca e não quer mais voltar atrás.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Depoimento 1 -->
+      <div class="ml-reveal bg-white rounded-2xl shadow-sm border border-amber-100 p-6 space-y-4 hover:shadow-md transition-shadow">
+        <div class="flex gap-1 text-amber-400 text-sm">★★★★★</div>
+        <p class="text-gray-700 leading-relaxed italic">
+          "Finalmente tenho uma biblioteca que é bonita de olhar. Cada vez que abro o My Library sinto aquele prazer de ver todas as capas juntas — parece uma livraria minha. Nunca mais comprei livro repetido."
+        </p>
+        <div class="flex items-center gap-3 pt-2 border-t border-amber-50">
+          <div class="w-10 h-10 bg-rose-400 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0">FL</div>
+          <div>
+            <p class="font-semibold text-gray-900 text-sm">Fernanda Lima</p>
+            <p class="text-xs text-gray-500">Analista de Produto · Rio de Janeiro, RJ</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Depoimento 2 -->
+      <div class="ml-reveal bg-white rounded-2xl shadow-sm border border-amber-100 p-6 space-y-4 hover:shadow-md transition-shadow" style="animation-delay: 0.1s">
+        <div class="flex gap-1 text-amber-400 text-sm">★★★★★</div>
+        <p class="text-gray-700 leading-relaxed italic">
+          "Eu achava que tinha lido uns 12 livros no ano. Quando cadastrei tudo no My Library, descobri que foram 31. Ficou ali, contado, com capas e tudo. Foi um dos momentos mais surpreendentes do meu ano."
+        </p>
+        <div class="flex items-center gap-3 pt-2 border-t border-amber-50">
+          <div class="w-10 h-10 bg-blue-400 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0">TC</div>
+          <div>
+            <p class="font-semibold text-gray-900 text-sm">Thiago Carvalho</p>
+            <p class="text-xs text-gray-500">Professor · Curitiba, PR</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Depoimento 3 -->
+      <div class="ml-reveal bg-white rounded-2xl shadow-sm border border-amber-100 p-6 space-y-4 hover:shadow-md transition-shadow" style="animation-delay: 0.2s">
+        <div class="flex gap-1 text-amber-400 text-sm">★★★★★</div>
+        <p class="text-gray-700 leading-relaxed italic">
+          "Usei Goodreads por anos, mas sempre parecia pesado, cheio de gente, de avaliações, de social. No My Library é meu, é pessoal, é bonito. Minha biblioteca não precisa ser pública pra ter valor."
+        </p>
+        <div class="flex items-center gap-3 pt-2 border-t border-amber-50">
+          <div class="w-10 h-10 bg-purple-400 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0">MC</div>
+          <div>
+            <p class="font-semibold text-gray-900 text-sm">Mariana Costa</p>
+            <p class="text-xs text-gray-500">Estudante · Porto Alegre, RS</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

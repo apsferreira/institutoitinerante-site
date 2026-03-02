@@ -22,12 +22,12 @@ const subtitle = isEn ? '3 steps to transform your customer service' : '3 passos
 
 <section class="py-24" style="background: linear-gradient(135deg, #F5F8FA 0%, #EFF6FB 100%);">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-16">
+    <div class="text-center mb-16 reveal">
       <h2 class="text-4xl font-black text-[#0D1B26] mb-4 section-accent">{title}</h2>
       <p class="text-gray-500 max-w-xl mx-auto">{subtitle}</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative reveal reveal-delay-2">
       <!-- Connector line (desktop) -->
       <div class="hidden md:block absolute top-16 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-[#0097D6] to-[#00D6A0] opacity-30" style="top: 56px; left: calc(16.666% + 48px); right: calc(16.666% + 48px);"></div>
 
@@ -46,12 +46,12 @@ const subtitle = isEn ? '3 steps to transform your customer service' : '3 passos
       ))}
     </div>
 
-    <div class="text-center mt-12">
+    <div class="text-center mt-12 reveal reveal-delay-3">
       <a
         href="https://wa.me/5571992732430"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 bg-[#0097D6] hover:bg-[#007ab8] text-white font-bold px-10 py-4 rounded-xl shadow-lg shadow-[#0097D6]/30 transition-all hover:scale-105"
+        class="btn-shimmer inline-flex items-center gap-2 bg-[#0097D6] hover:bg-[#007ab8] text-white font-bold px-10 py-4 rounded-xl shadow-lg shadow-[#0097D6]/30 transition-all hover:scale-105"
       >
         {isEn ? 'Start now →' : 'Começar agora →'}
       </a>

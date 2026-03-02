@@ -8,12 +8,12 @@ const { t } = Astro.props;
 <section id="sobre" class="py-24 bg-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section header -->
-    <div class="max-w-3xl mx-auto text-center mb-16">
+    <div class="max-w-3xl mx-auto text-center mb-16 reveal">
       <h2 class="text-4xl font-black mb-6 section-accent-title">Quem Somos</h2>
     </div>
 
     <!-- Nossa história -->
-    <div class="max-w-3xl mx-auto mb-16">
+    <div class="max-w-3xl mx-auto mb-16 reveal reveal-delay-1">
       <h3 class="text-2xl font-bold mb-4" style="color: #0D1B26;">Nossa história</h3>
       <p class="text-lg leading-relaxed" style="color: #4B6070;">
         Fundado há mais de 12 anos, o Instituto Itinerante nasceu com um propósito claro: usar tecnologia para transformar realidades. Com um forte cunho social, o IIT desenvolve soluções que democratizam o acesso à inovação para empresas de todos os tamanhos.
@@ -21,22 +21,22 @@ const { t } = Astro.props;
     </div>
 
     <!-- Propósito, Missão, Visão -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-      <div class="p-8 rounded-2xl bg-gray-50 border border-gray-100">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 reveal reveal-delay-2">
+      <div class="card-hover p-8 rounded-2xl bg-gray-50 border border-gray-100">
         <div class="w-10 h-10 rounded-xl bg-[#0097D6]/10 flex items-center justify-center mb-4">
           <span class="text-xl">🎯</span>
         </div>
         <h3 class="text-lg font-bold mb-2" style="color: #0D1B26;">Propósito</h3>
         <p class="leading-relaxed" style="color: #4B6070;">Democratizar o acesso à tecnologia de ponta para PMEs brasileiras.</p>
       </div>
-      <div class="p-8 rounded-2xl bg-gray-50 border border-gray-100">
+      <div class="card-hover p-8 rounded-2xl bg-gray-50 border border-gray-100">
         <div class="w-10 h-10 rounded-xl bg-[#0097D6]/10 flex items-center justify-center mb-4">
           <span class="text-xl">🚀</span>
         </div>
         <h3 class="text-lg font-bold mb-2" style="color: #0D1B26;">Missão</h3>
         <p class="leading-relaxed" style="color: #4B6070;">Desenvolver soluções tecnológicas inovadoras que gerem impacto real nos negócios e na sociedade.</p>
       </div>
-      <div class="p-8 rounded-2xl bg-gray-50 border border-gray-100">
+      <div class="card-hover p-8 rounded-2xl bg-gray-50 border border-gray-100">
         <div class="w-10 h-10 rounded-xl bg-[#0097D6]/10 flex items-center justify-center mb-4">
           <span class="text-xl">🔭</span>
         </div>
@@ -46,7 +46,7 @@ const { t } = Astro.props;
     </div>
 
     <!-- Valores -->
-    <div>
+    <div class="reveal reveal-delay-1">
       <h3 class="text-2xl font-bold mb-8 text-center" style="color: #0D1B26;">Valores</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
