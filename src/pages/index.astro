@@ -12,6 +12,9 @@ import ContactSection from '../components/ContactSection.astro';
 import Footer from '../components/Footer.astro';
 import AttendAgentDemo from '../components/demos/AttendAgentDemo';
 import ROICalculator from '../components/demos/ROICalculator';
+import SocialProofBar from '../components/SocialProofBar.astro';
+import AnimatedCounters from '../components/AnimatedCounters.astro';
+import StickyCTAMobile from '../components/StickyCTAMobile.astro';
 import { pt as t } from '../i18n/pt';
 ---
 
@@ -25,8 +28,10 @@ import { pt as t } from '../i18n/pt';
 >
   <SchemaProduct />
   <Nav t={t} />
+  <StickyCTAMobile />
   <main>
     <Hero t={t} />
+    <SocialProofBar />
     <About t={t} />
     <div id="como-funciona">
       <HowItWorks />
@@ -58,6 +63,7 @@ import { pt as t } from '../i18n/pt';
     </section>
 
     <Cases />
+    <AnimatedCounters />
     <Integrations />
     <ContactSection t={t} />
   </main>

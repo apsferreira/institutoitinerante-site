@@ -77,7 +77,89 @@ const { t } = Astro.props;
   </div>
 </section>
 
+<script>
+  // Typewriter — casos de uso do Attend-Agent
+  const phrases = [
+    'qualificando seus leads',
+    'agendando consultas automaticamente',
+    'respondendo dúvidas no WhatsApp',
+    'convertendo visitantes em clientes',
+    'atendendo 24h sem equipe extra',
+    'enviando confirmações de agendamento',
+    'recuperando leads que não responderam',
+  ];
+
+  const el = document.getElementById('hero-typewriter');
+  if (el) {
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let isPaused = false;
+
+    const TYPE_SPEED = 55;
+    const DELETE_SPEED = 30;
+    const PAUSE_AFTER_PHRASE = 2200;
+    const PAUSE_BEFORE_TYPE = 300;
+
+    function tick() {
+      const currentPhrase = phrases[phraseIndex];
+
+      if (isPaused) return;
+
+      if (!isDeleting) {
+        // Digitando
+        charIndex++;
+        el.textContent = currentPhrase.slice(0, charIndex);
+
+        if (charIndex === currentPhrase.length) {
+          isPaused = true;
+          setTimeout(() => {
+            isDeleting = true;
+            isPaused = false;
+            setTimeout(tick, DELETE_SPEED);
+          }, PAUSE_AFTER_PHRASE);
+          return;
+        }
+        setTimeout(tick, TYPE_SPEED);
+      } else {
+        // Apagando
+        charIndex--;
+        el.textContent = currentPhrase.slice(0, charIndex);
+
+        if (charIndex === 0) {
+          isDeleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          setTimeout(tick, PAUSE_BEFORE_TYPE);
+          return;
+        }
+        setTimeout(tick, DELETE_SPEED);
+      }
+    }
+
+    // Aguarda animação do hero terminar
+    setTimeout(tick, 900);
+  }
+</script>
+
 <style>
+  .typewriter-text {
+    border-right: 2px solid #0097D6;
+    padding-right: 2px;
+    animation: cursorBlink 0.75s step-end infinite;
+  }
+
+  @keyframes cursorBlink {
+    0%, 100% { border-color: #0097D6; }
+    50%       { border-color: transparent; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .typewriter-text {
+      animation: none;
+      border-right: none;
+    }
+  }
+
   .hero-section {
     background: linear-gradient(135deg, #080d11 0%, #0D1B26 40%, #0d2740 70%, #0D1B26 100%);
   }
