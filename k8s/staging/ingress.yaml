@@ -1,0 +1,45 @@
+# Ingress para stg.institutoitinerante.com.br
+# Usa letsencrypt-staging para evitar rate limit durante testes
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: iit-website
+  namespace: iit-website-staging
+  labels:
+    app: iit-website
+    app.kubernetes.io/managed-by: argocd
+    environment: staging
+  annotations:
+    # letsencrypt-staging: não tem rate limit mas o cert não é trusted pelo browser
+    # Trocar para letsencrypt-prod só quando o staging estiver estável
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+
+    # Bloquear indexação de crawlers no staging
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      more_set_headers "X-Robots-Tag: noindex, nofollow";
+      more_set_headers "X-Environment: staging";
+      more_set_headers "Strict-Transport-Security: max-age=31536000; includeSubDomains";
+      more_set_headers "X-Frame-Options: SAMEORIGIN";
+      more_set_headers "X-Content-Type-Options: nosniff";
+
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - stg.institutoitinerante.com.br
+      secretName: iit-website-staging-tls
+  rules:
+    - host: stg.institutoitinerante.com.br
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: iit-website
+                port:
+                  name: http

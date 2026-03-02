@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import AttendAgent from '../components/AttendAgent.astro';
+import ContactSection from '../components/ContactSection.astro';
+import Footer from '../components/Footer.astro';
+import { pt as t } from '../i18n/pt';
+---
+
+<BaseLayout
+  title={t.pages.home.title}
+  description={t.pages.home.description}
+  lang="pt-BR"
+  canonical="https://institutoitinerante.com.br/"
+>
+  <Nav t={t} />
+  <main>
+    <Hero t={t} />
+    <About t={t} />
+    <AttendAgent t={t} />
+    <ContactSection t={t} />
+  </main>
+  <Footer t={t} />
+</BaseLayout>

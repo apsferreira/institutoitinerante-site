@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans text-gray-900 bg-white antialiased;
+    font-size: 17px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg bg-iit-blue text-white font-semibold hover:bg-iit-blue-dark transition-all duration-200;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg border-2 border-iit-blue text-iit-blue font-semibold hover:bg-iit-blue hover:text-white transition-all duration-200;
+  }
+
+  .section-title {
+    @apply text-4xl font-black;
+    color: #0D1B26;
+  }
+
+  .section-subtitle {
+    @apply text-lg mt-4 max-w-2xl;
+    color: #4B6070;
+  }
+
+  .card-hover {
+    @apply transition-transform duration-300;
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+  }
+}
+
+/* Section spacing */
+section {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+/* Shared fade-in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}

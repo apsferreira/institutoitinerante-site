@@ -1,0 +1,172 @@
+name: CI/CD — IIT Website
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: apsferreira/iit-website
+
+jobs:
+  # ────────────────────────────────────────────
+  # Job 1: Build Astro
+  # ────────────────────────────────────────────
+  build:
+    name: Build Astro
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Astro
+        run: npm run build
+
+      - name: Upload dist artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 1
+
+  # ────────────────────────────────────────────
+  # Job 2: Docker build & push to GHCR
+  # Tags:
+  #   main    → :latest + :sha-<short>
+  #   develop → :develop + :sha-<short>
+  # ────────────────────────────────────────────
+  docker:
+    name: Docker Build & Push
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      short_sha: ${{ steps.vars.outputs.short_sha }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download dist artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Set short SHA
+        id: vars
+        run: echo "short_sha=$(echo '${{ github.sha }}' | cut -c1-7)" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHCR_TOKEN }}
+
+      - name: Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=sha,prefix=sha-,format=short
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+            type=raw,value=develop,enable=${{ github.ref == 'refs/heads/develop' }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  # ────────────────────────────────────────────
+  # Job 3a: Deploy Staging (develop → stg)
+  # Atualiza a tag da imagem em k8s/staging/deployment.yaml
+  # ArgoCD sincroniza automaticamente o namespace iit-website-staging
+  # ────────────────────────────────────────────
+  deploy-staging:
+    name: Deploy Staging
+    runs-on: ubuntu-latest
+    needs: docker
+    if: github.ref == 'refs/heads/develop'
+    permissions:
+      contents: write
+    environment:
+      name: staging
+      url: https://stg.institutoitinerante.com.br
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update image tag in staging deployment
+        run: |
+          SHORT_SHA="${{ needs.docker.outputs.short_sha }}"
+          NEW_IMAGE="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:sha-${SHORT_SHA}"
+          sed -i "s|image: ghcr.io/apsferreira/iit-website:.*|image: ${NEW_IMAGE}|g" k8s/staging/deployment.yaml
+          echo "Staging image updated to: ${NEW_IMAGE}"
+
+      - name: Commit and push updated staging manifest
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add k8s/staging/deployment.yaml
+          git diff --staged --quiet || git commit -m "chore(deploy/staging): update image to sha-${{ needs.docker.outputs.short_sha }} [skip ci]"
+          git push
+
+  # ────────────────────────────────────────────
+  # Job 3b: Deploy Production (main → prod)
+  # Atualiza a tag da imagem em k8s/deployment.yaml
+  # ArgoCD sincroniza automaticamente o namespace iit-website
+  # ────────────────────────────────────────────
+  deploy-production:
+    name: Deploy Production
+    runs-on: ubuntu-latest
+    needs: docker
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+    environment:
+      name: production
+      url: https://institutoitinerante.com.br
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update image tag in production deployment
+        run: |
+          SHORT_SHA="${{ needs.docker.outputs.short_sha }}"
+          NEW_IMAGE="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:sha-${SHORT_SHA}"
+          sed -i "s|image: ghcr.io/apsferreira/iit-website:.*|image: ${NEW_IMAGE}|g" k8s/deployment.yaml
+          echo "Production image updated to: ${NEW_IMAGE}"
+
+      - name: Commit and push updated production manifest
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add k8s/deployment.yaml
+          git diff --staged --quiet || git commit -m "chore(deploy/prod): update image to sha-${{ needs.docker.outputs.short_sha }} [skip ci]"
+          git push

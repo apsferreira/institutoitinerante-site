@@ -1,0 +1,35 @@
+# ClusterIssuers para cert-manager
+# Aplicar uma vez no cluster: kubectl apply -f k8s/cluster-issuers.yaml
+#
+# letsencrypt-staging: sem rate limit, mas cert não é trusted pelo browser (aviso de segurança)
+# letsencrypt-prod:    rate limit de 5 certs/semana por domínio, cert trusted
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging
+spec:
+  acme:
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    email: antonio@institutoitinerante.com.br
+    privateKeySecretRef:
+      name: letsencrypt-staging-key
+    solvers:
+      - http01:
+          ingress:
+            class: nginx
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: antonio@institutoitinerante.com.br
+    privateKeySecretRef:
+      name: letsencrypt-prod-key
+    solvers:
+      - http01:
+          ingress:
+            class: nginx

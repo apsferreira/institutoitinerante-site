@@ -1,0 +1,26 @@
+---
+interface Props {
+  currentLang: string;
+  ptHref: string;
+  enHref: string;
+}
+const { currentLang, ptHref, enHref } = Astro.props;
+---
+
+<div class="flex items-center gap-2 text-sm">
+  <a
+    href={ptHref}
+    class={`font-medium px-2 py-1 rounded transition-colors ${currentLang === 'pt' ? 'text-iit-blue font-bold' : 'text-gray-500 hover:text-iit-blue'}`}
+    aria-label="Português"
+  >
+    PT
+  </a>
+  <span class="text-gray-300">/</span>
+  <a
+    href={enHref}
+    class={`font-medium px-2 py-1 rounded transition-colors ${currentLang === 'en' ? 'text-iit-blue font-bold' : 'text-gray-500 hover:text-iit-blue'}`}
+    aria-label="English"
+  >
+    EN
+  </a>
+</div>

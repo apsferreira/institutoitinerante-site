@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { pt as t } from '../i18n/pt';
+---
+
+<BaseLayout
+  title={t.pages.notFound.title}
+  description="Página não encontrada"
+  lang="pt-BR"
+>
+  <main class="min-h-screen flex items-center justify-center bg-gray-50">
+    <div class="text-center px-4">
+      <div class="text-9xl font-extrabold text-iit-blue mb-4">404</div>
+      <h1 class="text-3xl font-bold text-gray-900 mb-4">{t.pages.notFound.heading}</h1>
+      <p class="text-gray-600 mb-8">{t.pages.notFound.text}</p>
+      <a href="/" class="btn-primary">{t.pages.notFound.back}</a>
+    </div>
+  </main>
+</BaseLayout>

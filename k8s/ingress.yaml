@@ -1,0 +1,61 @@
+# Ingress para institutoitinerante.com.br
+# Requer: cert-manager com ClusterIssuer "letsencrypt-prod" e ingress-nginx instalados
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: iit-website
+  namespace: iit-website
+  labels:
+    app: iit-website
+    app.kubernetes.io/managed-by: argocd
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+
+    # Nginx ingress controller annotations
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+
+    # Redirect www → non-www
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+
+    # Security headers via ingress
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      more_set_headers "Strict-Transport-Security: max-age=31536000; includeSubDomains; preload";
+      more_set_headers "X-Frame-Options: SAMEORIGIN";
+      more_set_headers "X-Content-Type-Options: nosniff";
+      more_set_headers "X-XSS-Protection: 1; mode=block";
+      more_set_headers "Referrer-Policy: strict-origin-when-cross-origin";
+      more_set_headers "Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none';";
+      more_set_headers "Permissions-Policy: camera=(), microphone=(), geolocation=()";
+
+    # Performance
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "30"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - institutoitinerante.com.br
+        - www.institutoitinerante.com.br
+      secretName: iit-website-tls
+  rules:
+    - host: institutoitinerante.com.br
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: iit-website
+                port:
+                  name: http
+    - host: www.institutoitinerante.com.br
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: iit-website
+                port:
+                  name: http

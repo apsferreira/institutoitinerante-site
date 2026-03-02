@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import ContactSection from '../components/ContactSection.astro';
+import Footer from '../components/Footer.astro';
+import { pt as t } from '../i18n/pt';
+---
+
+<BaseLayout
+  title={t.pages.contact.title}
+  description={t.pages.contact.description}
+  lang="pt-BR"
+  canonical="https://institutoitinerante.com.br/contato"
+>
+  <Nav t={t} />
+  <main class="pt-24">
+    <ContactSection t={t} />
+  </main>
+  <Footer t={t} />
+</BaseLayout>
