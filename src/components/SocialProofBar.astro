@@ -1,0 +1,108 @@
+---
+// Social Proof Bar — logos + números de credibilidade
+// Posicionada logo abaixo do hero, antes do conteúdo principal
+---
+
+<section class="social-proof-bar py-8 border-b border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Texto introdutório -->
+    <p class="text-center text-sm font-medium text-gray-400 mb-6 uppercase tracking-widest">
+      Confiado por empresas que não param de crescer
+    </p>
+
+    <!-- Logos grid -->
+    <div class="logos-track flex items-center justify-center gap-8 flex-wrap">
+      <!-- Logo cards — SVG inline para performance máxima (sem request extra) -->
+      
+      <!-- Clínica Saúde+ -->
+      <div class="logo-pill flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-full px-5 py-2.5">
+        <svg class="w-4 h-4 text-[#0097D6]" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-8v4h4l-5 8z"/>
+        </svg>
+        <span class="text-sm font-semibold text-gray-600">Clínica Saúde+</span>
+      </div>
+
+      <!-- Academia FitPro -->
+      <div class="logo-pill flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-full px-5 py-2.5">
+        <svg class="w-4 h-4 text-[#00D6A0]" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29l-1.43-1.43z"/>
+        </svg>
+        <span class="text-sm font-semibold text-gray-600">Academia FitPro</span>
+      </div>
+
+      <!-- Imob Premier -->
+      <div class="logo-pill flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-full px-5 py-2.5">
+        <svg class="w-4 h-4 text-[#0097D6]" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+        <span class="text-sm font-semibold text-gray-600">Imob Premier</span>
+      </div>
+
+      <!-- Studio Bella -->
+      <div class="logo-pill flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-full px-5 py-2.5">
+        <svg class="w-4 h-4 text-[#00D6A0]" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2zm0 12c-5.33 0-8 2.67-8 4v2h16v-2c0-1.33-2.67-4-8-4z"/>
+        </svg>
+        <span class="text-sm font-semibold text-gray-600">Studio Bella</span>
+      </div>
+
+      <!-- ConsultaFácil -->
+      <div class="logo-pill flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-full px-5 py-2.5">
+        <svg class="w-4 h-4 text-[#0097D6]" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+        </svg>
+        <span class="text-sm font-semibold text-gray-600">ConsultaFácil</span>
+      </div>
+
+      <!-- Divider before numbers -->
+      <div class="hidden lg:block w-px h-8 bg-gray-200"></div>
+
+      <!-- Números de credibilidade -->
+      <div class="flex items-center gap-6">
+        <div class="text-center">
+          <p class="text-xl font-black text-[#0097D6]">+1.200</p>
+          <p class="text-xs text-gray-400">atend./dia</p>
+        </div>
+        <div class="text-center">
+          <p class="text-xl font-black text-[#0097D6]">98%</p>
+          <p class="text-xs text-gray-400">satisfação</p>
+        </div>
+        <div class="text-center">
+          <p class="text-xl font-black text-[#0097D6]">< 30s</p>
+          <p class="text-xs text-gray-400">resposta</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .social-proof-bar {
+    background: #ffffff;
+  }
+
+  .logo-pill {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .logo-pill:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 151, 214, 0.12);
+    border-color: #0097D6;
+  }
+
+  /* Fade-in sequencial das logos */
+  .logo-pill:nth-child(1) { animation: fadeUp 0.5s ease 0.1s both; }
+  .logo-pill:nth-child(2) { animation: fadeUp 0.5s ease 0.2s both; }
+  .logo-pill:nth-child(3) { animation: fadeUp 0.5s ease 0.3s both; }
+  .logo-pill:nth-child(4) { animation: fadeUp 0.5s ease 0.4s both; }
+  .logo-pill:nth-child(5) { animation: fadeUp 0.5s ease 0.5s both; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .logo-pill { animation: none !important; }
+  }
+</style>

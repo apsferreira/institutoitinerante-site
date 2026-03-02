@@ -1,0 +1,140 @@
+---
+// AnimatedCounters — seção de números animados com IntersectionObserver + rAF
+// Uso: colocar após o SocialProofBar ou antes do CTA final
+---
+
+<section class="counters-section py-20" id="counters">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+
+      <div class="counter-item text-center reveal">
+        <div class="counter-number text-5xl md:text-6xl font-black text-white mb-2"
+             data-target="1200"
+             data-suffix="+"
+             data-prefix="">0</div>
+        <p class="text-sm font-medium uppercase tracking-widest" style="color: #8A9FAF;">Atendimentos por dia</p>
+      </div>
+
+      <div class="counter-item text-center reveal reveal-delay-1">
+        <div class="counter-number text-5xl md:text-6xl font-black text-white mb-2"
+             data-target="98"
+             data-suffix="%"
+             data-prefix="">0</div>
+        <p class="text-sm font-medium uppercase tracking-widest" style="color: #8A9FAF;">Taxa de satisfação</p>
+      </div>
+
+      <div class="counter-item text-center reveal reveal-delay-2">
+        <div class="counter-number text-5xl md:text-6xl font-black text-white mb-2"
+             data-target="30"
+             data-suffix="s"
+             data-prefix="<">0</div>
+        <p class="text-sm font-medium uppercase tracking-widest" style="color: #8A9FAF;">Tempo de resposta</p>
+      </div>
+
+      <div class="counter-item text-center reveal reveal-delay-3">
+        <div class="counter-number text-5xl md:text-6xl font-black text-white mb-2"
+             data-target="24"
+             data-suffix="h"
+             data-prefix="">0</div>
+        <p class="text-sm font-medium uppercase tracking-widest" style="color: #8A9FAF;">Disponibilidade total</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .counters-section {
+    background: linear-gradient(135deg, #0D1B26 0%, #0d2740 50%, #0D1B26 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Grid decorativo de fundo */
+  .counters-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0, 151, 214, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 151, 214, 0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .counter-number {
+    color: #0097D6;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    text-shadow: 0 0 40px rgba(0, 151, 214, 0.4);
+    transition: color 0.3s ease;
+  }
+
+  .counter-item:hover .counter-number {
+    color: #00D6A0;
+    text-shadow: 0 0 40px rgba(0, 214, 160, 0.4);
+  }
+
+  /* Separador vertical entre itens no desktop */
+  .counter-item:not(:last-child) {
+    position: relative;
+  }
+  @media (min-width: 1024px) {
+    .counter-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: -16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+  }
+</style>
+
+<script>
+  // Sistema de contadores animados — IntersectionObserver + requestAnimationFrame
+  function animateCounter(el: HTMLElement) {
+    const target = parseInt(el.dataset.target || '0', 10);
+    const suffix = el.dataset.suffix || '';
+    const prefix = el.dataset.prefix || '';
+    const duration = 1800; // ms
+    const start = performance.now();
+
+    // Easing: ease-out cubic
+    function easeOut(t: number) {
+      return 1 - Math.pow(1 - t, 3);
+    }
+
+    function tick(now: number) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const value = Math.round(easeOut(progress) * target);
+      el.textContent = prefix + value.toLocaleString('pt-BR') + suffix;
+
+      if (progress < 1) {
+        requestAnimationFrame(tick);
+      }
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  // IntersectionObserver — dispara quando a seção entra na viewport
+  const counters = document.querySelectorAll<HTMLElement>('.counter-number');
+  if (counters.length > 0) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target as HTMLElement);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    counters.forEach((el) => observer.observe(el));
+  }
+</script>
