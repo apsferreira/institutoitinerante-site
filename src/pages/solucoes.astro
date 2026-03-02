@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { pt } from '../i18n/pt';
+
+const t = pt;
+
+const solucoes = [
+  {
+    nome: "Attend-Agent", // será renomeado
+    tagline: "Atendimento inteligente via WhatsApp 24/7",
+    status: "disponível",
+    href: "/",
+    cor: "#0097D6"
+  }
+  // novos produtos serão adicionados aqui
+]
+---
+
+<BaseLayout
+  title="Nossas Soluções — Instituto Itinerante de Tecnologia"
+  description="Conheça as soluções do IIT para automação inteligente e crescimento de PMEs."
+  lang="pt-BR"
+>
+  <Nav t={t} />
+
+  <main class="pt-24 pb-32 min-h-screen" style="background: linear-gradient(135deg, #F5F8FA 0%, #EFF6FB 100%);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Header -->
+      <div class="text-center mb-16 pt-12">
+        <h1 class="text-4xl md:text-5xl font-black mb-4" style="color: #0D1B26;">Nossas Soluções</h1>
+        <p class="text-lg max-w-xl mx-auto" style="color: #4B6070;">
+          Tecnologia inteligente para transformar a operação da sua empresa.
+        </p>
+      </div>
+
+      <!-- Cards grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {solucoes.map((s) => (
+          <a
+            href={s.href}
+            class="group bg-white rounded-2xl border border-gray-200 p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col"
+          >
+            <!-- Color accent bar -->
+            <div class="w-12 h-1.5 rounded-full mb-6" style={`background: ${s.cor};`}></div>
+
+            <!-- Status badge -->
+            <span
+              class="self-start text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-4"
+              style={`background: ${s.cor}18; color: ${s.cor};`}
+            >
+              {s.status}
+            </span>
+
+            <h2 class="text-2xl font-black mb-2" style="color: #0D1B26;">{s.nome}</h2>
+            <p class="text-base leading-relaxed flex-1" style="color: #4B6070;">{s.tagline}</p>
+
+            <div
+              class="mt-6 inline-flex items-center gap-2 text-sm font-semibold transition-colors"
+              style={`color: ${s.cor};`}
+            >
+              Saiba mais
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </a>
+        ))}
+
+        <!-- Placeholder card: em breve -->
+        <div class="bg-white/60 rounded-2xl border border-dashed border-gray-300 p-8 flex flex-col items-center justify-center text-center min-h-[260px]">
+          <span class="text-4xl mb-4">🔜</span>
+          <p class="font-semibold text-gray-400">Mais soluções em breve</p>
+          <p class="text-sm text-gray-400 mt-1">Novos produtos chegando ao ecossistema IIT.</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <Footer t={t} />
+</BaseLayout>
