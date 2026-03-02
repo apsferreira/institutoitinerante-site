@@ -1,5 +1,5 @@
 # IngressRoute Traefik para institutoitinerante.com.br (+ www)
-# TLS via Cloudflare Tunnel — sem cert-manager necessário
+# TLS via Cloudflare Tunnel — sem cert-manager nem secretName necessários
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
@@ -15,6 +15,9 @@ spec:
   routes:
     - match: Host(`institutoitinerante.com.br`) || Host(`www.institutoitinerante.com.br`)
       kind: Rule
+      middlewares:
+        - name: redirect-www
+        - name: security-headers
       services:
         - name: iit-website
           port: 80

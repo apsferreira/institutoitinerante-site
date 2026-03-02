@@ -1,5 +1,4 @@
 ---
-import ContactForm from './ContactForm.tsx';
 
 interface Props {
   t: any;
@@ -41,9 +40,7 @@ const { t } = Astro.props;
         </a>
       </div>
 
-      <div class="bg-gray-50 rounded-3xl p-8 shadow-sm border border-gray-100">
-        <ContactForm t={t.contact} client:visible />
-      </div>
+      <!-- Formulário removido — contato direto via email e WhatsApp acima -->
     </div>
   </div>
 </section>
