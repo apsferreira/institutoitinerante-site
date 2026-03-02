@@ -91,18 +91,14 @@ const whatsappLabel = lang === 'en' ? 'Talk to us' : 'Fale conosco';
     {alternateEn && <link rel="alternate" hreflang="en" href={alternateEn} />}
     <link rel="alternate" hreflang="x-default" href={alternatePt ?? Astro.url.href} />
 
-    <!-- =====================================================
-         TODO: Google Analytics 4
-         Substituir G-JPL1XGG0P1 pelo ID real do GA4
-         Criar propriedade em: https://analytics.google.com/
-         ===================================================== -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-JPL1XGG0P1"></script>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JPL1XGG0P1"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-JPL1XGG0P1');
-    </script> -->
+    </script>
 
     <!-- =====================================================
          TODO: Microsoft Clarity
