@@ -1,17 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
-import Hero from '../components/Hero.astro';
 import About from '../components/About.astro';
-import AttendAgent from '../components/AttendAgent.astro';
-import HowItWorks from '../components/HowItWorks.astro';
 import Cases from '../components/Cases.astro';
-import Integrations from '../components/Integrations.astro';
 import SchemaProduct from '../components/SchemaProduct.astro';
 import ContactSection from '../components/ContactSection.astro';
 import Footer from '../components/Footer.astro';
-import AttendAgentDemo from '../components/demos/AttendAgentDemo';
-import ROICalculator from '../components/demos/ROICalculator';
 import SocialProofBar from '../components/SocialProofBar.astro';
 import AnimatedCounters from '../components/AnimatedCounters.astro';
 import StickyCTAMobile from '../components/StickyCTAMobile.astro';
@@ -30,41 +24,93 @@ import { pt as t } from '../i18n/pt';
   <Nav t={t} />
   <StickyCTAMobile />
   <main>
-    <Hero t={t} />
-    <SocialProofBar />
-    <About t={t} />
-    <div id="como-funciona">
-      <HowItWorks />
-    </div>
-    <AttendAgent t={t} />
-
-    <!-- Demo interativo -->
-    <section class="py-24 bg-white">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <span class="inline-block text-sm font-semibold uppercase tracking-widest mb-3 text-[#0097D6]">Demo ao vivo</span>
-          <h2 class="text-4xl font-black text-[#0D1B26] mb-4 section-title-accent">Experimente agora mesmo</h2>
-          <p class="text-gray-500 max-w-xl mx-auto">Converse com uma simulação real do Attend-Agent. Igual ao que seu cliente vai usar.</p>
+    <!-- Hero institucional -->
+    <section class="pt-32 pb-24" style="background: linear-gradient(135deg, #F5F8FA 0%, #EFF6FB 100%);">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <span class="inline-block text-sm font-semibold uppercase tracking-widest mb-4 text-[#0097D6]">Instituto Itinerante de Tecnologia</span>
+        <h1 class="text-5xl md:text-6xl font-black text-[#0D1B26] mb-6 leading-tight">
+          Tecnologia que <br class="hidden md:block" />transforma negócios
+        </h1>
+        <p class="text-xl text-[#4B6070] max-w-2xl mx-auto mb-10">
+          Desenvolvemos agentes de IA e produtos digitais para empresas que buscam eficiência, inovação e crescimento sustentável.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/solucoes"
+            class="inline-flex items-center gap-2 bg-[#0097D6] hover:bg-[#007ab8] text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-[#0097D6]/30 transition-all hover:scale-105"
+          >
+            Conheça nossas soluções →
+          </a>
+          <a
+            href="/contato"
+            class="inline-flex items-center gap-2 border-2 border-[#0097D6] text-[#0097D6] hover:bg-[#0097D6]/5 font-bold px-8 py-4 rounded-xl transition-all"
+          >
+            Fale conosco
+          </a>
         </div>
-        <AttendAgentDemo client:visible />
       </div>
     </section>
 
-    <!-- ROI Calculator -->
-    <section class="py-24" style="background: linear-gradient(135deg, #F5F8FA 0%, #EFF6FB 100%);">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <span class="inline-block text-sm font-semibold uppercase tracking-widest mb-3 text-[#0097D6]">ROI</span>
-          <h2 class="text-4xl font-black text-[#0D1B26] mb-4 section-title-accent">Quanto você está perdendo?</h2>
-          <p class="text-gray-500 max-w-xl mx-auto">Calcule o impacto financeiro de não ter atendimento automático no seu negócio.</p>
+    <SocialProofBar />
+    <About t={t} />
+    <AnimatedCounters />
+
+    <!-- Nossos Produtos -->
+    <section class="py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <span class="inline-block text-sm font-semibold uppercase tracking-widest mb-3 text-[#0097D6]">Produtos</span>
+          <h2 class="text-4xl font-black text-[#0D1B26] mb-4 section-title-accent">Nosso ecossistema</h2>
+          <p class="text-gray-500 max-w-xl mx-auto">Soluções construídas para diferentes necessidades — do atendimento ao foco e ao conhecimento.</p>
         </div>
-        <ROICalculator client:visible />
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Brio -->
+          <a href="/brio" class="group bg-white rounded-2xl border border-gray-200 p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col">
+            <div class="w-12 h-1.5 rounded-full mb-6" style="background: #0097D6;"></div>
+            <span class="self-start text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-4" style="background: #0097D610; color: #0097D6;">disponível</span>
+            <h3 class="text-2xl font-black mb-2 text-[#0D1B26]">Brio</h3>
+            <p class="text-base leading-relaxed flex-1 text-[#4B6070]">Agente de atendimento inteligente 24/7 via WhatsApp. Qualifica leads, agenda reuniões e nunca deixa um cliente sem resposta.</p>
+            <div class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#0097D6]">
+              Saiba mais
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </a>
+
+          <!-- Focus Hub -->
+          <a href="/focus-hub" class="group bg-white rounded-2xl border border-gray-200 p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col">
+            <div class="w-12 h-1.5 rounded-full mb-6" style="background: #00D6A0;"></div>
+            <span class="self-start text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-4" style="background: #00D6A010; color: #00A87E;">disponível</span>
+            <h3 class="text-2xl font-black mb-2 text-[#0D1B26]">Focus Hub</h3>
+            <p class="text-base leading-relaxed flex-1 text-[#4B6070]">Plataforma de produtividade e foco para equipes. Reduza distrações e entregue mais com menos esforço.</p>
+            <div class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#00A87E]">
+              Saiba mais
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </a>
+
+          <!-- My Library -->
+          <a href="/my-library" class="group bg-white rounded-2xl border border-gray-200 p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col">
+            <div class="w-12 h-1.5 rounded-full mb-6" style="background: #F59E0B;"></div>
+            <span class="self-start text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-4" style="background: #F59E0B10; color: #D97706;">disponível</span>
+            <h3 class="text-2xl font-black mb-2 text-[#0D1B26]">My Library</h3>
+            <p class="text-base leading-relaxed flex-1 text-[#4B6070]">Sua biblioteca pessoal inteligente. Organize, pesquise e aprenda com todo o conteúdo que você consome.</p>
+            <div class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#D97706]">
+              Saiba mais
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </a>
+        </div>
       </div>
     </section>
 
     <Cases />
-    <AnimatedCounters />
-    <Integrations />
     <ContactSection t={t} />
   </main>
   <Footer t={t} />

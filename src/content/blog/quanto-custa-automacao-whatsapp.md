@@ -27,7 +27,7 @@ Soluções como ChatGPT integrado ao WhatsApp via Zapier ou similares. Funcionam
 
 **Melhor para:** Empresas com equipe técnica interna.
 
-### 3. Agente de IA especializado para PMEs (como o Attend-Agent)
+### 3. Agente de IA especializado para PMEs (como o Brio)
 **Custo:** R$397–R$1.497/mês + setup R$500–1.000
 
 Soluções desenvolvidas especificamente para empresas brasileiras, com setup guiado, suporte local e integração nativa com WhatsApp Business. A melhor relação custo-benefício para a maioria das PMEs.
@@ -53,11 +53,11 @@ Antes de decidir, calcule quanto você está **perdendo por não ter automação
 
 Mesmo recuperando 30% desses leads com automação = R$63.360/mês de receita adicional.
 
-Comparado a um investimento de R$797/mês no Attend-Agent Growth, **o payback é em menos de 1 dia**.
+Comparado a um investimento de R$797/mês no Brio Growth, **o payback é em menos de 1 dia**.
 
 ## Conclusão
 
-Para a maioria das PMEs brasileiras, a melhor decisão em 2026 é optar por um **agente de IA especializado** como o Attend-Agent, que oferece:
+Para a maioria das PMEs brasileiras, a melhor decisão em 2026 é optar por um **agente de IA especializado** como o Brio, que oferece:
 
 - Setup rápido (48h)
 - Suporte em português

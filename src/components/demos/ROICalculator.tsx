@@ -82,7 +82,7 @@ export default function ROICalculator() {
           <p className="text-2xl font-black text-red-600">{fmt(results.revLost)}</p>
         </div>
         <div className="bg-[#0097D6]/5 border border-[#0097D6]/20 rounded-xl p-4 text-center">
-          <p className="text-xs text-[#0097D6] font-semibold uppercase tracking-wide mb-1">Recuperável com Attend-Agent</p>
+          <p className="text-xs text-[#0097D6] font-semibold uppercase tracking-wide mb-1">Recuperável com Brio</p>
           <p className="text-2xl font-black text-[#0097D6]">{fmt(results.recovered)}</p>
         </div>
         <div className="bg-[#00D6A0]/10 border border-[#00D6A0]/20 rounded-xl p-4 text-center">
@@ -92,7 +92,7 @@ export default function ROICalculator() {
       </div>
 
       <a
-        href="https://wa.me/5571992732430?text=Quero%20recuperar%20minha%20receita%20perdida%20com%20o%20Attend-Agent"
+        href="https://wa.me/5571992732430?text=Quero%20recuperar%20minha%20receita%20perdida%20com%20o%20Brio"
         target="_blank"
         rel="noopener noreferrer"
         className="mt-6 w-full flex items-center justify-center gap-2 bg-[#0097D6] hover:bg-[#007ab8] text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-[#0097D6]/30 transition-all hover:scale-[1.02]"

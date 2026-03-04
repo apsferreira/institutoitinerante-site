@@ -33,7 +33,7 @@ const parceirosLink = '/parceiros';
       <div>
         <h3 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">{isEn ? 'Product' : 'Produto'}</h3>
         <ul class="space-y-2">
-          <li><a href={`${homeLink}#attend-agent`} class="text-sm hover:text-[#0097D6] transition-colors">Attend-Agent</a></li>
+          <li><a href={`${homeLink}#brio`} class="text-sm hover:text-[#0097D6] transition-colors">Brio</a></li>
           <li><a href={`${homeLink}#como-funciona`} class="text-sm hover:text-[#0097D6] transition-colors">{isEn ? 'How it works' : 'Como funciona'}</a></li>
           <li><a href={pricingLink} class="text-sm hover:text-[#0097D6] transition-colors">{isEn ? 'Pricing' : 'Preços'}</a></li>
           <li><a href={blogLink} class="text-sm hover:text-[#0097D6] transition-colors">Blog</a></li>
@@ -101,10 +101,24 @@ const parceirosLink = '/parceiros';
     <div class="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4">
       <p class="text-xs text-gray-600">{t.footer.rights}</p>
       <div class="flex gap-4 text-xs text-gray-600">
-        <a href="/parceiros" class="hover:text-[#0097D6] transition-colors">{isEn ? 'Partners' : 'Parceiros'}</a>
+        <a href="/privacidade" class="hover:text-[#0097D6] transition-colors">{isEn ? 'Privacy Policy' : 'Política de Privacidade'}</a>
         <span>·</span>
-        <a href={contactLink} class="hover:text-[#0097D6] transition-colors">{isEn ? 'Contact' : 'Contato'}</a>
+        <a href="/termos" class="hover:text-[#0097D6] transition-colors">{isEn ? 'Terms of Service' : 'Termos de Serviço'}</a>
+        <span>·</span>
+        <a href="#" id="cc_manage_cookies_btn" class="hover:text-[#0097D6] transition-colors">Gerenciar Cookies</a>
       </div>
     </div>
   </div>
 </footer>
+
+<script is:inline>
+    const manageBtn = document.getElementById('cc_manage_cookies_btn');
+    if (manageBtn) {
+        manageBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if(window.CookieConsent) {
+                CookieConsent.showPreferences();
+            }
+        });
+    }
+</script>

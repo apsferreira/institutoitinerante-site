@@ -21,7 +21,7 @@ O problema? Clientes reais não falam em palavras-chave. Eles escrevem "oi, boa 
 
 ## O que é um Agente de IA?
 
-Um agente de IA, como o **Attend-Agent**, usa modelos de linguagem avançados (como o Google Gemini) para **compreender o contexto** da conversa, exatamente como um atendente humano faria.
+Um agente de IA, como o **Brio**, usa modelos de linguagem avançados (como o Google Gemini) para **compreender o contexto** da conversa, exatamente como um atendente humano faria.
 
 Ele consegue:
 
@@ -52,4 +52,4 @@ Um agente de IA bem configurado, por outro lado, **parece um atendente humano** 
 
 Se você está considerando automatizar o atendimento no WhatsApp, invista em um agente de IA real, não em um chatbot de árvore de decisão. A diferença em conversão e satisfação do cliente justifica o investimento.
 
-O **Attend-Agent do IIT** foi desenvolvido especificamente para PMEs brasileiras, com custo acessível e setup em até 48h. [Saiba mais →](/precos)
+O **Brio do IIT** foi desenvolvido especificamente para PMEs brasileiras, com custo acessível e setup em até 48h. [Saiba mais →](/precos)

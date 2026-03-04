@@ -1,13 +1,13 @@
 ---
 title: "Como uma clínica em Salvador reduziu 70% do tempo de atendimento com IA"
-description: "Case de uso: como o Attend-Agent transformou o atendimento de uma clínica odontológica em Salvador, automatizando agendamentos e reduzindo tempo da equipe em 70%."
+description: "Case de uso: como o Brio transformou o atendimento de uma clínica odontológica em Salvador, automatizando agendamentos e reduzindo tempo da equipe em 70%."
 pubDate: 2026-02-28
 author: "Instituto Itinerante de Tecnologia"
 tags: ["case", "clinica", "odontologia", "ia", "salvador", "atendimento"]
 lang: "pt"
 ---
 
-*Este é um caso ilustrativo baseado nos resultados típicos de clínicas que implementaram o Attend-Agent. Dados foram generalizados para proteger informações dos clientes.*
+*Este é um caso ilustrativo baseado nos resultados típicos de clínicas que implementaram o Brio. Dados foram generalizados para proteger informações dos clientes.*
 
 ---
 
@@ -15,7 +15,7 @@ lang: "pt"
 
 Uma clínica odontológica de médio porte em Salvador/BA enfrentava um desafio clássico: **volume de mensagens alto, equipe pequena**.
 
-A situação antes do Attend-Agent:
+A situação antes do Brio:
 
 - **120-150 mensagens/dia** no WhatsApp da clínica
 - **2 recepcionistas** dividindo o atendimento presencial e o digital
@@ -27,7 +27,7 @@ A recepcionista principal dedicava **4-5h por dia** respondendo mensagens repeti
 
 ## A implementação
 
-O Attend-Agent foi configurado em **48 horas** com:
+O Brio foi configurado em **48 horas** com:
 
 - Informações completas sobre procedimentos e preços
 - Lista de convênios aceitos
@@ -61,6 +61,6 @@ O segundo aprendizado foi sobre **horário de pico**: 38% dos agendamentos reali
 
 ## Conclusão
 
-Para clínicas que recebem mais de 50 mensagens por dia no WhatsApp, o ROI do Attend-Agent é imediato. A implementação rápida, sem necessidade de equipe técnica, torna a adoção acessível para qualquer porte de clínica.
+Para clínicas que recebem mais de 50 mensagens por dia no WhatsApp, o ROI do Brio é imediato. A implementação rápida, sem necessidade de equipe técnica, torna a adoção acessível para qualquer porte de clínica.
 
 [Ver como funciona para clínicas →](/para/clinicas) | [Calcular seu ROI →](/) | [Falar com especialista →](https://wa.me/5571992732430)

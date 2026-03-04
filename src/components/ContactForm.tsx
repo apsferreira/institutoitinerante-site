@@ -4,6 +4,7 @@ interface Props {
   t: {
     namePlaceholder: string;
     emailPlaceholder: string;
+    phonePlaceholder?: string;
     messagePlaceholder: string;
     send: string;
     sending: string;
@@ -22,11 +23,18 @@ export default function ContactForm({ t }: Props) {
     const form = e.currentTarget;
     const data = new FormData(form);
 
+    const payload = {
+      name: data.get('name') as string,
+      email: data.get('email') as string,
+      phone: data.get('phone') as string | undefined,
+      message: data.get('message') as string,
+    };
+
     try {
-      const res = await fetch('https://formspree.io/f/xyzgpkqr', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
       });
 
       if (res.ok) {
@@ -36,12 +44,7 @@ export default function ContactForm({ t }: Props) {
         setStatus('error');
       }
     } catch {
-      // Fallback: open mailto
-      const name = data.get('name') as string;
-      const email = data.get('email') as string;
-      const message = data.get('message') as string;
-      window.location.href = `mailto:${t.email}?subject=Contato via site - ${name}&body=${encodeURIComponent(message)}%0A%0A${email}`;
-      setStatus('idle');
+      setStatus('error');
     }
   };
 
@@ -56,13 +59,18 @@ export default function ContactForm({ t }: Props) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+      {status === 'error' && (
+        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm">
+          Erro ao enviar mensagem. Por favor, tente novamente ou entre em contato pelo WhatsApp.
+        </div>
+      )}
       <div>
         <input
           type="text"
           name="name"
           required
           placeholder={t.namePlaceholder}
-          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-iit-blue/50 focus:border-iit-blue text-gray-900 placeholder-gray-400 transition-all"
+          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#0097D6]/50 focus:border-[#0097D6] text-gray-900 placeholder-gray-400 transition-all"
         />
       </div>
       <div>
@@ -71,7 +79,15 @@ export default function ContactForm({ t }: Props) {
           name="email"
           required
           placeholder={t.emailPlaceholder}
-          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-iit-blue/50 focus:border-iit-blue text-gray-900 placeholder-gray-400 transition-all"
+          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#0097D6]/50 focus:border-[#0097D6] text-gray-900 placeholder-gray-400 transition-all"
+        />
+      </div>
+      <div>
+        <input
+          type="tel"
+          name="phone"
+          placeholder={t.phonePlaceholder || 'Seu telefone (opcional)'}
+          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#0097D6]/50 focus:border-[#0097D6] text-gray-900 placeholder-gray-400 transition-all"
         />
       </div>
       <div>
@@ -80,13 +96,13 @@ export default function ContactForm({ t }: Props) {
           required
           rows={5}
           placeholder={t.messagePlaceholder}
-          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-iit-blue/50 focus:border-iit-blue text-gray-900 placeholder-gray-400 transition-all resize-none"
+          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#0097D6]/50 focus:border-[#0097D6] text-gray-900 placeholder-gray-400 transition-all resize-none"
         />
       </div>
       <button
         type="submit"
         disabled={status === 'sending'}
-        className="w-full py-4 bg-iit-blue hover:bg-iit-blue-dark text-white font-semibold rounded-xl transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+        className="w-full py-4 text-white font-semibold rounded-xl transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
         style={{ backgroundColor: '#0097D6' }}
       >
         {status === 'sending' ? t.sending : t.send}

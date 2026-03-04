@@ -88,6 +88,16 @@ const whatsappLabel = lang === 'en' ? 'Talk to us' : 'Fale conosco';
 
     <!-- Nav scroll style -->
     <style>
+      :root {
+        --cc-bg: #0057FF;
+        --cc-text: #ffffff;
+        --cc-btn-primary-bg: #ffffff;
+        --cc-btn-primary-text: #0057FF;
+        --cc-btn-primary-border: #ffffff;
+        --cc-btn-secondary-bg: #0045cc;
+        --cc-btn-secondary-text: #ffffff;
+        --cc-btn-secondary-border: #0045cc;
+      }
       header.nav-scrolled {
         background: rgba(255, 255, 255, 0.85) !important;
         backdrop-filter: blur(16px) !important;
@@ -101,19 +111,118 @@ const whatsappLabel = lang === 'en' ? 'Talk to us' : 'Fale conosco';
     {alternateEn && <link rel="alternate" hreflang="en" href={alternateEn} />}
     <link rel="alternate" hreflang="x-default" href={alternatePt ?? Astro.url.href} />
 
-    <!-- =====================================================
-         TODO: Google Analytics 4
-         Substituir G-JPL1XGG0P1 pelo ID real do GA4
-         Criar propriedade em: https://analytics.google.com/
-         ===================================================== -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-JPL1XGG0P1"></script>
-    <script>
+    <!-- Cookie Consent by Orest Bida -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css">
+    <script defer src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js"></script>
+
+    <!-- Cookie Consent & Google Analytics -->
+    <script is:inline>
+      // Carrega o Cookie Consent
+      CookieConsent.run({
+        guiOptions: {
+          consentModal: {
+            layout: "box",
+            position: "bottom left",
+            equalWeightButtons: true,
+            flipButtons: false
+          },
+          preferencesModal: {
+            layout: "box",
+            position: "right",
+            equalWeightButtons: true,
+            flipButtons: false
+          }
+        },
+        cookie: {
+          name: 'cc_cookie_iit',
+          domain: window.location.hostname,
+          expiresAfterDays: 365
+        },
+        language: {
+          default: 'pt-BR',
+          translations: {
+            'pt-BR': {
+              consentModal: {
+                title: "Nós usamos cookies!",
+                description: "Este site utiliza cookies para melhorar a sua experiência de navegação. Você pode gerenciar suas preferências a qualquer momento.",
+                acceptAllBtn: "Aceitar todos",
+                acceptNecessaryBtn: "Rejeitar todos",
+                showPreferencesBtn: "Gerenciar",
+              },
+              preferencesModal: {
+                title: "Preferências de Cookies",
+                acceptAllBtn: "Aceitar todos",
+                acceptNecessaryBtn: "Rejeitar todos",
+                savePreferencesBtn: "Salvar",
+                closeIconLabel: "Fechar",
+                sections: [
+                  {
+                    title: "Suas Preferências",
+                    description: "Gerencie suas preferências de cookies. Lembre-se que alguns cookies são essenciais para o funcionamento do site."
+                  },
+                  {
+                    title: "Essenciais",
+                    description: "Estes cookies são necessários para o funcionamento básico do site e não podem ser desativados.",
+                    linkedCategory: "necessary",
+                    readOnly: true
+                  },
+                  {
+                    title: "Análise (Google Analytics)",
+                    description: "Estes cookies nos ajudam a entender como os visitantes interagem com o site, coletando informações de forma anônima.",
+                    linkedCategory: "analytics"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        categories: {
+          necessary: {
+            enabled: true,
+            readOnly: true
+          },
+          analytics: {
+            enabled: false,
+            autoClear: {
+              cookies: [
+                { name: /^_ga/ }
+              ]
+            },
+            services: {
+              ga: {
+                label: 'Google Analytics 4',
+                onConsent: () => {
+                  console.log('Consentimento de análise CONCEDIDO');
+                  gtag('consent', 'update', { 'analytics_storage': 'granted' });
+                },
+                onBlock: () => {
+                  console.log('Consentimento de análise NEGADO');
+                  gtag('consent', 'update', { 'analytics_storage': 'denied' });
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // Google Analytics 4
+      const gtagId = 'G-JPL1XGG0P1'; // Usando o ID que estava no arquivo
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-JPL1XGG0P1');
-    </script> -->
 
+      // Define o consentimento padrão como 'denied' ANTES de configurar o GA
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+
+      gtag('config', gtagId);
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JPL1XGG0P1"></script>
+    
     <!-- =====================================================
          TODO: Microsoft Clarity
          Substituir CLARITY_ID pelo ID real do projeto Clarity

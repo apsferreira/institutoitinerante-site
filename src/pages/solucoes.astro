@@ -8,19 +8,38 @@ const t = pt;
 
 const solucoes = [
   {
-    nome: "Attend-Agent", // será renomeado
+    nome: "Brio",
     tagline: "Atendimento inteligente via WhatsApp 24/7",
+    descricao: "Agente de IA que qualifica leads, agenda reuniões e responde clientes automaticamente. Nossa equipe configura tudo em 48h.",
     status: "disponível",
-    href: "/",
-    cor: "#0097D6"
+    href: "/brio",
+    cor: "#0097D6",
+    icon: "🤖"
+  },
+  {
+    nome: "Focus Hub",
+    tagline: "Produtividade e foco para equipes modernas",
+    descricao: "Plataforma que centraliza tarefas, elimina distrações e ajuda sua equipe a entregar mais com menos esforço cognitivo.",
+    status: "disponível",
+    href: "/focus-hub",
+    cor: "#00D6A0",
+    icon: "🎯"
+  },
+  {
+    nome: "My Library",
+    tagline: "Sua biblioteca pessoal inteligente",
+    descricao: "Organize, pesquise e aprenda com todo o conteúdo que você consome. Artigos, vídeos, livros — tudo em um só lugar.",
+    status: "disponível",
+    href: "/my-library",
+    cor: "#F59E0B",
+    icon: "📚"
   }
-  // novos produtos serão adicionados aqui
 ]
 ---
 
 <BaseLayout
   title="Nossas Soluções — Instituto Itinerante de Tecnologia"
-  description="Conheça as soluções do IIT para automação inteligente e crescimento de PMEs."
+  description="Conheça as soluções do IIT: Brio (atendimento IA), Focus Hub (produtividade) e My Library (conhecimento)."
   lang="pt-BR"
 >
   <Nav t={t} />
@@ -30,9 +49,10 @@ const solucoes = [
 
       <!-- Header -->
       <div class="text-center mb-16 pt-12">
+        <span class="inline-block text-sm font-semibold uppercase tracking-widest mb-3 text-[#0097D6]">Ecossistema IIT</span>
         <h1 class="text-4xl md:text-5xl font-black mb-4" style="color: #0D1B26;">Nossas Soluções</h1>
         <p class="text-lg max-w-xl mx-auto" style="color: #4B6070;">
-          Tecnologia inteligente para transformar a operação da sua empresa.
+          Tecnologia inteligente para transformar a operação da sua empresa — do atendimento ao foco e ao conhecimento.
         </p>
       </div>
 
@@ -43,8 +63,13 @@ const solucoes = [
             href={s.href}
             class="group bg-white rounded-2xl border border-gray-200 p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col"
           >
-            <!-- Color accent bar -->
-            <div class="w-12 h-1.5 rounded-full mb-6" style={`background: ${s.cor};`}></div>
+            <!-- Icon + color accent -->
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl" style={`background: ${s.cor}15;`}>
+                {s.icon}
+              </div>
+              <div class="w-8 h-1 rounded-full" style={`background: ${s.cor};`}></div>
+            </div>
 
             <!-- Status badge -->
             <span
@@ -55,7 +80,8 @@ const solucoes = [
             </span>
 
             <h2 class="text-2xl font-black mb-2" style="color: #0D1B26;">{s.nome}</h2>
-            <p class="text-base leading-relaxed flex-1" style="color: #4B6070;">{s.tagline}</p>
+            <p class="text-sm font-semibold mb-3" style={`color: ${s.cor};`}>{s.tagline}</p>
+            <p class="text-sm leading-relaxed flex-1" style="color: #4B6070;">{s.descricao}</p>
 
             <div
               class="mt-6 inline-flex items-center gap-2 text-sm font-semibold transition-colors"
@@ -68,13 +94,17 @@ const solucoes = [
             </div>
           </a>
         ))}
+      </div>
 
-        <!-- Placeholder card: em breve -->
-        <div class="bg-white/60 rounded-2xl border border-dashed border-gray-300 p-8 flex flex-col items-center justify-center text-center min-h-[260px]">
-          <span class="text-4xl mb-4">🔜</span>
-          <p class="font-semibold text-gray-400">Mais soluções em breve</p>
-          <p class="text-sm text-gray-400 mt-1">Novos produtos chegando ao ecossistema IIT.</p>
-        </div>
+      <!-- CTA section -->
+      <div class="text-center mt-20">
+        <p class="text-lg text-[#4B6070] mb-6">Não sabe qual solução é certa para você?</p>
+        <a
+          href="/contato"
+          class="inline-flex items-center gap-2 bg-[#0097D6] hover:bg-[#007ab8] text-white font-bold px-10 py-4 rounded-xl shadow-lg shadow-[#0097D6]/30 transition-all hover:scale-105"
+        >
+          Fale com nossa equipe →
+        </a>
       </div>
 
     </div>

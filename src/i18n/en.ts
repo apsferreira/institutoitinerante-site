@@ -5,7 +5,7 @@ export const en = {
 
   nav: {
     about: 'About',
-    attendAgent: 'Attend-Agent',
+    attendAgent: 'Brio',
     contact: 'Contact',
     contactPage: '/en/contact',
     langSwitcher: 'Português',
@@ -19,7 +19,7 @@ export const en = {
     headline: 'Intelligent WhatsApp Customer Service for Your Business',
     subheadline: 'AI agents that serve your customers 24/7, qualify leads and schedule meetings — on WhatsApp.',
     ctaPrimary: 'Talk on WhatsApp',
-    ctaSecondary: 'Meet Attend-Agent',
+    ctaSecondary: 'Meet Brio',
   },
 
   about: {
@@ -34,7 +34,7 @@ export const en = {
   },
 
   attendAgent: {
-    sectionLabel: 'Attend-Agent',
+    sectionLabel: 'Brio',
     title: 'Your intelligent customer service agent',
     description: 'Serve customers 24/7 on WhatsApp, automatically qualify leads and schedule meetings — without hiring anyone.',
     features: [
@@ -56,13 +56,14 @@ export const en = {
   contact: {
     sectionLabel: 'Contact',
     title: "Let's talk?",
-    subtitle: 'Have a project in mind or want to know more about Attend-Agent? Send a message.',
+    subtitle: 'Have a project in mind or want to know more about Brio? Send a message.',
     email: 'contato@institutoitinerante.com.br',
     whatsapp: '+55 71 99273-2430',
     whatsappLink: 'https://wa.me/5571992732430',
     whatsappLabel: 'Talk to us on WhatsApp',
     namePlaceholder: 'Your name',
     emailPlaceholder: 'your@email.com',
+    phonePlaceholder: 'Your phone (optional)',
     messagePlaceholder: 'How can we help?',
     send: 'Send message',
     sending: 'Sending...',
@@ -75,7 +76,7 @@ export const en = {
       title: 'Links',
       home: 'Home',
       about: 'About',
-      attendAgent: 'Attend-Agent',
+      attendAgent: 'Brio',
       contact: 'Contact',
     },
     contact: {
@@ -91,12 +92,12 @@ export const en = {
 
   pages: {
     home: {
-      title: 'Instituto Itinerante de Tecnologia — AI Customer Service Agent',
-      description: 'IIT creates AI customer service agents for businesses. Serve customers 24/7 on WhatsApp, qualify leads and schedule meetings automatically.',
+      title: 'Instituto Itinerante de Tecnologia — Technology & AI for Businesses',
+      description: 'IIT creates AI agents and tech solutions for businesses. Meet Brio, Focus Hub and My Library.',
     },
     contact: {
       title: 'Contact — Instituto Itinerante de Tecnologia',
-      description: 'Contact IIT for projects, partnerships or to learn more about Attend-Agent.',
+      description: 'Contact IIT for projects, partnerships or to learn more about Brio.',
     },
     notFound: {
       title: '404 — Page not found | IIT',
