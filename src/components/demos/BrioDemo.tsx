@@ -41,7 +41,7 @@ function getAgentReply(userMsg: string): string {
   return 'Entendi! Posso te ajudar com:\n\n📅 Agendamento de consultas\n💰 Informações de preços\n⏰ Horários de funcionamento\n📍 Localização\n\nSobre o que você gostaria de saber?';
 }
 
-export default function AttendAgentDemo() {
+export default function BrioDemo() {
   const [messages, setMessages] = useState<Message[]>([
     {
       from: 'agent',

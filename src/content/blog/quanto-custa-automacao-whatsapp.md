@@ -64,4 +64,4 @@ Para a maioria das PMEs brasileiras, a melhor decisão em 2026 é optar por um *
 - Custo previsível e acessível
 - ROI mensurável desde o primeiro mês
 
-[Calcule seu ROI →](/#roi-calculator) | [Ver planos →](/precos)
+[Fale com a gente →](/contato) | [Ver planos →](/precos)
