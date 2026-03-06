@@ -1,0 +1,376 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { pt as t } from '../i18n/pt';
+---
+
+<BaseLayout
+  title="Planos e Preços — Instituto Itinerante de Tecnologia"
+  description="Escolha o plano ideal para o seu negócio. Agentes de IA personalizados com preços transparentes e sem surpresas."
+  lang="pt-BR"
+  canonical="https://institutoitinerante.com.br/precos"
+>
+  <Nav t={t} />
+  <main>
+    <!-- Hero Section -->
+    <section class="pt-32 pb-24" style="background: linear-gradient(135deg, #F5F8FA 0%, #EFF6FB 100%);">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-5xl md:text-6xl font-black text-[#1E293B] mb-6 leading-tight reveal">Planos e Preços</h1>
+        <p class="text-xl text-[#64748B] max-w-3xl mx-auto mb-16 reveal">
+          Escolha o plano ideal para o seu negócio. Preços transparentes, sem surpresas, com a flexibilidade que você precisa.
+        </p>
+      </div>
+    </section>
+
+    <!-- Pricing Cards -->
+    <section class="py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
+          
+          <!-- Acervo Pro -->
+          <div class="reveal bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-all duration-300">
+            <div class="text-center mb-8">
+              <span class="inline-block w-3 h-3 rounded-full bg-amber-500 mb-4"></span>
+              <h3 class="text-2xl font-bold text-[#1E293B] mb-2">Acervo Pro</h3>
+              <p class="text-gray-500 text-sm mb-6">Gestão de conhecimento pessoal</p>
+              <div class="mb-6">
+                <span class="text-4xl font-black text-[#1E293B]">R$ 19</span>
+                <span class="text-gray-500">/mês</span>
+              </div>
+            </div>
+            
+            <ul class="space-y-3 mb-8 text-sm text-gray-600">
+              <li class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-amber-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Biblioteca pessoal ilimitada
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-amber-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Metas de leitura inteligentes
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-amber-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Estatísticas detalhadas
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-amber-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Import/Export completo
+              </li>
+            </ul>
+            
+            <a href="/contato" class="block w-full text-center bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-xl transition-all">
+              Começar Agora
+            </a>
+          </div>
+
+          <!-- Zenit Pro -->
+          <div class="reveal bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-all duration-300">
+            <div class="text-center mb-8">
+              <span class="inline-block w-3 h-3 rounded-full bg-[#00D6A0] mb-4"></span>
+              <h3 class="text-2xl font-bold text-[#1E293B] mb-2">Zenit Pro</h3>
+              <p class="text-gray-500 text-sm mb-6">Produtividade GTD simplificada</p>
+              <div class="mb-6">
+                <span class="text-4xl font-black text-[#1E293B]">R$ 24</span>
+                <span class="text-gray-500">/mês</span>
+              </div>
+            </div>
+            
+            <ul class="space-y-3 mb-8 text-sm text-gray-600">
+              <li class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-[#00D6A0] shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Projetos ilimitados
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-[#00D6A0] shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Revisão semanal com IA
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-[#00D6A0] shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Integração calendário
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-[#00D6A0] shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Relatórios de produtividade
+              </li>
+            </ul>
+            
+            <a href="/contato" class="block w-full text-center bg-[#00D6A0] hover:bg-[#00A87E] text-white font-bold py-3 px-6 rounded-xl transition-all">
+              Começar Agora
+            </a>
+          </div>
+
+          <!-- Restaurant QR Growth -->
+          <div class="reveal bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-all duration-300">
+            <div class="text-center mb-8">
+              <span class="inline-block w-3 h-3 rounded-full bg-orange-500 mb-4"></span>
+              <h3 class="text-2xl font-bold text-[#1E293B] mb-2">Restaurant QR Growth</h3>
+              <p class="text-gray-500 text-sm mb-6">Cardápio digital inteligente</p>
+              <div class="mb-6">
+                <span class="text-4xl font-black text-[#1E293B]">R$ 89</span>
+                <span class="text-gray-500">/mês</span>
+              </div>
+            </div>
+            
+            <ul class="space-y-3 mb-8 text-sm text-gray-600">
+              <li class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-orange-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Cardápio digital responsivo
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-orange-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                QR Codes personalizados
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-orange-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Analytics de vendas
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-orange-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Gestão de pedidos
+              </li>
+            </ul>
+            
+            <a href="/contato" class="block w-full text-center bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-xl transition-all">
+              Começar Agora
+            </a>
+          </div>
+
+          <!-- Jiu-Jitsu Pro -->
+          <div class="reveal bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-all duration-300">
+            <div class="text-center mb-8">
+              <span class="inline-block w-3 h-3 rounded-full bg-purple-500 mb-4"></span>
+              <h3 class="text-2xl font-bold text-[#1E293B] mb-2">Jiu-Jitsu Pro</h3>
+              <p class="text-gray-500 text-sm mb-6">Gestão para academias</p>
+              <div class="mb-6">
+                <span class="text-4xl font-black text-[#1E293B]">R$ 199</span>
+                <span class="text-gray-500">/mês</span>
+              </div>
+            </div>
+            
+            <ul class="space-y-3 mb-8 text-sm text-gray-600">
+              <li class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-purple-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Gestão de alunos completa
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-purple-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Controle de graduações
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-purple-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Financeiro integrado
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-purple-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                App para professores
+              </li>
+            </ul>
+            
+            <a href="/contato" class="block w-full text-center bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-6 rounded-xl transition-all">
+              Começar Agora
+            </a>
+          </div>
+
+          <!-- Brio Pro - Mais Popular -->
+          <div class="reveal bg-white rounded-2xl shadow-2xl border-2 border-[#0097D6] p-8 hover:shadow-3xl transition-all duration-300 relative">
+            <!-- Badge Mais Popular -->
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+              <span class="bg-[#0097D6] text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">Mais Popular</span>
+            </div>
+            
+            <div class="text-center mb-8 pt-2">
+              <span class="inline-block w-3 h-3 rounded-full bg-[#0097D6] mb-4"></span>
+              <h3 class="text-2xl font-bold text-[#1E293B] mb-2">Brio Pro</h3>
+              <p class="text-gray-500 text-sm mb-6">Atendimento 24/7 via WhatsApp</p>
+              <div class="mb-6">
+                <span class="text-4xl font-black text-[#0097D6]">R$ 299</span>
+                <span class="text-gray-500">/mês</span>
+              </div>
+            </div>
+            
+            <ul class="space-y-3 mb-8 text-sm text-gray-600">
+              <li class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-[#0097D6] shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Atendimento IA 24/7
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-[#0097D6] shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Qualificação automática
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-[#0097D6] shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Agendamento inteligente
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-[#0097D6] shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Integração WhatsApp Business
+              </li>
+            </ul>
+            
+            <a href="/contato" class="block w-full text-center bg-[#0097D6] hover:bg-[#007ab8] text-white font-bold py-3 px-6 rounded-xl transition-all shadow-lg shadow-[#0097D6]/30">
+              Começar Agora
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-24 bg-gray-50">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 reveal">
+          <h2 class="text-3xl md:text-4xl font-bold text-[#1E293B] mb-4">Perguntas Frequentes</h2>
+          <p class="text-xl text-[#64748B]">Tire suas dúvidas sobre nossos planos e preços</p>
+        </div>
+
+        <div class="space-y-8">
+          <div class="reveal bg-white rounded-xl p-8 shadow-sm border border-gray-100">
+            <h3 class="text-lg font-semibold text-[#1E293B] mb-4">Posso cancelar a qualquer momento?</h3>
+            <p class="text-[#64748B]">
+              Sim, você pode cancelar seu plano a qualquer momento sem multas ou taxas adicionais. 
+              O cancelamento será efetivado no final do período já pago.
+            </p>
+          </div>
+
+          <div class="reveal bg-white rounded-xl p-8 shadow-sm border border-gray-100">
+            <h3 class="text-lg font-semibold text-[#1E293B] mb-4">Existe período de teste?</h3>
+            <p class="text-[#64748B]">
+              Oferecemos um período de teste de 7 dias para todos os nossos produtos. 
+              Durante este período, você pode explorar todas as funcionalidades sem compromisso.
+            </p>
+          </div>
+
+          <div class="reveal bg-white rounded-xl p-8 shadow-sm border border-gray-100">
+            <h3 class="text-lg font-semibold text-[#1E293B] mb-4">Como funciona o pagamento?</h3>
+            <p class="text-[#64748B]">
+              Os pagamentos são processados mensalmente via cartão de crédito ou PIX. 
+              Você receberá uma fatura por email antes de cada cobrança. Todos os preços incluem impostos aplicáveis.
+            </p>
+          </div>
+
+          <div class="reveal bg-white rounded-xl p-8 shadow-sm border border-gray-100">
+            <h3 class="text-lg font-semibold text-[#1E293B] mb-4">Posso migrar entre planos?</h3>
+            <p class="text-[#64748B]">
+              Sim, você pode fazer upgrade ou downgrade do seu plano a qualquer momento. 
+              As mudanças serão aplicadas no próximo ciclo de cobrança, e você será informado sobre eventuais ajustes no valor.
+            </p>
+          </div>
+
+          <div class="reveal bg-white rounded-xl p-8 shadow-sm border border-gray-100">
+            <h3 class="text-lg font-semibold text-[#1E293B] mb-4">Os dados ficam seguros?</h3>
+            <p class="text-[#64748B]">
+              Absolutamente. Utilizamos criptografia de ponta e seguimos as melhores práticas de segurança da indústria. 
+              Todos os dados são armazenados em servidores seguros com backup automático.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="py-24 bg-[#1E293B]">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="reveal">
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Pronto para começar?</h2>
+          <p class="text-xl text-gray-300 mb-10">
+            Escolha seu plano e transforme a forma como sua empresa opera com IA
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="https://wa.me/5571992732430"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-3 bg-[#0097D6] hover:bg-[#007ab8] text-white font-bold px-10 py-4 rounded-xl shadow-lg shadow-[#0097D6]/30 transition-all hover:scale-105"
+            >
+              <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/>
+              </svg>
+              Falar com especialista
+            </a>
+            <a href="/contato" class="inline-flex items-center gap-2 border-2 border-white text-white hover:bg-white hover:text-[#1E293B] font-bold px-8 py-4 rounded-xl transition-all">
+              Entrar em contato
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer t={t} />
+</BaseLayout>
+
+<style>
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  
+  .reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .shadow-3xl {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+</style>
+
+<script>
+  // Scroll reveal animation
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+  );
+
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+</script>
