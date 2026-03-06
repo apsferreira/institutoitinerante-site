@@ -117,7 +117,8 @@ const whatsappLabel = lang === 'en' ? 'Talk to us' : 'Fale conosco';
 
     <!-- Cookie Consent & Google Analytics -->
     <script is:inline>
-      // Carrega o Cookie Consent
+      // Aguarda a lib cookieconsent carregar (defer) antes de inicializar
+      window.addEventListener('DOMContentLoaded', function() {
       CookieConsent.run({
         guiOptions: {
           consentModal: {
@@ -204,6 +205,7 @@ const whatsappLabel = lang === 'en' ? 'Talk to us' : 'Fale conosco';
           }
         }
       });
+      }); // fim DOMContentLoaded
 
       // Google Analytics 4
       const gtagId = 'G-JPL1XGG0P1'; // Usando o ID que estava no arquivo
