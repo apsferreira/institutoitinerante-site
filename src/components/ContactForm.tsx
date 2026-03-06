@@ -99,6 +99,20 @@ export default function ContactForm({ t }: Props) {
           className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#0097D6]/50 focus:border-[#0097D6] text-gray-900 placeholder-gray-400 transition-all resize-none"
         />
       </div>
+      <div className="flex items-start gap-3">
+        <input
+          type="checkbox"
+          name="consent"
+          id="lgpd-consent"
+          required
+          className="mt-1 h-4 w-4 rounded border-gray-300 text-[#0097D6] focus:ring-[#0097D6]"
+        />
+        <label htmlFor="lgpd-consent" className="text-sm text-gray-600">
+          Ao enviar este formulário, você concorda com nossa{' '}
+          <a href="/privacidade" className="text-[#0097D6] underline" target="_blank">Política de Privacidade</a>{' '}
+          e autoriza o tratamento dos seus dados pessoais conforme a LGPD.
+        </label>
+      </div>
       <button
         type="submit"
         disabled={status === 'sending'}
