@@ -21,13 +21,13 @@ interface CardMeta {
 }
 
 const fallbackMeta: Record<string, CardMeta> = {
-  'Acervo Pro': {
-    color: '#f59e0b',
+  'My Library': {
+    color: '#F59E0B',
     colorClass: 'text-amber-500',
     bgClass: 'bg-amber-500',
     hoverBgClass: 'hover:bg-amber-600',
     dotClass: 'bg-amber-500',
-    description: 'Gestão de conhecimento pessoal',
+    description: 'Biblioteca pessoal inteligente',
     popular: false,
     features: [
       'Biblioteca pessoal ilimitada',
@@ -37,13 +37,13 @@ const fallbackMeta: Record<string, CardMeta> = {
     ],
     order: 1,
   },
-  'Zenit Pro': {
+  'Focus Hub': {
     color: '#00D6A0',
     colorClass: 'text-[#00D6A0]',
     bgClass: 'bg-[#00D6A0]',
     hoverBgClass: 'hover:bg-[#00A87E]',
     dotClass: 'bg-[#00D6A0]',
-    description: 'Produtividade GTD simplificada',
+    description: 'Produtividade e foco para equipes',
     popular: false,
     features: [
       'Projetos ilimitados',
@@ -53,39 +53,7 @@ const fallbackMeta: Record<string, CardMeta> = {
     ],
     order: 2,
   },
-  'Restaurant QR Growth': {
-    color: '#f97316',
-    colorClass: 'text-orange-500',
-    bgClass: 'bg-orange-500',
-    hoverBgClass: 'hover:bg-orange-600',
-    dotClass: 'bg-orange-500',
-    description: 'Cardápio digital inteligente',
-    popular: false,
-    features: [
-      'Cardápio digital responsivo',
-      'QR Codes personalizados',
-      'Analytics de vendas',
-      'Gestão de pedidos',
-    ],
-    order: 3,
-  },
-  'Jiu-Jitsu Pro': {
-    color: '#a855f7',
-    colorClass: 'text-purple-500',
-    bgClass: 'bg-purple-500',
-    hoverBgClass: 'hover:bg-purple-600',
-    dotClass: 'bg-purple-500',
-    description: 'Gestão para academias',
-    popular: false,
-    features: [
-      'Gestão de alunos completa',
-      'Controle de graduações',
-      'Financeiro integrado',
-      'App para professores',
-    ],
-    order: 4,
-  },
-  'Brio Pro': {
+  'Brio': {
     color: '#0097D6',
     colorClass: 'text-[#0097D6]',
     bgClass: 'bg-[#0097D6]',
@@ -95,21 +63,19 @@ const fallbackMeta: Record<string, CardMeta> = {
     popular: true,
     features: [
       'Atendimento IA 24/7',
-      'Qualificação automática',
+      'Qualificação automática de leads',
       'Agendamento inteligente',
       'Integração WhatsApp Business',
     ],
-    order: 5,
+    order: 3,
   },
 };
 
 // Default fallback products (used when API is unreachable)
 const hardcodedFallback: { name: string; amountCents: number; interval: string }[] = [
-  { name: 'Acervo Pro', amountCents: 1900, interval: 'monthly' },
-  { name: 'Zenit Pro', amountCents: 2400, interval: 'monthly' },
-  { name: 'Restaurant QR Growth', amountCents: 8900, interval: 'monthly' },
-  { name: 'Jiu-Jitsu Pro', amountCents: 19900, interval: 'monthly' },
-  { name: 'Brio Pro', amountCents: 29900, interval: 'monthly' },
+  { name: 'My Library', amountCents: 1900, interval: 'monthly' },
+  { name: 'Focus Hub', amountCents: 2400, interval: 'monthly' },
+  { name: 'Brio', amountCents: 29900, interval: 'monthly' },
 ];
 
 // ── Fetch from API or fallback ─────────────────────────────────────────
@@ -128,7 +94,7 @@ const apiProducts = await fetchProductsWithPrices('plan');
 
 if (apiProducts.length > 0) {
   cards = apiProducts.map((p) => {
-    const meta = (p.metadata as unknown as CardMeta) ?? fallbackMeta[p.name] ?? fallbackMeta['Brio Pro'];
+    const meta = (p.metadata as unknown as CardMeta) ?? fallbackMeta[p.name] ?? fallbackMeta['Brio'];
     // Pick monthly price first, then any price
     const monthlyPrice = p.prices.find((pr) => pr.interval === 'monthly') ?? p.prices[0];
     const amountCents = monthlyPrice?.amount_cents ?? 0;
@@ -182,7 +148,7 @@ const intervalLabel: Record<string, string> = {
     <!-- Pricing Cards -->
     <section class="py-24 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
 
           {cards.map((card) => (
             <div class:list={[

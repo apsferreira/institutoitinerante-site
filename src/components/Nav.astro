@@ -1,18 +1,19 @@
 ---
 interface Props {
   t: any;
+  darkHero?: boolean;
 }
-const { t } = Astro.props;
+const { t, darkHero = true } = Astro.props;
 const isEn = t.lang === 'en';
 const base = isEn ? '/en' : '';
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="main-nav">
+<header class:list={["fixed top-0 left-0 right-0 z-50 transition-all duration-300", !darkHero && "nav-scrolled"]} id="main-nav" data-dark-hero={darkHero ? "true" : "false"}>
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
     <a href={isEn ? '/en/' : '/'} class="flex items-center gap-2 shrink-0">
       <img
         id="nav-logo"
-        src="/logo-iit-white.png"
+        src={darkHero ? "/logo-iit-white.png" : "/logo-iit.png"}
         alt="Instituto Itinerante de Tecnologia"
         width="168"
         height="48"
@@ -134,17 +135,21 @@ const base = isEn ? '/en' : '';
   });
 
   // Scroll: transparente no topo, branco ao descer
+  const isDarkHero = nav?.dataset.darkHero === 'true';
   if (nav && logo) {
-    const onScroll = () => {
-      if (window.scrollY > 60) {
-        nav.classList.add('nav-scrolled');
-        logo.src = '/logo-iit.png';
-      } else {
-        nav.classList.remove('nav-scrolled');
-        logo.src = '/logo-iit-white.png';
-      }
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    if (isDarkHero) {
+      const onScroll = () => {
+        if (window.scrollY > 60) {
+          nav.classList.add('nav-scrolled');
+          logo.src = '/logo-iit.png';
+        } else {
+          nav.classList.remove('nav-scrolled');
+          logo.src = '/logo-iit-white.png';
+        }
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+    // When darkHero=false, nav-scrolled is always on (set in HTML)
   }
 </script>
