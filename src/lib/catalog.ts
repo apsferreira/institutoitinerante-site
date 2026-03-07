@@ -7,7 +7,7 @@
 
 const API_BASE =
   (import.meta as any).env?.PUBLIC_CATALOG_API_URL ??
-  'https://catalog-api.institutoitinerante.com.br';
+  'https://catalog.institutoitinerante.com.br/api';
 
 // ── Types ──────────────────────────────────────────────────────────────
 
