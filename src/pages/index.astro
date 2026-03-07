@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import About from '../components/About.astro';
-import HowItWorks from '../components/HowItWorks.astro';
 import ContactSection from '../components/ContactSection.astro';
 import Footer from '../components/Footer.astro';
 import StickyCTAMobile from '../components/StickyCTAMobile.astro';
@@ -98,11 +97,11 @@ import { pt as t } from '../i18n/pt';
             </div>
           </a>
 
-          <!-- Focus Hub -->
+          <!-- Nitro -->
           <a href="/focus-hub" class="group bg-white rounded-2xl border border-gray-200 p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col reveal reveal-delay-2">
             <div class="w-12 h-1.5 rounded-full mb-6" style="background: #00D6A0;"></div>
             <span class="self-start text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-4" style="background: #00D6A010; color: #00A87E;">disponível</span>
-            <h3 class="text-2xl font-black mb-2 text-[#0D1B26]">Focus Hub</h3>
+            <h3 class="text-2xl font-black mb-2 text-[#0D1B26]">Nitro</h3>
             <p class="text-base leading-relaxed flex-1 text-[#4B6070]">Plataforma de produtividade e foco para equipes. Reduza distrações e entregue mais com menos esforço.</p>
             <div class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#00A87E]">
               Saiba mais
@@ -112,11 +111,11 @@ import { pt as t } from '../i18n/pt';
             </div>
           </a>
 
-          <!-- My Library -->
+          <!-- Libri -->
           <a href="/my-library" class="group bg-white rounded-2xl border border-gray-200 p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col reveal reveal-delay-3">
             <div class="w-12 h-1.5 rounded-full mb-6" style="background: #F59E0B;"></div>
             <span class="self-start text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-4" style="background: #F59E0B10; color: #D97706;">disponível</span>
-            <h3 class="text-2xl font-black mb-2 text-[#0D1B26]">My Library</h3>
+            <h3 class="text-2xl font-black mb-2 text-[#0D1B26]">Libri</h3>
             <p class="text-base leading-relaxed flex-1 text-[#4B6070]">Sua biblioteca pessoal inteligente. Organize, pesquise e aprenda com todo o conteúdo que você consome.</p>
             <div class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#D97706]">
               Saiba mais
@@ -129,7 +128,6 @@ import { pt as t } from '../i18n/pt';
       </div>
     </section>
 
-    <HowItWorks />
     <About t={t} />
     <ContactSection t={t} />
   </main>

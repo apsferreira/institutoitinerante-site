@@ -15,10 +15,13 @@ const { t } = Astro.props;
     <!-- Nossa história (concisa) -->
     <div class="max-w-3xl mx-auto mb-16 reveal reveal-delay-1">
       <p class="text-lg leading-relaxed mb-4" style="color: #4B6070;">
-        O Instituto Itinerante de Tecnologia (IIT) nasceu em Salvador com um propósito claro: usar tecnologia como ferramenta de transformação. Com 16 anos de existência, já formamos mais de 30 jovens de comunidades em situação de vulnerabilidade, proporcionando oportunidades reais de emprego e renda por meio do conhecimento técnico.
+        O Instituto Itinerante de Tecnologia (IIT) nasceu com um sonho claro: transformar vidas por meio da tecnologia. Com 16 anos de existência, nosso propósito sempre foi usar a tecnologia como ferramenta de inclusão digital e transformação social. Ao longo de nossa trajetória, já formamos mais de 30 jovens egressos do ensino médio, moradores de comunidades em situação de vulnerabilidade em Salvador, proporcionando oportunidades reais de desenvolvimento, emprego e renda por meio do conhecimento técnico.
+      </p>
+      <p class="text-lg leading-relaxed mb-4" style="color: #4B6070;">
+        Esse compromisso com a inclusão nos impulsiona a criar soluções que não apenas atendem às necessidades dos nossos clientes, mas também têm um impacto positivo na sociedade. Acreditamos que a tecnologia é um meio para empoderar pessoas e construir um futuro mais justo e igualitário.
       </p>
       <p class="text-lg leading-relaxed" style="color: #4B6070;">
-        Hoje, desenvolvemos agentes de IA e soluções sob medida para empresas que buscam eficiência e inovação. Nossa equipe combina experiência em engenharia de software, arquitetura de sistemas e inteligência artificial — sempre com o compromisso de que a tecnologia deve servir às pessoas.
+        Oferecemos consultoria e desenvolvimento de soluções tecnológicas completas — da automação inteligente à IA aplicada — sempre com foco na transformação digital que melhora processos e cria oportunidades para quem mais precisa.
       </p>
     </div>
 
@@ -52,10 +55,10 @@ const { t } = Astro.props;
       <h3 class="text-2xl font-bold mb-8 text-center" style="color: #0D1B26;">Valores</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
-          { icon: '💡', title: 'Inovação com propósito', desc: 'Tecnologia aplicada onde gera valor real — não por modismo.' },
-          { icon: '🌱', title: 'Impacto social', desc: 'Soluções que ajudam negócios de todos os tamanhos a crescer.' },
-          { icon: '✨', title: 'Simplicidade', desc: 'Complexidade para nós, facilidade para você.' },
-          { icon: '🤝', title: 'Parceria de longo prazo', desc: 'Sucesso do cliente é sucesso do IIT.' },
+          { icon: '🔍', title: 'Transparência', desc: 'Comunicação clara e honesta em cada etapa do projeto.' },
+          { icon: '⭐', title: 'Compromisso com a qualidade', desc: 'Soluções robustas, bem construídas e com suporte real.' },
+          { icon: '🌱', title: 'Inclusão digital', desc: 'Tecnologia como ferramenta de empoderamento e equidade social.' },
+          { icon: '🤝', title: 'Responsabilidade social', desc: 'Cada projeto contribui para um futuro mais justo e igualitário.' },
         ].map((valor) => (
           <div class="flex flex-col items-center text-center p-6 rounded-2xl bg-gray-50 hover:bg-blue-50 transition-all duration-300 hover:-translate-y-1 border border-gray-100">
             <span class="text-3xl mb-3">{valor.icon}</span>
