@@ -1,7 +1,7 @@
 export const pt = {
   lang: 'pt-BR',
   siteName: 'Instituto Itinerante de Tecnologia',
-  siteDescription: 'Agente de atendimento inteligente para empresas. Atenda clientes 24/7 no WhatsApp com IA.',
+  siteDescription: 'Tecnologia e IA para empresas. Produtos digitais que automatizam atendimento, produtividade e gestao do conhecimento.',
 
   nav: {
     about: 'Sobre',

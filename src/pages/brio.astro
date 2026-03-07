@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Brio from '../components/Brio.astro';
+import SchemaProduct from '../components/SchemaProduct.astro';
 import HowItWorks from '../components/HowItWorks.astro';
 import Cases from '../components/Cases.astro';
 import Integrations from '../components/Integrations.astro';
@@ -17,6 +18,7 @@ import { pt as t } from '../i18n/pt';
   lang="pt-BR"
   canonical="https://institutoitinerante.com.br/brio"
 >
+  <SchemaProduct />
   <Nav t={t} />
   <main>
     <!-- Hero Brio -->
