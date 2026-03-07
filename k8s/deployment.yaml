@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/name: iit-website
     app.kubernetes.io/managed-by: argocd
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: iit-website
