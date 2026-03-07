@@ -1,5 +1,25 @@
 ---
-// PricingSection.astro — Preços Free + Pago
+// PricingSection.astro — Preços Free + Pago (API-driven with fallback)
+import { fetchProductsWithPrices, formatPrice } from '../../lib/catalog';
+
+// ── Fetch price from API ───────────────────────────────────────────────
+let priceDisplay = 'R$ 19';
+let yearlyDisplay = 'R$ 190/ano (economize 2 meses)';
+
+const products = await fetchProductsWithPrices('plan');
+const acervo = products.find((p) => p.name === 'Acervo Pro');
+
+if (acervo && acervo.prices.length > 0) {
+  const monthly = acervo.prices.find((pr) => pr.interval === 'monthly');
+  const yearly = acervo.prices.find((pr) => pr.interval === 'yearly');
+
+  if (monthly) {
+    priceDisplay = formatPrice(monthly.amount_cents);
+  }
+  if (yearly) {
+    yearlyDisplay = `${formatPrice(yearly.amount_cents)}/ano (economize 2 meses)`;
+  }
+}
 ---
 
 <section id="precos" class="py-20 bg-white ml-section">
@@ -66,10 +86,10 @@
           <h3 class="text-xl font-bold">Biblioteca Completa</h3>
           <p class="text-white/80 text-sm mt-1">Para leitores sérios sobre sua jornada</p>
           <div class="mt-4">
-            <span class="text-4xl font-bold">R$ 19</span>
+            <span class="text-4xl font-bold">{priceDisplay}</span>
             <span class="text-white/80 text-sm">/mês</span>
           </div>
-          <p class="text-white/70 text-xs mt-1">ou R$ 190/ano (economize 2 meses)</p>
+          <p class="text-white/70 text-xs mt-1">ou {yearlyDisplay}</p>
         </div>
 
         <ul class="space-y-3 text-sm text-white">

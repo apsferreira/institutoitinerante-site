@@ -1,5 +1,25 @@
 ---
-// PricingSection.astro — Free tier + Plano pago
+// PricingSection.astro — Free tier + Plano pago (API-driven with fallback)
+import { fetchProductsWithPrices, formatPrice } from '../../lib/catalog';
+
+// ── Fetch price from API ───────────────────────────────────────────────
+let priceDisplay = 'R$ 24';
+let yearlyDisplay = 'R$ 240/ano (economize 2 meses)';
+
+const products = await fetchProductsWithPrices('plan');
+const zenit = products.find((p) => p.name === 'Zenit Pro');
+
+if (zenit && zenit.prices.length > 0) {
+  const monthly = zenit.prices.find((pr) => pr.interval === 'monthly');
+  const yearly = zenit.prices.find((pr) => pr.interval === 'yearly');
+
+  if (monthly) {
+    priceDisplay = formatPrice(monthly.amount_cents);
+  }
+  if (yearly) {
+    yearlyDisplay = `${formatPrice(yearly.amount_cents)}/ano (economize 2 meses)`;
+  }
+}
 ---
 
 <section id="precos" class="bg-[#0A0F14] py-24">
@@ -64,10 +84,10 @@
         <div class="mb-6">
           <span class="text-xs font-bold text-[#00D6A0] uppercase tracking-widest">Focus Hub Pro</span>
           <div class="flex items-end gap-2 mt-2">
-            <span class="text-5xl font-black text-white">R$ 24</span>
+            <span class="text-5xl font-black text-white">{priceDisplay}</span>
             <span class="text-gray-400 pb-1">/mês</span>
           </div>
-          <p class="text-gray-400 text-sm mt-2">ou R$ 240/ano (economize 2 meses)</p>
+          <p class="text-gray-400 text-sm mt-2">ou {yearlyDisplay}</p>
         </div>
 
         <ul class="space-y-3 mb-8 flex-1">

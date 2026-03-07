@@ -83,7 +83,11 @@ A estrutura do projeto é baseada nas convenções do Astro:
 
 ## 7. Variáveis de Ambiente
 
-O projeto não utiliza variáveis de ambiente no momento da build. Toda a configuração é contida dentro do repositório.
+| Variável | Descrição | Default |
+|---|---|---|
+| `PUBLIC_CATALOG_API_URL` | URL base da API de catálogo (produtos e preços). Usada nas páginas de pricing para buscar dados dinâmicos. | `https://catalog-api.institutoitinerante.com.br` |
+
+Copie `.env.example` para `.env` e ajuste conforme necessário. Para desenvolvimento local com a API rodando localmente, use `http://localhost:8080`.
 
 ## 8. Como Rodar Localmente
 
