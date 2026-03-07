@@ -7,28 +7,29 @@ const isEn = t.lang === 'en';
 const base = isEn ? '/en' : '';
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="main-nav">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
     <a href={isEn ? '/en/' : '/'} class="flex items-center gap-2 shrink-0">
       <img
-        src="/logo-iit.png"
+        id="nav-logo"
+        src="/logo-iit-white.png"
         alt="Instituto Itinerante de Tecnologia"
         width="168"
         height="48"
         loading="eager"
-        class="h-12 w-auto"
+        class="h-12 w-auto transition-opacity duration-300"
       />
     </a>
 
     <!-- Desktop nav -->
     <div class="hidden md:flex items-center gap-6">
-      <a href={isEn ? '/en/' : '/'} class="nav-link text-sm font-medium text-gray-600 hover:text-[#0097D6] transition-colors">Início</a>
-      <a href={isEn ? '/en/solucoes' : '/solucoes'} class="nav-link text-sm font-medium text-gray-600 hover:text-[#0097D6] transition-colors">Soluções</a>
-      <a href="/precos" class="nav-link text-sm font-medium text-gray-600 hover:text-[#0097D6] transition-colors">Preços</a>
+      <a href={isEn ? '/en/' : '/'} class="nav-link text-sm font-medium nav-text transition-colors">Inicio</a>
+      <a href={isEn ? '/en/solucoes' : '/solucoes'} class="nav-link text-sm font-medium nav-text transition-colors">Solucoes</a>
+      <a href="/precos" class="nav-link text-sm font-medium nav-text transition-colors">Precos</a>
 
       <!-- Produtos dropdown -->
       <div class="relative group">
-        <button class="nav-link text-sm font-medium text-gray-600 hover:text-[#0097D6] transition-colors flex items-center gap-1">
+        <button class="nav-link text-sm font-medium nav-text transition-colors flex items-center gap-1">
           Produtos
           <svg class="w-3 h-3 opacity-60 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -59,14 +60,13 @@ const base = isEn ? '/en' : '';
         </div>
       </div>
 
-      
-      <a href={isEn ? '/en/blog' : '/blog'} class="nav-link text-sm font-medium text-gray-600 hover:text-[#0097D6] transition-colors">Blog</a>
-      <a href={t.nav.langLink} class="text-xl hover:text-[#0097D6] transition-colors">{isEn ? '🇧🇷' : '🇺🇸'}</a>
+      <a href={isEn ? '/en/blog' : '/blog'} class="nav-link text-sm font-medium nav-text transition-colors">Blog</a>
+      <a href={t.nav.langLink} class="text-xl transition-colors nav-text">{isEn ? '🇧🇷' : '🇺🇸'}</a>
       <a href={t.nav.contactPage} class="nav-link text-sm font-medium text-white bg-[#0097D6] hover:bg-[#007ab8] px-4 py-2 rounded-lg transition-colors">{t.nav.contact}</a>
     </div>
 
     <!-- Mobile menu button -->
-    <button id="menu-btn" class="md:hidden p-2 rounded-md text-gray-600 hover:text-[#0097D6]" aria-label="Menu">
+    <button id="menu-btn" class="md:hidden p-2 rounded-md nav-text" aria-label="Menu">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
@@ -75,24 +75,76 @@ const base = isEn ? '/en' : '';
 
   <!-- Mobile menu -->
   <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white px-4 py-4 space-y-3">
-    <a href={isEn ? '/en/' : '/'} class="block text-sm font-medium text-gray-600 hover:text-[#0097D6]">Início</a>
-    <a href={isEn ? '/en/solucoes' : '/solucoes'} class="block text-sm font-medium text-gray-600 hover:text-[#0097D6]">Soluções</a>
-    <a href="/precos" class="block text-sm font-medium text-gray-600 hover:text-[#0097D6]">Preços</a>
+    <a href={isEn ? '/en/' : '/'} class="block text-sm font-medium text-gray-600 hover:text-[#0097D6]">Inicio</a>
+    <a href={isEn ? '/en/solucoes' : '/solucoes'} class="block text-sm font-medium text-gray-600 hover:text-[#0097D6]">Solucoes</a>
+    <a href="/precos" class="block text-sm font-medium text-gray-600 hover:text-[#0097D6]">Precos</a>
     <div class="pl-3 border-l-2 border-gray-100 space-y-2">
       <p class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">Produtos</p>
       <a href="/brio" class="block text-sm font-medium text-gray-600 hover:text-[#0097D6]">Brio</a>
-      <a href="/focus-hub" class="block text-sm font-semibold text-[#00D6A0] hover:text-[#00A87E]">Focus Hub ✦</a>
-      <a href="/my-library" class="block text-sm font-medium text-amber-600 hover:text-amber-700">📚 My Library</a>
+      <a href="/focus-hub" class="block text-sm font-medium text-[#00D6A0] hover:text-[#00A87E]">Focus Hub</a>
+      <a href="/my-library" class="block text-sm font-medium text-amber-600 hover:text-amber-700">My Library</a>
     </div>
-    
     <a href={isEn ? '/en/blog' : '/blog'} class="block text-sm font-medium text-gray-600 hover:text-[#0097D6]">Blog</a>
-    <a href={t.nav.langLink} class="block text-xl hover:text-[#0097D6] transition-colors">{isEn ? '🇧🇷' : '🇺🇸'}</a>
+    <a href={t.nav.langLink} class="block text-xl transition-colors">{isEn ? '🇧🇷' : '🇺🇸'}</a>
     <a href={t.nav.contactPage} class="block text-sm font-medium text-white bg-[#0097D6] px-4 py-2 rounded-lg text-center">{t.nav.contact}</a>
   </div>
 </header>
 
+<style>
+  /* Estado inicial: transparente (sobre hero escuro) */
+  #main-nav {
+    background: transparent;
+  }
+  #main-nav .nav-text {
+    color: rgba(255, 255, 255, 0.85);
+  }
+  #main-nav .nav-text:hover {
+    color: #0097D6;
+  }
+
+  /* Estado scrollado: fundo branco */
+  #main-nav.nav-scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  #main-nav.nav-scrolled .nav-text {
+    color: #4B5563;
+  }
+  #main-nav.nav-scrolled .nav-text:hover {
+    color: #0097D6;
+  }
+</style>
+
 <script>
   const btn = document.getElementById('menu-btn');
   const menu = document.getElementById('mobile-menu');
-  btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+  const nav = document.getElementById('main-nav');
+  const logo = document.getElementById('nav-logo') as HTMLImageElement | null;
+
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+    // Quando o menu mobile abre, forçar fundo branco
+    if (menu && !menu.classList.contains('hidden')) {
+      nav?.classList.add('nav-scrolled');
+      if (logo) logo.src = '/logo-iit.png';
+    }
+  });
+
+  // Scroll: transparente no topo, branco ao descer
+  if (nav && logo) {
+    const onScroll = () => {
+      if (window.scrollY > 60) {
+        nav.classList.add('nav-scrolled');
+        logo.src = '/logo-iit.png';
+      } else {
+        nav.classList.remove('nav-scrolled');
+        logo.src = '/logo-iit-white.png';
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
 </script>

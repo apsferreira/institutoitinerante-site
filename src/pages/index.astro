@@ -2,12 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import About from '../components/About.astro';
-import Cases from '../components/Cases.astro';
+import HowItWorks from '../components/HowItWorks.astro';
 import SchemaProduct from '../components/SchemaProduct.astro';
 import ContactSection from '../components/ContactSection.astro';
 import Footer from '../components/Footer.astro';
-import SocialProofBar from '../components/SocialProofBar.astro';
-import AnimatedCounters from '../components/AnimatedCounters.astro';
 import StickyCTAMobile from '../components/StickyCTAMobile.astro';
 import { pt as t } from '../i18n/pt';
 ---
@@ -24,76 +22,76 @@ import { pt as t } from '../i18n/pt';
   <Nav t={t} />
   <StickyCTAMobile />
   <main>
-    <!-- Hero institucional -->
+    <!-- Hero -->
     <section class="hero-section hero-bg-anim relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
-      <!-- Circuit grid background (CSS only) -->
       <div class="hero-grid absolute inset-0 pointer-events-none"></div>
-      <!-- Glow blobs -->
       <div class="absolute top-1/3 right-1/4 w-96 h-96 bg-[#0097D6]/10 rounded-full blur-3xl pointer-events-none"></div>
       <div class="absolute bottom-1/4 left-1/4 w-64 h-64 bg-[#00D6A0]/8 rounded-full blur-3xl pointer-events-none"></div>
 
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-        <span class="inline-block text-sm font-semibold uppercase tracking-widest mb-6 text-[#0097D6] fade-in-up" style="animation-delay: 0s">Produtos digitais com propósito</span>
-        <h1 class="text-5xl sm:text-6xl md:text-7xl font-black text-white leading-tight tracking-tight mb-6 fade-in-up" style="animation-delay: 0.2s">
-          Seu negócio funcionando<br class="hidden sm:block" />
-          no <span style="color: #0097D6;">piloto automático</span>
-        </h1>
-        <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-8 leading-relaxed fade-in-up" style="color: #8A9FAF; animation-delay: 0.28s">
-          Agentes de IA que atendem, organizam e vendem por você — 24/7, sem equipe extra.
-        </p>
-
-        <!-- Credibility bar -->
-        <div class="flex items-center justify-center gap-6 flex-wrap mb-10 fade-in-up" style="animation-delay: 0.35s">
-          <span class="text-sm text-gray-400 flex items-center gap-2"><span class="text-[#00D6A0]">📊</span> 3 produtos</span>
-          <span class="text-gray-600">·</span>
-          <span class="text-sm text-gray-400 flex items-center gap-2"><span class="text-[#00D6A0]">🕐</span> 24/7</span>
-          <span class="text-gray-600">·</span>
-          <span class="text-sm text-gray-400 flex items-center gap-2"><span class="text-[#00D6A0]">⚡</span> &lt; 30s resposta</span>
+        <div class="flex justify-center mb-10 fade-in-up" style="animation-delay: 0s">
+          <img
+            src="/logo-iit-white.png"
+            alt="Instituto Itinerante de Tecnologia"
+            width="192"
+            height="96"
+            loading="eager"
+            class="h-24 md:h-32 w-auto object-contain drop-shadow-2xl"
+          />
         </div>
+
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight tracking-tight mb-6 fade-in-up" style="animation-delay: 0.2s">
+          Tecnologia e IA<br class="hidden sm:block" />
+          para o seu <span style="color: #0097D6;">negocio crescer</span>
+        </h1>
+        <p class="text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto mb-10 leading-relaxed fade-in-up" style="color: #8A9FAF; animation-delay: 0.28s">
+          Agentes inteligentes que atendem, organizam e vendem por voce &mdash; 24/7, sem equipe extra. Do atendimento ao foco e ao conhecimento.
+        </p>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-in-up" style="animation-delay: 0.4s">
           <a
-            href="/brio"
+            href="https://wa.me/5571992732430"
+            target="_blank"
+            rel="noopener noreferrer"
             class="btn-pulse btn-shimmer inline-flex items-center gap-2 bg-[#0097D6] hover:bg-[#007ab8] text-white font-bold px-8 py-4 rounded-xl text-base shadow-lg shadow-[#0097D6]/30 transition-all duration-200 hover:scale-105"
           >
-            Testar o Brio grátis →
+            <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Falar pelo WhatsApp
           </a>
           <a
             href="#produtos"
             class="inline-flex items-center gap-2 border-2 border-white/30 text-white hover:border-[#0097D6] hover:text-[#0097D6] font-semibold px-8 py-4 rounded-xl text-base transition-all duration-200"
           >
-            Ver demonstração
+            Conhecer nossos produtos
           </a>
         </div>
 
         <!-- Scroll indicator -->
         <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
           <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7 7" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
         </div>
       </div>
     </section>
 
-    <SocialProofBar />
-    <About t={t} />
-    <AnimatedCounters />
-
-    <!-- Nossos Produtos -->
+    <!-- Nossos Produtos (logo apos o hero) -->
     <section id="produtos" class="py-24 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
+        <div class="text-center mb-16 reveal">
           <h2 class="text-4xl font-black text-[#0D1B26] mb-4 section-title-accent">Nosso Ecossistema</h2>
-          <p class="text-gray-500 max-w-xl mx-auto">Soluções construídas para diferentes necessidades — do atendimento ao foco e ao conhecimento.</p>
+          <p class="text-gray-500 max-w-xl mx-auto">Solucoes construidas para diferentes necessidades &mdash; do atendimento ao foco e ao conhecimento.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <!-- Brio -->
-          <a href="/brio" class="group bg-white rounded-2xl border border-gray-200 p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col">
+          <a href="/brio" class="group bg-white rounded-2xl border border-gray-200 p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col reveal reveal-delay-1">
             <div class="w-12 h-1.5 rounded-full mb-6" style="background: #0097D6;"></div>
-            <span class="self-start text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-4" style="background: #0097D610; color: #0097D6;">disponível</span>
+            <span class="self-start text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-4" style="background: #0097D610; color: #0097D6;">disponivel</span>
             <h3 class="text-2xl font-black mb-2 text-[#0D1B26]">Brio</h3>
-            <p class="text-base leading-relaxed flex-1 text-[#4B6070]">Agente de atendimento inteligente 24/7 via WhatsApp. Qualifica leads, agenda reuniões e nunca deixa um cliente sem resposta.</p>
+            <p class="text-base leading-relaxed flex-1 text-[#4B6070]">Agente de atendimento inteligente 24/7 via WhatsApp. Qualifica leads, agenda reunioes e nunca deixa um cliente sem resposta.</p>
             <div class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#0097D6]">
               Saiba mais
               <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -103,11 +101,11 @@ import { pt as t } from '../i18n/pt';
           </a>
 
           <!-- Focus Hub -->
-          <a href="/focus-hub" class="group bg-white rounded-2xl border border-gray-200 p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col">
+          <a href="/focus-hub" class="group bg-white rounded-2xl border border-gray-200 p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col reveal reveal-delay-2">
             <div class="w-12 h-1.5 rounded-full mb-6" style="background: #00D6A0;"></div>
-            <span class="self-start text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-4" style="background: #00D6A010; color: #00A87E;">disponível</span>
+            <span class="self-start text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-4" style="background: #00D6A010; color: #00A87E;">disponivel</span>
             <h3 class="text-2xl font-black mb-2 text-[#0D1B26]">Focus Hub</h3>
-            <p class="text-base leading-relaxed flex-1 text-[#4B6070]">Plataforma de produtividade e foco para equipes. Reduza distrações e entregue mais com menos esforço.</p>
+            <p class="text-base leading-relaxed flex-1 text-[#4B6070]">Plataforma de produtividade e foco para equipes. Reduza distracoes e entregue mais com menos esforco.</p>
             <div class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#00A87E]">
               Saiba mais
               <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -117,11 +115,11 @@ import { pt as t } from '../i18n/pt';
           </a>
 
           <!-- My Library -->
-          <a href="/my-library" class="group bg-white rounded-2xl border border-gray-200 p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col">
+          <a href="/my-library" class="group bg-white rounded-2xl border border-gray-200 p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col reveal reveal-delay-3">
             <div class="w-12 h-1.5 rounded-full mb-6" style="background: #F59E0B;"></div>
-            <span class="self-start text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-4" style="background: #F59E0B10; color: #D97706;">disponível</span>
+            <span class="self-start text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-4" style="background: #F59E0B10; color: #D97706;">disponivel</span>
             <h3 class="text-2xl font-black mb-2 text-[#0D1B26]">My Library</h3>
-            <p class="text-base leading-relaxed flex-1 text-[#4B6070]">Sua biblioteca pessoal inteligente. Organize, pesquise e aprenda com todo o conteúdo que você consome.</p>
+            <p class="text-base leading-relaxed flex-1 text-[#4B6070]">Sua biblioteca pessoal inteligente. Organize, pesquise e aprenda com todo o conteudo que voce consome.</p>
             <div class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#D97706]">
               Saiba mais
               <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -133,7 +131,8 @@ import { pt as t } from '../i18n/pt';
       </div>
     </section>
 
-    <Cases />
+    <HowItWorks />
+    <About t={t} />
     <ContactSection t={t} />
   </main>
   <Footer t={t} />
