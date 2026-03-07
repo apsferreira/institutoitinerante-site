@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Home (PT) -->
+  <url>
+    <loc>https://institutoitinerante.com.br/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://institutoitinerante.com.br/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://institutoitinerante.com.br/en/"/>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Brio -->
+  <url>
+    <loc>https://institutoitinerante.com.br/brio/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Produtos -->
+  <url>
+    <loc>https://institutoitinerante.com.br/produtos/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Soluções -->
+  <url>
+    <loc>https://institutoitinerante.com.br/solucoes/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Preços -->
+  <url>
+    <loc>https://institutoitinerante.com.br/precos/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Contato -->
+  <url>
+    <loc>https://institutoitinerante.com.br/contato/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Parceiros -->
+  <url>
+    <loc>https://institutoitinerante.com.br/parceiros/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Privacidade -->
+  <url>
+    <loc>https://institutoitinerante.com.br/privacidade/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Termos -->
+  <url>
+    <loc>https://institutoitinerante.com.br/termos/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Focus Hub -->
+  <url>
+    <loc>https://institutoitinerante.com.br/focus-hub/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- My Library -->
+  <url>
+    <loc>https://institutoitinerante.com.br/my-library/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Blog -->
+  <url>
+    <loc>https://institutoitinerante.com.br/blog/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Para: Academias -->
+  <url>
+    <loc>https://institutoitinerante.com.br/para/academias/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Para: Clínicas -->
+  <url>
+    <loc>https://institutoitinerante.com.br/para/clinicas/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Para: Imobiliárias -->
+  <url>
+    <loc>https://institutoitinerante.com.br/para/imobiliarias/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Para: Salões -->
+  <url>
+    <loc>https://institutoitinerante.com.br/para/saloes/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- English: Home -->
+  <url>
+    <loc>https://institutoitinerante.com.br/en/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://institutoitinerante.com.br/en/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://institutoitinerante.com.br/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- English: Products -->
+  <url>
+    <loc>https://institutoitinerante.com.br/en/products/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- English: Contact -->
+  <url>
+    <loc>https://institutoitinerante.com.br/en/contact/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>

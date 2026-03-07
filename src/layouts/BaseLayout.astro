@@ -17,7 +17,7 @@ const {
   description,
   lang = 'pt-BR',
   canonical = Astro.url.href,
-  ogImage = '/og-image.svg',
+  ogImage = '/og-image.png',
   alternatePt,
   alternateEn,
   schemaExtra,
@@ -66,7 +66,7 @@ const whatsappLabel = lang === 'en' ? 'Talk to us' : 'Fale conosco';
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:type" content="image/svg+xml" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="Instituto Itinerante de Tecnologia" />
     <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'pt_BR'} />
