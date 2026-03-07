@@ -109,9 +109,28 @@ const whatsappLabel = lang === 'en' ? 'Talk to us' : 'Fale conosco';
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css">
     <script defer src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js"></script>
 
-    <!-- Cookie Consent & Google Analytics -->
+    <!-- Google Tag Manager -->
+    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TG6XWRBN');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Consent defaults (GTM picks these up before firing tags) -->
     <script is:inline>
-      // Aguarda a lib cookieconsent carregar (defer) antes de inicializar
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+    </script>
+
+    <!-- Cookie Consent -->
+    <script is:inline>
       window.addEventListener('DOMContentLoaded', function() {
       CookieConsent.run({
         guiOptions: {
@@ -162,8 +181,8 @@ const whatsappLabel = lang === 'en' ? 'Talk to us' : 'Fale conosco';
                     readOnly: true
                   },
                   {
-                    title: "Análise (Google Analytics)",
-                    description: "Estes cookies nos ajudam a entender como os visitantes interagem com o site, coletando informações de forma anônima.",
+                    title: "Análise e Marketing",
+                    description: "Estes cookies nos ajudam a entender como os visitantes interagem com o site e a exibir anúncios relevantes.",
                     linkedCategory: "analytics"
                   }
                 ]
@@ -180,19 +199,29 @@ const whatsappLabel = lang === 'en' ? 'Talk to us' : 'Fale conosco';
             enabled: false,
             autoClear: {
               cookies: [
-                { name: /^_ga/ }
+                { name: /^_ga/ },
+                { name: /^_gcl/ },
+                { name: /^_fbp/ }
               ]
             },
             services: {
-              ga: {
-                label: 'Google Analytics 4',
+              gtm: {
+                label: 'Google Tag Manager (GA4 + Ads)',
                 onConsent: () => {
-                  console.log('Consentimento de análise CONCEDIDO');
-                  gtag('consent', 'update', { 'analytics_storage': 'granted' });
+                  gtag('consent', 'update', {
+                    'analytics_storage': 'granted',
+                    'ad_storage': 'granted',
+                    'ad_user_data': 'granted',
+                    'ad_personalization': 'granted'
+                  });
                 },
                 onBlock: () => {
-                  console.log('Consentimento de análise NEGADO');
-                  gtag('consent', 'update', { 'analytics_storage': 'denied' });
+                  gtag('consent', 'update', {
+                    'analytics_storage': 'denied',
+                    'ad_storage': 'denied',
+                    'ad_user_data': 'denied',
+                    'ad_personalization': 'denied'
+                  });
                 }
               }
             }
@@ -200,38 +229,14 @@ const whatsappLabel = lang === 'en' ? 'Talk to us' : 'Fale conosco';
         }
       });
       }); // fim DOMContentLoaded
-
-      // Google Analytics 4
-      const gtagId = 'G-JPL1XGG0P1'; // Usando o ID que estava no arquivo
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      // Define o consentimento padrão como 'denied' ANTES de configurar o GA
-      gtag('consent', 'default', {
-        'analytics_storage': 'denied',
-        'ad_storage': 'denied',
-        'ad_user_data': 'denied',
-        'ad_personalization': 'denied'
-      });
-
-      gtag('config', gtagId);
     </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JPL1XGG0P1"></script>
-    
-    <!-- =====================================================
-         TODO: Microsoft Clarity
-         Substituir CLARITY_ID pelo ID real do projeto Clarity
-         Criar em: https://clarity.microsoft.com/
-         ===================================================== -->
-    <!-- <script>
-      (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "CLARITY_ID");
-    </script> -->
   </head>
   <body class="min-h-screen bg-white text-gray-900 antialiased">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TG6XWRBN"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <slot />
 
     <!-- =====================================================
