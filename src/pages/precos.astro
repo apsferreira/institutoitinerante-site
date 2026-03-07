@@ -3,6 +3,162 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { pt as t } from '../i18n/pt';
+import { fetchProductsWithPrices, formatPrice } from '../lib/catalog';
+import type { ProductWithPrices } from '../lib/catalog';
+
+// ── Visual fallback map (keyed by product name) ────────────────────────
+// Until metadata comes from the API, we keep visual props here.
+interface CardMeta {
+  color: string;          // Tailwind/hex accent color
+  colorClass: string;     // Tailwind text color class for checkmarks
+  bgClass: string;        // Button bg classes
+  hoverBgClass: string;   // Button hover bg
+  dotClass: string;       // Dot bg class
+  description: string;
+  popular: boolean;
+  features: string[];
+  order: number;
+}
+
+const fallbackMeta: Record<string, CardMeta> = {
+  'Acervo Pro': {
+    color: '#f59e0b',
+    colorClass: 'text-amber-500',
+    bgClass: 'bg-amber-500',
+    hoverBgClass: 'hover:bg-amber-600',
+    dotClass: 'bg-amber-500',
+    description: 'Gestão de conhecimento pessoal',
+    popular: false,
+    features: [
+      'Biblioteca pessoal ilimitada',
+      'Metas de leitura inteligentes',
+      'Estatísticas detalhadas',
+      'Import/Export completo',
+    ],
+    order: 1,
+  },
+  'Zenit Pro': {
+    color: '#00D6A0',
+    colorClass: 'text-[#00D6A0]',
+    bgClass: 'bg-[#00D6A0]',
+    hoverBgClass: 'hover:bg-[#00A87E]',
+    dotClass: 'bg-[#00D6A0]',
+    description: 'Produtividade GTD simplificada',
+    popular: false,
+    features: [
+      'Projetos ilimitados',
+      'Revisão semanal com IA',
+      'Integração calendário',
+      'Relatórios de produtividade',
+    ],
+    order: 2,
+  },
+  'Restaurant QR Growth': {
+    color: '#f97316',
+    colorClass: 'text-orange-500',
+    bgClass: 'bg-orange-500',
+    hoverBgClass: 'hover:bg-orange-600',
+    dotClass: 'bg-orange-500',
+    description: 'Cardápio digital inteligente',
+    popular: false,
+    features: [
+      'Cardápio digital responsivo',
+      'QR Codes personalizados',
+      'Analytics de vendas',
+      'Gestão de pedidos',
+    ],
+    order: 3,
+  },
+  'Jiu-Jitsu Pro': {
+    color: '#a855f7',
+    colorClass: 'text-purple-500',
+    bgClass: 'bg-purple-500',
+    hoverBgClass: 'hover:bg-purple-600',
+    dotClass: 'bg-purple-500',
+    description: 'Gestão para academias',
+    popular: false,
+    features: [
+      'Gestão de alunos completa',
+      'Controle de graduações',
+      'Financeiro integrado',
+      'App para professores',
+    ],
+    order: 4,
+  },
+  'Brio Pro': {
+    color: '#0097D6',
+    colorClass: 'text-[#0097D6]',
+    bgClass: 'bg-[#0097D6]',
+    hoverBgClass: 'hover:bg-[#007ab8]',
+    dotClass: 'bg-[#0097D6]',
+    description: 'Atendimento 24/7 via WhatsApp',
+    popular: true,
+    features: [
+      'Atendimento IA 24/7',
+      'Qualificação automática',
+      'Agendamento inteligente',
+      'Integração WhatsApp Business',
+    ],
+    order: 5,
+  },
+};
+
+// Default fallback products (used when API is unreachable)
+const hardcodedFallback: { name: string; amountCents: number; interval: string }[] = [
+  { name: 'Acervo Pro', amountCents: 1900, interval: 'monthly' },
+  { name: 'Zenit Pro', amountCents: 2400, interval: 'monthly' },
+  { name: 'Restaurant QR Growth', amountCents: 8900, interval: 'monthly' },
+  { name: 'Jiu-Jitsu Pro', amountCents: 19900, interval: 'monthly' },
+  { name: 'Brio Pro', amountCents: 29900, interval: 'monthly' },
+];
+
+// ── Fetch from API or fallback ─────────────────────────────────────────
+
+interface DisplayCard {
+  name: string;
+  description: string;
+  priceDisplay: string;
+  interval: string;
+  meta: CardMeta;
+}
+
+let cards: DisplayCard[] = [];
+
+const apiProducts = await fetchProductsWithPrices('plan');
+
+if (apiProducts.length > 0) {
+  cards = apiProducts.map((p) => {
+    const meta = (p.metadata as unknown as CardMeta) ?? fallbackMeta[p.name] ?? fallbackMeta['Brio Pro'];
+    // Pick monthly price first, then any price
+    const monthlyPrice = p.prices.find((pr) => pr.interval === 'monthly') ?? p.prices[0];
+    const amountCents = monthlyPrice?.amount_cents ?? 0;
+    const interval = monthlyPrice?.interval ?? 'monthly';
+    return {
+      name: p.name,
+      description: meta.description ?? p.description,
+      priceDisplay: formatPrice(amountCents),
+      interval,
+      meta: { ...fallbackMeta[p.name], ...meta },
+    };
+  });
+  // Sort by order from meta
+  cards.sort((a, b) => (a.meta.order ?? 99) - (b.meta.order ?? 99));
+} else {
+  // API unavailable — use hardcoded fallback
+  cards = hardcodedFallback.map((f) => ({
+    name: f.name,
+    description: fallbackMeta[f.name].description,
+    priceDisplay: formatPrice(f.amountCents),
+    interval: f.interval,
+    meta: fallbackMeta[f.name],
+  }));
+}
+
+const intervalLabel: Record<string, string> = {
+  monthly: '/mês',
+  yearly: '/ano',
+  once: ' único',
+};
 ---
 
 <BaseLayout
@@ -27,231 +183,57 @@ import { pt as t } from '../i18n/pt';
     <section class="py-24 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
-          
-          <!-- Acervo Pro -->
-          <div class="reveal bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-all duration-300">
-            <div class="text-center mb-8">
-              <span class="inline-block w-3 h-3 rounded-full bg-amber-500 mb-4"></span>
-              <h3 class="text-2xl font-bold text-[#1E293B] mb-2">Acervo Pro</h3>
-              <p class="text-gray-500 text-sm mb-6">Gestão de conhecimento pessoal</p>
-              <div class="mb-6">
-                <span class="text-4xl font-black text-[#1E293B]">R$ 19</span>
-                <span class="text-gray-500">/mês</span>
-              </div>
-            </div>
-            
-            <ul class="space-y-3 mb-8 text-sm text-gray-600">
-              <li class="flex items-center gap-3">
-                <svg class="w-4 h-4 text-amber-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Biblioteca pessoal ilimitada
-              </li>
-              <li class="flex items-center gap-3">
-                <svg class="w-4 h-4 text-amber-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Metas de leitura inteligentes
-              </li>
-              <li class="flex items-center gap-3">
-                <svg class="w-4 h-4 text-amber-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Estatísticas detalhadas
-              </li>
-              <li class="flex items-center gap-3">
-                <svg class="w-4 h-4 text-amber-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Import/Export completo
-              </li>
-            </ul>
-            
-            <a href="/contato" class="block w-full text-center bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-xl transition-all">
-              Começar Agora
-            </a>
-          </div>
 
-          <!-- Zenit Pro -->
-          <div class="reveal bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-all duration-300">
-            <div class="text-center mb-8">
-              <span class="inline-block w-3 h-3 rounded-full bg-[#00D6A0] mb-4"></span>
-              <h3 class="text-2xl font-bold text-[#1E293B] mb-2">Zenit Pro</h3>
-              <p class="text-gray-500 text-sm mb-6">Produtividade GTD simplificada</p>
-              <div class="mb-6">
-                <span class="text-4xl font-black text-[#1E293B]">R$ 24</span>
-                <span class="text-gray-500">/mês</span>
-              </div>
-            </div>
-            
-            <ul class="space-y-3 mb-8 text-sm text-gray-600">
-              <li class="flex items-center gap-3">
-                <svg class="w-4 h-4 text-[#00D6A0] shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Projetos ilimitados
-              </li>
-              <li class="flex items-center gap-3">
-                <svg class="w-4 h-4 text-[#00D6A0] shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Revisão semanal com IA
-              </li>
-              <li class="flex items-center gap-3">
-                <svg class="w-4 h-4 text-[#00D6A0] shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Integração calendário
-              </li>
-              <li class="flex items-center gap-3">
-                <svg class="w-4 h-4 text-[#00D6A0] shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Relatórios de produtividade
-              </li>
-            </ul>
-            
-            <a href="/contato" class="block w-full text-center bg-[#00D6A0] hover:bg-[#00A87E] text-white font-bold py-3 px-6 rounded-xl transition-all">
-              Começar Agora
-            </a>
-          </div>
+          {cards.map((card) => (
+            <div class:list={[
+              'reveal bg-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 relative',
+              card.meta.popular
+                ? 'shadow-2xl border-2 border-[#0097D6]'
+                : 'shadow-lg border border-gray-100',
+            ]}>
+              {card.meta.popular && (
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+                  <span class="bg-[#0097D6] text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">Mais Popular</span>
+                </div>
+              )}
 
-          <!-- Restaurant QR Growth -->
-          <div class="reveal bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-all duration-300">
-            <div class="text-center mb-8">
-              <span class="inline-block w-3 h-3 rounded-full bg-orange-500 mb-4"></span>
-              <h3 class="text-2xl font-bold text-[#1E293B] mb-2">Restaurant QR Growth</h3>
-              <p class="text-gray-500 text-sm mb-6">Cardápio digital inteligente</p>
-              <div class="mb-6">
-                <span class="text-4xl font-black text-[#1E293B]">R$ 89</span>
-                <span class="text-gray-500">/mês</span>
+              <div class:list={['text-center mb-8', card.meta.popular && 'pt-2']}>
+                <span class:list={['inline-block w-3 h-3 rounded-full mb-4', card.meta.dotClass]}></span>
+                <h3 class="text-2xl font-bold text-[#1E293B] mb-2">{card.name}</h3>
+                <p class="text-gray-500 text-sm mb-6">{card.description}</p>
+                <div class="mb-6">
+                  <span class:list={[
+                    'text-4xl font-black',
+                    card.meta.popular ? `text-[${card.meta.color}]` : 'text-[#1E293B]',
+                  ]}>{card.priceDisplay}</span>
+                  <span class="text-gray-500">{intervalLabel[card.interval] ?? '/mês'}</span>
+                </div>
               </div>
-            </div>
-            
-            <ul class="space-y-3 mb-8 text-sm text-gray-600">
-              <li class="flex items-center gap-3">
-                <svg class="w-4 h-4 text-orange-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Cardápio digital responsivo
-              </li>
-              <li class="flex items-center gap-3">
-                <svg class="w-4 h-4 text-orange-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                QR Codes personalizados
-              </li>
-              <li class="flex items-center gap-3">
-                <svg class="w-4 h-4 text-orange-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Analytics de vendas
-              </li>
-              <li class="flex items-center gap-3">
-                <svg class="w-4 h-4 text-orange-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Gestão de pedidos
-              </li>
-            </ul>
-            
-            <a href="/contato" class="block w-full text-center bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-xl transition-all">
-              Começar Agora
-            </a>
-          </div>
 
-          <!-- Jiu-Jitsu Pro -->
-          <div class="reveal bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-all duration-300">
-            <div class="text-center mb-8">
-              <span class="inline-block w-3 h-3 rounded-full bg-purple-500 mb-4"></span>
-              <h3 class="text-2xl font-bold text-[#1E293B] mb-2">Jiu-Jitsu Pro</h3>
-              <p class="text-gray-500 text-sm mb-6">Gestão para academias</p>
-              <div class="mb-6">
-                <span class="text-4xl font-black text-[#1E293B]">R$ 199</span>
-                <span class="text-gray-500">/mês</span>
-              </div>
-            </div>
-            
-            <ul class="space-y-3 mb-8 text-sm text-gray-600">
-              <li class="flex items-center gap-3">
-                <svg class="w-4 h-4 text-purple-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Gestão de alunos completa
-              </li>
-              <li class="flex items-center gap-3">
-                <svg class="w-4 h-4 text-purple-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Controle de graduações
-              </li>
-              <li class="flex items-center gap-3">
-                <svg class="w-4 h-4 text-purple-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Financeiro integrado
-              </li>
-              <li class="flex items-center gap-3">
-                <svg class="w-4 h-4 text-purple-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                App para professores
-              </li>
-            </ul>
-            
-            <a href="/contato" class="block w-full text-center bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-6 rounded-xl transition-all">
-              Começar Agora
-            </a>
-          </div>
+              <ul class="space-y-3 mb-8 text-sm text-gray-600">
+                {card.meta.features.map((feature: string) => (
+                  <li class="flex items-center gap-3">
+                    <svg class:list={['w-4 h-4 shrink-0', card.meta.colorClass]} fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
 
-          <!-- Brio Pro - Mais Popular -->
-          <div class="reveal bg-white rounded-2xl shadow-2xl border-2 border-[#0097D6] p-8 hover:shadow-3xl transition-all duration-300 relative">
-            <!-- Badge Mais Popular -->
-            <div class="absolute -top-4 left-1/2 -translate-x-1/2">
-              <span class="bg-[#0097D6] text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">Mais Popular</span>
+              <a
+                href="/contato"
+                class:list={[
+                  'block w-full text-center text-white font-bold py-3 px-6 rounded-xl transition-all',
+                  card.meta.bgClass,
+                  card.meta.hoverBgClass,
+                  card.meta.popular && 'shadow-lg shadow-[#0097D6]/30',
+                ]}
+              >
+                Começar Agora
+              </a>
             </div>
-            
-            <div class="text-center mb-8 pt-2">
-              <span class="inline-block w-3 h-3 rounded-full bg-[#0097D6] mb-4"></span>
-              <h3 class="text-2xl font-bold text-[#1E293B] mb-2">Brio Pro</h3>
-              <p class="text-gray-500 text-sm mb-6">Atendimento 24/7 via WhatsApp</p>
-              <div class="mb-6">
-                <span class="text-4xl font-black text-[#0097D6]">R$ 299</span>
-                <span class="text-gray-500">/mês</span>
-              </div>
-            </div>
-            
-            <ul class="space-y-3 mb-8 text-sm text-gray-600">
-              <li class="flex items-center gap-3">
-                <svg class="w-4 h-4 text-[#0097D6] shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Atendimento IA 24/7
-              </li>
-              <li class="flex items-center gap-3">
-                <svg class="w-4 h-4 text-[#0097D6] shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Qualificação automática
-              </li>
-              <li class="flex items-center gap-3">
-                <svg class="w-4 h-4 text-[#0097D6] shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Agendamento inteligente
-              </li>
-              <li class="flex items-center gap-3">
-                <svg class="w-4 h-4 text-[#0097D6] shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Integração WhatsApp Business
-              </li>
-            </ul>
-            
-            <a href="/contato" class="block w-full text-center bg-[#0097D6] hover:bg-[#007ab8] text-white font-bold py-3 px-6 rounded-xl transition-all shadow-lg shadow-[#0097D6]/30">
-              Começar Agora
-            </a>
-          </div>
+          ))}
 
         </div>
       </div>
@@ -269,7 +251,7 @@ import { pt as t } from '../i18n/pt';
           <div class="reveal bg-white rounded-xl p-8 shadow-sm border border-gray-100">
             <h3 class="text-lg font-semibold text-[#1E293B] mb-4">Posso cancelar a qualquer momento?</h3>
             <p class="text-[#64748B]">
-              Sim, você pode cancelar seu plano a qualquer momento sem multas ou taxas adicionais. 
+              Sim, você pode cancelar seu plano a qualquer momento sem multas ou taxas adicionais.
               O cancelamento será efetivado no final do período já pago.
             </p>
           </div>
@@ -277,7 +259,7 @@ import { pt as t } from '../i18n/pt';
           <div class="reveal bg-white rounded-xl p-8 shadow-sm border border-gray-100">
             <h3 class="text-lg font-semibold text-[#1E293B] mb-4">Existe período de teste?</h3>
             <p class="text-[#64748B]">
-              Oferecemos um período de teste de 7 dias para todos os nossos produtos. 
+              Oferecemos um período de teste de 7 dias para todos os nossos produtos.
               Durante este período, você pode explorar todas as funcionalidades sem compromisso.
             </p>
           </div>
@@ -285,7 +267,7 @@ import { pt as t } from '../i18n/pt';
           <div class="reveal bg-white rounded-xl p-8 shadow-sm border border-gray-100">
             <h3 class="text-lg font-semibold text-[#1E293B] mb-4">Como funciona o pagamento?</h3>
             <p class="text-[#64748B]">
-              Os pagamentos são processados mensalmente via cartão de crédito ou PIX. 
+              Os pagamentos são processados mensalmente via cartão de crédito ou PIX.
               Você receberá uma fatura por email antes de cada cobrança. Todos os preços incluem impostos aplicáveis.
             </p>
           </div>
@@ -293,7 +275,7 @@ import { pt as t } from '../i18n/pt';
           <div class="reveal bg-white rounded-xl p-8 shadow-sm border border-gray-100">
             <h3 class="text-lg font-semibold text-[#1E293B] mb-4">Posso migrar entre planos?</h3>
             <p class="text-[#64748B]">
-              Sim, você pode fazer upgrade ou downgrade do seu plano a qualquer momento. 
+              Sim, você pode fazer upgrade ou downgrade do seu plano a qualquer momento.
               As mudanças serão aplicadas no próximo ciclo de cobrança, e você será informado sobre eventuais ajustes no valor.
             </p>
           </div>
@@ -301,7 +283,7 @@ import { pt as t } from '../i18n/pt';
           <div class="reveal bg-white rounded-xl p-8 shadow-sm border border-gray-100">
             <h3 class="text-lg font-semibold text-[#1E293B] mb-4">Os dados ficam seguros?</h3>
             <p class="text-[#64748B]">
-              Absolutamente. Utilizamos criptografia de ponta e seguimos as melhores práticas de segurança da indústria. 
+              Absolutamente. Utilizamos criptografia de ponta e seguimos as melhores práticas de segurança da indústria.
               Todos os dados são armazenados em servidores seguros com backup automático.
             </p>
           </div>
@@ -347,7 +329,7 @@ import { pt as t } from '../i18n/pt';
     transform: translateY(30px);
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
-  
+
   .reveal.revealed {
     opacity: 1;
     transform: translateY(0);
