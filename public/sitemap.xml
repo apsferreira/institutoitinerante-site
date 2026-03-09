@@ -66,16 +66,16 @@
     <priority>0.3</priority>
   </url>
 
-  <!-- Focus Hub -->
+  <!-- Nitro (antigo Focus Hub) -->
   <url>
-    <loc>https://institutoitinerante.com.br/focus-hub/</loc>
+    <loc>https://institutoitinerante.com.br/nitro/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- My Library -->
+  <!-- Libri (antiga My Library) -->
   <url>
-    <loc>https://institutoitinerante.com.br/my-library/</loc>
+    <loc>https://institutoitinerante.com.br/libri/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
