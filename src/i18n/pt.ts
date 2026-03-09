@@ -15,11 +15,11 @@ export const pt = {
   },
 
   hero: {
-    badge: '🤖 Agente de Atendimento Inteligente',
-    headline: 'Atendimento Inteligente no WhatsApp para sua Empresa',
-    subheadline: 'Agentes de inteligência artificial que atendem seus clientes 24/7, qualificam leads e agendam reuniões — no WhatsApp.',
-    ctaPrimary: 'Falar pelo WhatsApp',
-    ctaSecondary: 'Conhecer o Brio',
+    badge: '🚀 Instituto Itinerante de Tecnologia',
+    headline: 'Produtos de Tecnologia e IA que Resolvem Problemas Reais',
+    subheadline: 'Desenvolvemos três produtos únicos: Brio para atendimento automatizado, Nitro para produtividade e Libri para gestão do conhecimento. Tecnologia criada em Salvador para empresas que querem crescer.',
+    ctaPrimary: 'Conhecer nossos produtos',
+    ctaSecondary: 'Falar pelo WhatsApp',
   },
 
   about: {
