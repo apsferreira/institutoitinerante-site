@@ -93,7 +93,7 @@ export const pt = {
   pages: {
     home: {
       title: 'Instituto Itinerante de Tecnologia — Tecnologia e IA para Empresas',
-      description: 'O IIT cria agentes de IA e soluções tecnológicas para empresas. Conheça o Brio, o Focus Hub e o My Library.',
+      description: 'O IIT cria agentes de IA e soluções tecnológicas para empresas. Conheça o Brio, o Nitro e o Libri.',
     },
     contact: {
       title: 'Contato — Instituto Itinerante de Tecnologia',
