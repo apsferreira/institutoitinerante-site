@@ -52,4 +52,4 @@ Um agente de IA bem configurado, por outro lado, **parece um atendente humano** 
 
 Se você está considerando automatizar o atendimento no WhatsApp, invista em um agente de IA real, não em um chatbot de árvore de decisão. A diferença em conversão e satisfação do cliente justifica o investimento.
 
-O **Brio do IIT** foi desenvolvido especificamente para PMEs brasileiras, com custo acessível e setup em até 48h. [Saiba mais →](/precos)
+O **Brio do IIT** foi desenvolvido especificamente para PMEs brasileiras, com custo acessível e setup em até 48h. [Saiba mais →](/brio#planos)

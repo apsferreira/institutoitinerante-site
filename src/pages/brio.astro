@@ -10,6 +10,37 @@ import ContactSection from '../components/ContactSection.astro';
 import Footer from '../components/Footer.astro';
 import AnimatedCounters from '../components/AnimatedCounters.astro';
 import { pt as t } from '../i18n/pt';
+import { fetchProductsWithPrices, formatPrice } from '../lib/catalog';
+
+// ── Busca preço do Brio na API do catálogo ─────────────────────────────
+const BRIO_FALLBACK_CENTS = 29700; // R$ 297/mês (fallback se API indisponível)
+
+let brioPrice = formatPrice(BRIO_FALLBACK_CENTS);
+let brioInterval = '/mês';
+
+try {
+  const products = await fetchProductsWithPrices('plan');
+  const brioProduct = products.find((p) => p.name.toLowerCase() === 'brio');
+  if (brioProduct) {
+    const monthly = brioProduct.prices.find((pr) => pr.interval === 'monthly') ?? brioProduct.prices[0];
+    if (monthly) {
+      brioPrice = formatPrice(monthly.amount_cents);
+      brioInterval = monthly.interval === 'yearly' ? '/ano' : monthly.interval === 'once' ? ' único' : '/mês';
+    }
+  }
+} catch {
+  // Mantém fallback
+}
+
+const brioFeatures = [
+  'Atendimento automatizado 24h por dia, 7 dias por semana',
+  'Qualificação e captação de leads no WhatsApp',
+  'Agendamento inteligente integrado à sua agenda',
+  'Respostas personalizadas com a voz da sua marca',
+  'Dashboard de conversas e métricas de atendimento',
+  'Configuração e onboarding inclusos',
+  'Suporte técnico prioritário',
+];
 ---
 
 <BaseLayout
@@ -42,8 +73,8 @@ import { pt as t } from '../i18n/pt';
             </svg>
             Quero o Brio para minha empresa
           </a>
-          <a href="/precos" class="inline-flex items-center gap-2 border-2 border-[#0097D6] text-[#0097D6] hover:bg-[#0097D6]/5 font-bold px-8 py-4 rounded-xl transition-all">
-            Ver planos e preços
+          <a href="#planos" class="inline-flex items-center gap-2 border-2 border-[#0097D6] text-[#0097D6] hover:bg-[#0097D6]/5 font-bold px-8 py-4 rounded-xl transition-all">
+            Ver planos
           </a>
         </div>
       </div>
@@ -59,6 +90,82 @@ import { pt as t } from '../i18n/pt';
 
     <Cases />
     <Integrations />
+
+    <!-- ── Planos e Preços ───────────────────────────────────────────── -->
+    <section id="planos" class="py-24 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14 reveal">
+          <span class="inline-block text-sm font-semibold uppercase tracking-widest mb-3 text-[#0097D6]">Investimento</span>
+          <h2 class="text-4xl md:text-5xl font-black text-[#0D1B26] mb-4">Plano Brio</h2>
+          <p class="text-lg text-[#4B6070] max-w-xl mx-auto">
+            Um plano completo, sem surpresas. Tudo o que sua empresa precisa para atender 24/7 via WhatsApp.
+          </p>
+        </div>
+
+        <!-- Card de preço -->
+        <div class="reveal max-w-md mx-auto">
+          <div class="bg-white rounded-2xl border-2 border-[#0097D6] shadow-2xl shadow-[#0097D6]/10 p-10 relative">
+            <!-- Badge popular -->
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+              <span class="bg-[#0097D6] text-white text-xs font-bold px-5 py-1.5 rounded-full uppercase tracking-wider whitespace-nowrap">
+                Mais popular
+              </span>
+            </div>
+
+            <!-- Preço -->
+            <div class="text-center mb-8 pt-2">
+              <div class="flex items-end justify-center gap-1 mb-1">
+                <span class="text-2xl font-bold text-[#4B6070] self-start mt-3">a partir de</span>
+              </div>
+              <div class="flex items-end justify-center gap-1">
+                <span class="text-6xl font-black text-[#0097D6] leading-none">{brioPrice}</span>
+                <span class="text-[#4B6070] pb-2 text-lg">{brioInterval}</span>
+              </div>
+              <p class="text-sm text-[#8A9FAF] mt-2">Valor varia conforme volume de atendimentos</p>
+            </div>
+
+            <!-- Features -->
+            <ul class="space-y-3 mb-10">
+              {brioFeatures.map((feature) => (
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-[#0097D6] shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span class="text-sm text-[#4B6070] leading-snug">{feature}</span>
+                </li>
+              ))}
+            </ul>
+
+            <!-- CTAs -->
+            <div class="space-y-3">
+              <a
+                href="https://wa.me/5571992732430"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-center gap-3 w-full bg-[#0097D6] hover:bg-[#007ab8] text-white font-bold py-4 px-6 rounded-xl shadow-lg shadow-[#0097D6]/30 transition-all hover:scale-[1.02]"
+              >
+                <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/>
+                </svg>
+                Quero o Brio agora
+              </a>
+              <a
+                href="/contato"
+                class="flex items-center justify-center w-full border-2 border-[#D0DDE6] text-[#4B6070] hover:border-[#0097D6] hover:text-[#0097D6] font-semibold py-3.5 px-6 rounded-xl transition-all text-sm"
+              >
+                Falar com um especialista
+              </a>
+            </div>
+          </div>
+
+          <!-- Garantia -->
+          <p class="text-center text-sm text-[#8A9FAF] mt-6">
+            🔒 Sem fidelidade · Cancele quando quiser · Setup incluído
+          </p>
+        </div>
+      </div>
+    </section>
+
     <ContactSection t={t} />
   </main>
   <Footer t={t} />
