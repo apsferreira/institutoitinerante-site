@@ -12,14 +12,18 @@ import AnimatedCounters from '../components/AnimatedCounters.astro';
 import { pt as t } from '../i18n/pt';
 import { fetchProductsWithPrices, formatPrice } from '../lib/catalog';
 
-// ── Busca preço do Brio na API do catálogo ─────────────────────────────
-const BRIO_FALLBACK_CENTS = 29700; // R$ 297/mês (fallback se API indisponível)
+// ── Busca preços do Brio na API do catálogo ────────────────────────────
+const BRIO_FALLBACK_CENTS = 29700; // R$ 297/mês
+const ENTERPRISE_FALLBACK_CENTS = 149700; // R$ 1.497/mês
 
 let brioPrice = formatPrice(BRIO_FALLBACK_CENTS);
 let brioInterval = '/mês';
+let enterprisePrice = formatPrice(ENTERPRISE_FALLBACK_CENTS);
+let enterpriseInterval = '/mês';
 
 try {
   const products = await fetchProductsWithPrices('plan');
+
   const brioProduct = products.find((p) => p.name.toLowerCase() === 'brio');
   if (brioProduct) {
     const monthly = brioProduct.prices.find((pr) => pr.interval === 'monthly') ?? brioProduct.prices[0];
@@ -28,18 +32,38 @@ try {
       brioInterval = monthly.interval === 'yearly' ? '/ano' : monthly.interval === 'once' ? ' único' : '/mês';
     }
   }
+
+  const enterpriseProduct = products.find((p) => p.name.toLowerCase().includes('enterprise'));
+  if (enterpriseProduct) {
+    const monthly = enterpriseProduct.prices.find((pr) => pr.interval === 'monthly') ?? enterpriseProduct.prices[0];
+    if (monthly) {
+      enterprisePrice = formatPrice(monthly.amount_cents);
+      enterpriseInterval = monthly.interval === 'yearly' ? '/ano' : monthly.interval === 'once' ? ' único' : '/mês';
+    }
+  }
 } catch {
   // Mantém fallback
 }
 
 const brioFeatures = [
-  'Atendimento automatizado 24h por dia, 7 dias por semana',
+  'Atendimento automatizado 24h/7',
   'Qualificação e captação de leads no WhatsApp',
   'Agendamento inteligente integrado à sua agenda',
   'Respostas personalizadas com a voz da sua marca',
-  'Dashboard de conversas e métricas de atendimento',
+  'Dashboard de conversas e métricas',
   'Configuração e onboarding inclusos',
   'Suporte técnico prioritário',
+];
+
+const enterpriseFeatures = [
+  'Tudo do plano Brio, mais:',
+  'Múltiplos números de WhatsApp',
+  'Integrações customizadas (CRM, ERP)',
+  'SLA garantido com uptime 99,9%',
+  'Gerente de conta dedicado',
+  'Treinamento completo da equipe',
+  'Relatórios e dashboards personalizados',
+  'Compliance e segurança avançados',
 ];
 ---
 
@@ -93,38 +117,39 @@ const brioFeatures = [
 
     <!-- ── Planos e Preços ───────────────────────────────────────────── -->
     <section id="planos" class="py-24 bg-white">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-14 reveal">
           <span class="inline-block text-sm font-semibold uppercase tracking-widest mb-3 text-[#0097D6]">Investimento</span>
-          <h2 class="text-4xl md:text-5xl font-black text-[#0D1B26] mb-4">Plano Brio</h2>
+          <h2 class="text-4xl md:text-5xl font-black text-[#0D1B26] mb-4">Planos Brio</h2>
           <p class="text-lg text-[#4B6070] max-w-xl mx-auto">
-            Um plano completo, sem surpresas. Tudo o que sua empresa precisa para atender 24/7 via WhatsApp.
+            Escolha o plano ideal para o porte e volume de atendimentos da sua empresa.
           </p>
         </div>
 
-        <!-- Card de preço -->
-        <div class="reveal max-w-md mx-auto">
+        <div class="reveal grid md:grid-cols-2 gap-8 items-start">
+
+          <!-- ── Card Brio (Profissional) ── -->
           <div class="bg-white rounded-2xl border-2 border-[#0097D6] shadow-2xl shadow-[#0097D6]/10 p-10 relative">
-            <!-- Badge popular -->
             <div class="absolute -top-4 left-1/2 -translate-x-1/2">
               <span class="bg-[#0097D6] text-white text-xs font-bold px-5 py-1.5 rounded-full uppercase tracking-wider whitespace-nowrap">
                 Mais popular
               </span>
             </div>
 
-            <!-- Preço -->
-            <div class="text-center mb-8 pt-2">
-              <div class="flex items-end justify-center gap-1 mb-1">
-                <span class="text-2xl font-bold text-[#4B6070] self-start mt-3">a partir de</span>
-              </div>
-              <div class="flex items-end justify-center gap-1">
-                <span class="text-6xl font-black text-[#0097D6] leading-none">{brioPrice}</span>
-                <span class="text-[#4B6070] pb-2 text-lg">{brioInterval}</span>
-              </div>
-              <p class="text-sm text-[#8A9FAF] mt-2">Valor varia conforme volume de atendimentos</p>
+            <div class="mb-6 pt-2">
+              <h3 class="text-xl font-black text-[#0D1B26] mb-1">Brio</h3>
+              <p class="text-sm text-[#8A9FAF]">Para PMEs que querem automatizar o atendimento</p>
             </div>
 
-            <!-- Features -->
+            <div class="mb-8">
+              <div class="text-sm text-[#8A9FAF] mb-1">a partir de</div>
+              <div class="flex items-end gap-1">
+                <span class="text-5xl font-black text-[#0097D6] leading-none">{brioPrice}</span>
+                <span class="text-[#4B6070] pb-1 text-lg">{brioInterval}</span>
+              </div>
+              <p class="text-xs text-[#8A9FAF] mt-1.5">Varia conforme volume de atendimentos</p>
+            </div>
+
             <ul class="space-y-3 mb-10">
               {brioFeatures.map((feature) => (
                 <li class="flex items-start gap-3">
@@ -136,7 +161,6 @@ const brioFeatures = [
               ))}
             </ul>
 
-            <!-- CTAs -->
             <div class="space-y-3">
               <a
                 href="https://wa.me/5571992732430"
@@ -158,11 +182,66 @@ const brioFeatures = [
             </div>
           </div>
 
-          <!-- Garantia -->
-          <p class="text-center text-sm text-[#8A9FAF] mt-6">
-            🔒 Sem fidelidade · Cancele quando quiser · Setup incluído
-          </p>
+          <!-- ── Card Enterprise ── -->
+          <div class="bg-[#0D1B26] rounded-2xl border-2 border-[#00D6A0] shadow-2xl shadow-[#00D6A0]/10 p-10 relative">
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+              <span class="bg-[#00D6A0] text-[#0D1B26] text-xs font-bold px-5 py-1.5 rounded-full uppercase tracking-wider whitespace-nowrap">
+                Enterprise
+              </span>
+            </div>
+
+            <div class="mb-6 pt-2">
+              <h3 class="text-xl font-black text-white mb-1">Brio Enterprise</h3>
+              <p class="text-sm text-[#8A9FAF]">Para empresas com operações de alto volume</p>
+            </div>
+
+            <div class="mb-8">
+              <div class="text-sm text-[#8A9FAF] mb-1">a partir de</div>
+              <div class="flex items-end gap-1">
+                <span class="text-5xl font-black text-[#00D6A0] leading-none">{enterprisePrice}</span>
+                <span class="text-[#8A9FAF] pb-1 text-lg">{enterpriseInterval}</span>
+              </div>
+              <p class="text-xs text-[#8A9FAF] mt-1.5">Proposta customizada conforme demanda</p>
+            </div>
+
+            <ul class="space-y-3 mb-10">
+              {enterpriseFeatures.map((feature, i) => (
+                <li class="flex items-start gap-3">
+                  <svg class={`w-5 h-5 shrink-0 mt-0.5 ${i === 0 ? 'text-[#8A9FAF]' : 'text-[#00D6A0]'}`} fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span class={`text-sm leading-snug ${i === 0 ? 'text-[#8A9FAF] italic' : 'text-[#C8D8E4]'}`}>{feature}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div class="space-y-3">
+              <a
+                href="https://wa.me/5571992732430?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20Brio%20Enterprise"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-center gap-3 w-full bg-[#00D6A0] hover:bg-[#00b888] text-[#0D1B26] font-bold py-4 px-6 rounded-xl shadow-lg shadow-[#00D6A0]/20 transition-all hover:scale-[1.02]"
+              >
+                <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/>
+                </svg>
+                Falar sobre Enterprise
+              </a>
+              <a
+                href="/contato"
+                class="flex items-center justify-center w-full border-2 border-[#1E3545] text-[#8A9FAF] hover:border-[#00D6A0] hover:text-[#00D6A0] font-semibold py-3.5 px-6 rounded-xl transition-all text-sm"
+              >
+                Solicitar proposta personalizada
+              </a>
+            </div>
+          </div>
+
         </div>
+
+        <!-- Garantia -->
+        <p class="text-center text-sm text-[#8A9FAF] mt-10">
+          🔒 Sem fidelidade · Cancele quando quiser · Setup incluído em todos os planos
+        </p>
       </div>
     </section>
 
