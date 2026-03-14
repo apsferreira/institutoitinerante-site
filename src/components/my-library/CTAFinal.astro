@@ -1,6 +1,6 @@
 ---
 // CTAFinal.astro — CTA final da LP Libri
-import ContactForm from '../ContactForm.astro';
+const APP_URL = 'https://libri.institutoitinerante.com.br';
 ---
 
 <section class="py-24 bg-gradient-to-br from-gray-900 via-amber-950 to-rose-950 ml-section relative overflow-hidden">
@@ -37,14 +37,18 @@ import ContactForm from '../ContactForm.astro';
         </div>
       </div>
 
-      <!-- Formulário -->
-      <div class="ml-reveal bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
-        <div class="text-center mb-6">
-          <h3 class="text-xl font-bold text-white mb-2">Quero testar o Libri!</h3>
-          <p class="text-white/70 text-sm">Deixe seus dados e te enviaremos o acesso antecipado</p>
-        </div>
-        
-        <ContactForm product="libri" className="space-y-4" />
+      <!-- CTA botão direto para o app -->
+      <div class="ml-reveal flex flex-col items-center lg:items-start gap-4">
+        <a
+          href={APP_URL}
+          class="inline-flex items-center gap-3 px-8 py-4 bg-amber-400 hover:bg-amber-300 text-gray-900 font-bold text-lg rounded-xl shadow-xl shadow-amber-400/25 transition-all duration-200 hover:scale-105"
+        >
+          <span>📚</span>
+          Abrir o Libri
+        </a>
+        <p class="text-white/40 text-xs">
+          Gratuito · Sem instalação · Acesso imediato
+        </p>
       </div>
       
     </div>
