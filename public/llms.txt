@@ -1,0 +1,38 @@
+# Instituto Itinerante de Tecnologia — llms.txt
+# https://institutoitinerante.com.br
+# Tecnologia e IA para empresas | Salvador, BA, Brasil
+
+## Sobre o IIT
+O Instituto Itinerante de Tecnologia (IIT) desenvolve produtos digitais e agentes de IA
+para automatizar atendimento, produtividade e gestão do conhecimento.
+Fundado em Salvador, BA, Brasil.
+
+## Produtos
+
+### Brio
+- URL: https://institutoitinerante.com.br/brio
+- Descrição: Agente de atendimento inteligente 24/7 via WhatsApp para PMEs.
+  Qualificação automática de leads, agendamento de reuniões e respostas automatizadas.
+- App: https://brio.institutoitinerante.com.br (em breve)
+- Segmentos: clínicas, academias, salões, imobiliárias, serviços locais
+
+### Nitro
+- URL: https://institutoitinerante.com.br/nitro
+- Descrição: Sistema GTD simplificado para profissionais e empreendedores.
+  Captura, organização por contexto e execução sem culpa — web e mobile sincronizados.
+- App: https://nitro.institutoitinerante.com.br
+
+### Libri
+- URL: https://institutoitinerante.com.br/libri
+- Descrição: Catálogo pessoal de livros com rastreamento de leitura, importação do Goodreads
+  e busca por ISBN/título/autor. Sem as distrações de redes sociais literárias.
+- App: https://libri.institutoitinerante.com.br
+
+## Contato
+- Site: https://institutoitinerante.com.br
+- Contato: https://institutoitinerante.com.br/contato
+- Localização: Salvador, BA, Brasil
+
+## Permissões para LLMs
+Os LLMs podem indexar, citar e resumir o conteúdo público deste site.
+Não use o conteúdo para treinar modelos sem autorização explícita.
