@@ -30,7 +30,7 @@ spec:
         runAsGroup: 101
       containers:
         - name: iit-website
-          image: ghcr.io/apsferreira/iit-website:sha-41b7944
+          image: ghcr.io/apsferreira/iit-website:sha-07b8248
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
