@@ -78,6 +78,32 @@
         </div>
       </div>
 
+      <!-- Feature 5: Perfil público — full width destaque -->
+      <div class="ml-reveal md:col-span-2 group bg-gradient-to-br from-amber-500 to-rose-500 rounded-2xl p-8 space-y-5 hover:shadow-xl hover:shadow-amber-500/25 transition-all duration-300">
+        <div class="flex flex-col sm:flex-row items-start gap-5">
+          <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center text-3xl shrink-0 group-hover:scale-110 transition-transform">🌐</div>
+          <div class="flex-1">
+            <div class="flex items-center gap-3 mb-2 flex-wrap">
+              <h3 class="text-2xl font-bold text-white">Perfil público de leitor</h3>
+              <span class="bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Novo</span>
+            </div>
+            <p class="text-white/85 leading-relaxed text-base">
+              Compartilhe sua jornada literária com o mundo. Ative seu perfil público em
+              <span class="font-semibold text-white">libri.institutoitinerante.com.br/u/seunome</span>,
+              mostre o que está lendo, o que já leu e o que está na fila — e incorpore sua estante em qualquer site com uma linha de código.
+            </p>
+            <p class="text-white/75 text-sm mt-2">
+              Cada livro traz o link de compra direto na Amazon. Você ainda pode compartilhar suas impressões e notas sobre os livros que concluiu.
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-2 flex-wrap">
+          {['Link público compartilhável', 'Embed em qualquer site', 'Impressões sobre livros lidos', 'Link Amazon por livro'].map(tag => (
+            <span class="bg-white/20 text-white text-xs px-2.5 py-1 rounded-full font-medium">{tag}</span>
+          ))}
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
